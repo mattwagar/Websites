@@ -1,0 +1,21 @@
+<h1>Wunder Ground: </h1>
+<table class="table">
+    <thead >
+        <tr>
+            <th>Date</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Condition</th>
+            <th>Windspeed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="text-align:center;" ng-repeat="x in vm.wunderData.weather">
+            <td ng-bind="x.date"></td>
+            <td>{{x.temperature}} &#8457;</td>
+            <td ng-bind="x.humidity"></td>
+            <td ng-bind="x.condition"></td>
+            <td ng-bind="x.windspeed"></td>
+        </tr>
+    </tbody>
+</table>
