@@ -13,7 +13,7 @@
         <tr style="text-align:center;" ng-repeat="x in vm.wunderData.weather">
             <td ng-bind="x.date"></td>
             <td ng-style="{'background-color':vm.wunderColor[$index]}">{{x.temperature}} &#8457;</td>
-            <td ng-bind="x.humidity"></td>
+            <td ng-style="{'background-color':vm.humid_wunderColor[$index]}">{{x.humidity}}</td>
             <td ng-bind="x.condition"></td>
             <td ng-bind="x.windspeed"></td>
         </tr>
@@ -40,7 +40,7 @@
         <tr style="text-align:center;" ng-repeat="x in vm.forecastData.weather">
             <td ng-bind="x.date"></td>
             <td ng-style="{'background-color':vm.forecastColor[$index]}">{{x.temperature}} &#8457;</td>
-            <td ng-bind="x.humidity"></td>
+            <td ng-style="{'background-color':vm.humid_forecastColor[$index]}">{{x.humidity}}</td>
             <td ng-bind="x.condition"></td>
             <td ng-bind="x.windspeed"></td>
         </tr>

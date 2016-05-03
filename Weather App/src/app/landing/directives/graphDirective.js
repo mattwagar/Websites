@@ -16,9 +16,9 @@
         };
     }
 
-    GraphController.$inject = ['wunderAsyncService', '$timeout', 'forecastAsyncService', 'yahooAsyncService'];
+    GraphController.$inject = ['wunderAsyncService', '$timeout', 'forecastAsyncService', 'yahooAsyncService', 'colorCSS'];
 
-    function GraphController(wunderAsyncService, $timeout, forecastAsyncService, yahooAsyncService) {
+    function GraphController(wunderAsyncService, $timeout, forecastAsyncService, yahooAsyncService, colorCSS) {
         var vm = this;
 
         vm.wunderData = {
@@ -43,9 +43,12 @@
                 end = performance.now();
 
                 vm.wunderColor = [];
+                vm.humid_wunderColor = [];
                 for (var i in vm.wunderData.weather) {
-                    vm.wunderColor.push(wunderAsyncService.tempColor(vm.wunderData.weather[i].temperature));
+                    vm.wunderColor.push(colorCSS.tempColor(vm.wunderData.weather[i].temperature));
+                    vm.humid_wunderColor.push(colorCSS.humidColor(vm.wunderData.weather[i].humidity));
                 }
+                console.log(vm.humid_wunderColor);
 
                 console.log("wunderAsync Call took: " + (end - begin));
             })
@@ -76,8 +79,10 @@
                 end = performance.now();
                 console.log("Forecase.io Async Call took: " + (end - begin));
                 vm.forecastColor = [];
+                vm.humid_forecastColor = [];
                 for (var i in vm.forecastData.weather) {
-                    vm.forecastColor.push(wunderAsyncService.tempColor(vm.forecastData.weather[i].temperature));
+                    vm.forecastColor.push(colorCSS.tempColor(vm.forecastData.weather[i].temperature));
+                    vm.humid_forecastColor.push(colorCSS.humidColor(vm.wunderData.weather[i].humidity));
                 }
             })
             .catch(function (error) {
@@ -107,7 +112,7 @@
                 console.log("Yahoo Async Call took: " + (end - begin));
                 vm.yahooColor = [];
                 for (var i in vm.yahooData.weather) {
-                    vm.yahooColor.push(wunderAsyncService.tempColor(vm.yahooData.weather[i].temperature));
+                    vm.yahooColor.push(colorCSS.tempColor(vm.yahooData.weather[i].temperature));
                 }
                 console.log(vm.yahooColor);
             })
