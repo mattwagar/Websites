@@ -8,9 +8,25 @@
     function colorCSS() {
 
         return {
+            applyColor: applyColor,
             tempColor: tempColor,
             humidColor: humidColor
         };
+        function applyColor(formattedWeather){
+          var color = { "temp": [],
+                        "humid": []};
+          for (var i in formattedWeather) {
+              color.temp.push(tempColor(formattedWeather[i].temperature));
+              color.humid.push(humidColor(formattedWeather[i].humidity));
+          }
+          console.log(color);
+          return color;
+        }
+
+
+
+
+
         function tempColor(temp_num) {
             var round5 = 0;
 

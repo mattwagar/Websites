@@ -12,7 +12,9 @@
             controller: GraphController,
             controllerAs: 'vm',
             bindToController: true,
-            scope: {}
+            scope: {
+              service: '='
+            }
         };
     }
 
@@ -41,15 +43,7 @@
                 console.log(response.data);
                 vm.wunderData = wunderAsyncService.formatWeather(response.data);
                 end = performance.now();
-
-                vm.wunderColor = [];
-                vm.humid_wunderColor = [];
-                for (var i in vm.wunderData.weather) {
-                    vm.wunderColor.push(colorCSS.tempColor(vm.wunderData.weather[i].temperature));
-                    vm.humid_wunderColor.push(colorCSS.humidColor(vm.wunderData.weather[i].humidity));
-                }
-                console.log(vm.humid_wunderColor);
-
+                vm.wunderColor = colorCSS.applyColor(vm.wunderData.weather);
                 console.log("wunderAsync Call took: " + (end - begin));
             })
             .catch(function (error) {
@@ -77,13 +71,9 @@
                 console.log(response.data);
                 vm.forecastData = forecastAsyncService.formatWeather(response.data);
                 end = performance.now();
-                console.log("Forecase.io Async Call took: " + (end - begin));
-                vm.forecastColor = [];
-                vm.humid_forecastColor = [];
-                for (var i in vm.forecastData.weather) {
-                    vm.forecastColor.push(colorCSS.tempColor(vm.forecastData.weather[i].temperature));
-                    vm.humid_forecastColor.push(colorCSS.humidColor(vm.wunderData.weather[i].humidity));
-                }
+                console.log("Forecast.io Async Call took: " + (end - begin));
+                vm.forecastColor = colorCSS.applyColor(vm.forecastData.weather);
+                console.log(vm.forecastColor);
             })
             .catch(function (error) {
                 console.log(error);
@@ -110,10 +100,8 @@
                 vm.yahooData = yahooAsyncService.formatWeather(response.data);
                 end = performance.now();
                 console.log("Yahoo Async Call took: " + (end - begin));
-                vm.yahooColor = [];
-                for (var i in vm.yahooData.weather) {
-                    vm.yahooColor.push(colorCSS.tempColor(vm.yahooData.weather[i].temperature));
-                }
+                vm.yahooColor = colorCSS.applyColor(vm.yahooData.weather)
+                console.log(vm.yahooData);
                 console.log(vm.yahooColor);
             })
             .catch(function (error) {
