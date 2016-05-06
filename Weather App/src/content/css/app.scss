@@ -1,0 +1,55 @@
+@font-face {
+  font-family: mean;
+  src:url(Arcapulse.otf) format("opentype");
+}
+
+@font-face {
+  font-family: 'Tangerine';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Tangerine'), url('http://example.com/tangerine.ttf') format('truetype');
+}
+body{
+    background-color: rgb(19, 21, 24);
+    margin: 100px;
+}
+
+h1{
+  font-family: mean, Times;
+  font-size: 6em;
+  color:rgb(158, 88, 79);
+  text-align:center;
+  text-shadow:2px 2px #000000;
+}
+
+h2{
+  font-size: 30px;
+  text-align:center;
+}
+
+$red-grad : rgb(134, 12, 0);
+$black-grad : rgb(29, 2, 0);
+
+.gradient{
+  background: $red-grad; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, $red-grad , $black-grad); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, $red-grad, $black-grad); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, $red-grad, $black-grad); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, $red-grad , $black-grad); /* Standard syntax */
+}
+
+.main-page{
+  background-color: rgb(231, 212, 212);
+}
+
+
+.center-page {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60em;
+}
+
+table.center {
+    margin-left:auto;
+    margin-right:auto;
+  }
