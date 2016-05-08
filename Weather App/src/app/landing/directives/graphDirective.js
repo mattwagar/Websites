@@ -40,6 +40,7 @@
 
         wunderAsyncService.wunderJSON()
             .then(function (response) {
+              console.log("Wunderground Restful JSON Data:");
                 console.log(response.data);
                 vm.wunderData = wunderAsyncService.formatWeather(response.data);
                 end = performance.now();
@@ -68,6 +69,7 @@
 
         forecastAsyncService.forecastJSON()
             .then(function (response) {
+              console.log("Forecast.io Restful JSON Data:");
                 console.log(response.data);
                 vm.forecastData = forecastAsyncService.formatWeather(response.data);
                 end = performance.now();
@@ -96,13 +98,12 @@
 
         yahooAsyncService.yahooJSON()
             .then(function (response) {
+                console.log("Yahoo Restful JSON Data:");
                 console.log(response.data);
                 vm.yahooData = yahooAsyncService.formatWeather(response.data);
                 end = performance.now();
                 console.log("Yahoo Async Call took: " + (end - begin));
                 vm.yahooColor = colorCSS.applyColor(vm.yahooData.weather)
-                console.log(vm.yahooData);
-                console.log(vm.yahooColor);
             })
             .catch(function (error) {
                 console.log(error);
