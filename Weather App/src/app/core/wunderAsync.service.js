@@ -35,7 +35,7 @@
                 var time = day.date.hour - 12 + ":00";
                 var temperature = day.high.fahrenheit;
                 var humidity = day.avehumidity;
-                var windspeed = day.avewind.mph + " mph";
+                var windspeed = parseInt(day.avewind.mph);
                 var condition = day.conditions;
 
                 var compiledJSON = {

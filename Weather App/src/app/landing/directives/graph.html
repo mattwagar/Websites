@@ -15,7 +15,7 @@
             <td ng-style="{'background-color':vm.wunderColor.temp[$index]}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.wunderColor.humid[$index]}">{{x.humidity}}%</td>
             <td ng-bind="x.condition"></td>
-            <td ng-bind="x.windspeed"></td>
+            <td ng-style="{'background-color':vm.wunderColor.windspeed[$index]}">{{x.windspeed}} mph</td>
         </tr>
     </tbody>
 </table>
@@ -42,7 +42,7 @@
             <td ng-style="{'background-color':vm.forecastColor.temp[$index]}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.forecastColor.humid[$index]}">{{x.humidity}}%</td>
             <td ng-bind="x.condition"></td>
-            <td ng-bind="x.windspeed"></td>
+            <td ng-style="{'background-color':vm.forecastColor.windspeed[$index]}">{{x.windspeed}} mph</td>
         </tr>
     </tbody>
 </table>
@@ -69,7 +69,7 @@
             <td ng-style="{'background-color':vm.yahooColor.temp[$index]}">{{x.temperature}} &#8457;</td>
             <td ng-bind="x.humidity"></td>
             <td ng-bind="x.condition"></td>
-            <td ng-bind="x.windspeed"></td>
+            <td>{{x.windspeed}} mph</td>
         </tr>
     </tbody>
 </table>
@@ -96,7 +96,7 @@
             <td ng-style="{'background-color':vm.wwonlineColor.temp[$index]}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.wwonlineColor.humid[$index]}">{{x.humidity}}%</td>
             <td ng-bind="x.condition"></td>
-            <td>{{x.windspeed}} mph</td>
+            <td ng-style="{'background-color':vm.wwonlineColor.windspeed[$index]}">{{x.windspeed}} mph</td>
         </tr>
     </tbody>
 </table>

@@ -40,8 +40,8 @@
                 var date = month + "/" + unixDate.getDate();
                 var time = unixDate.getHours()+":00";
                 var temperature = Math.round(day.temperatureMax);
-                var humidity = day.humidity * 100;
-                var windspeed = Math.round(day.windSpeed) + " mph";
+                var humidity = parseInt(day.humidity * 100);
+                var windspeed = Math.round(day.windSpeed);
                 var condition = day.summary;
 
                 var compiledJSON = {

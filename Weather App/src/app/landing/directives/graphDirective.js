@@ -103,7 +103,7 @@
                 vm.yahooData = yahooAsyncService.formatWeather(response.data);
                 end = performance.now();
                 console.log("Yahoo Async Call took: " + (end - begin));
-                vm.yahooColor = colorCSS.applyColor(vm.yahooData.weather)
+                vm.yahooColor = colorCSS.applyColor(vm.yahooData.weather);
             })
             .catch(function(error) {
                 console.log(error);
@@ -131,7 +131,7 @@
                 vm.wwonlineData = wwonlineAsyncService.formatWeather(response.data.data);
                 end = performance.now();
                 console.log("World Weather Online Async Call took: " + (end - begin));
-                vm.wwonlineColor = colorCSS.applyColor(vm.wwonlineData.weather)
+                vm.wwonlineColor = colorCSS.applyColor(vm.wwonlineData.weather);
             })
             .catch(function(error) {
                 console.log(error);

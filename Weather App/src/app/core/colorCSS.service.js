@@ -10,17 +10,23 @@
         return {
             applyColor: applyColor,
             tempColor: tempColor,
-            humidColor: humidColor
+            humidColor: humidColor,
+            windColor: windColor
         };
-        function applyColor(formattedWeather){
-          var color = { "temp": [],
-                        "humid": []};
-          for (var i in formattedWeather) {
-              color.temp.push(tempColor(formattedWeather[i].temperature));
-              color.humid.push(humidColor(formattedWeather[i].humidity));
-          }
-          console.log(color);
-          return color;
+
+        function applyColor(formattedWeather) {
+            var color = {
+                "temp": [],
+                "humid": [],
+                "windspeed": []
+            };
+            for (var i in formattedWeather) {
+                color.temp.push(tempColor(formattedWeather[i].temperature));
+                color.humid.push(humidColor(formattedWeather[i].humidity));
+                color.windspeed.push(windColor(formattedWeather[i].windspeed));
+            }
+            console.log(color);
+            return color;
         }
 
 
@@ -100,6 +106,7 @@
                     return;
             }
         }
+
         function humidColor(humid_num) {
             var round5 = 0;
 
@@ -172,6 +179,77 @@
                 default:
                     return;
             }
+        }
+    }
+
+    function windColor(wind_num) {
+
+        switch (wind_num) {
+            case 0:
+                return '#FFFFFF';
+                break;
+            case 1:
+                return '#FFFFFF';
+                break;
+            case 2:
+                return '#F5FBF1';
+                break;
+            case 3:
+                return '#ECF7E4';
+                break;
+            case 4:
+                return '#E3F3D6';
+                break;
+            case 5:
+                return '#DAF0C9';
+                break;
+            case 6:
+                return '#D1ECBB';
+                break;
+            case 7:
+                return '#C8E8AE';
+                break;
+            case 8:
+                return '#BFE4A1';
+                break;
+            case 9:
+                return '#B6E193';
+                break;
+            case 10:
+                return '#ADDD86';
+                break;
+            case 11:
+                return '#A3D978';
+                break;
+            case 12:
+                return '#9AD56B';
+                break;
+            case 13:
+                return '#91D25D';
+                break;
+            case 14:
+                return '#88CE50';
+                break;
+            case 15:
+                return '#7FCA43';
+                break;
+            case 16:
+                return '#76C635';
+                break;
+            case 17:
+                return '#6DC328';
+                break;
+            case 18:
+                return '#64BF1A';
+                break;
+            case 19:
+                return '#5BBB0D';
+                break;
+            case 20:
+                return '#52B800';
+                break;
+            default:
+                return '#52B800';
         }
     }
 

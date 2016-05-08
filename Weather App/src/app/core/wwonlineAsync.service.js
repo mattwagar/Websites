@@ -46,7 +46,7 @@
                 var time = "N/A";
                 var temperature = day.maxtempF;
                 var humidity = day.hourly[4].humidity;
-                var windspeed = day.hourly[4].windspeedMiles;
+                var windspeed = parseInt(day.hourly[4].windspeedMiles);
                 var condition = day.hourly[4].weatherDesc;
 
                 var compiledJSON = {
