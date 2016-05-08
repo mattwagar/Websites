@@ -19,7 +19,7 @@
         </tr>
     </tbody>
 </table>
-<p align="right">Powered By
+<p align="center">Powered By
     <a href="https://www.wunderground.com/">
         <img src="content/images/wunder.png" height="24" width="24">
     </a>
@@ -46,7 +46,7 @@
         </tr>
     </tbody>
 </table>
-<p align="right">Powered By
+<p align="center">Powered By
     <a href="http://forecast.io/">
         <img src="content/images/favicon.ico" height="24" width="24">
     </a>
@@ -73,8 +73,35 @@
         </tr>
     </tbody>
 </table>
-<p align="right">Powered By
+<p align="center">Powered By
     <a href="https://www.yahoo.com/news/weather/">
         <img src="content/images/yahoo.ico" height="24" width="24">
+    </a>
+</p>
+
+<h2>World Weather Online Weather </h2>
+<table class="center">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Condition</th>
+            <th>Windspeed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="text-align:center;" ng-repeat="x in vm.wwonlineData.weather">
+            <td ng-bind="x.date"></td>
+            <td ng-style="{'background-color':vm.wwonlineColor.temp[$index]}">{{x.temperature}} &#8457;</td>
+            <td ng-style="{'background-color':vm.wwonlineColor.humid[$index]}">{{x.humidity}}%</td>
+            <td ng-bind="x.condition"></td>
+            <td>{{x.windspeed}} mph</td>
+        </tr>
+    </tbody>
+</table>
+<p align="center">Powered By
+    <a href="http://us.worldweatheronline.com/">
+        <img src="content/images/wwonline.png" height="24" width="24">
     </a>
 </p>

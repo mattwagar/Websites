@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -13,14 +13,14 @@
             controllerAs: 'vm',
             bindToController: true,
             scope: {
-              service: '='
+                service: '='
             }
         };
     }
 
-    GraphController.$inject = ['wunderAsyncService', '$timeout', 'forecastAsyncService', 'yahooAsyncService', 'colorCSS'];
+    GraphController.$inject = ['wunderAsyncService', '$timeout', 'forecastAsyncService', 'yahooAsyncService', 'colorCSS', 'wwonlineAsyncService'];
 
-    function GraphController(wunderAsyncService, $timeout, forecastAsyncService, yahooAsyncService, colorCSS) {
+    function GraphController(wunderAsyncService, $timeout, forecastAsyncService, yahooAsyncService, colorCSS, wwonlineAsyncService) {
         var vm = this;
 
         vm.wunderData = {
@@ -39,15 +39,15 @@
         var end = null;
 
         wunderAsyncService.wunderJSON()
-            .then(function (response) {
-              console.log("Wunderground Restful JSON Data:");
+            .then(function(response) {
+                console.log("Wunderground Restful JSON Data:");
                 console.log(response.data);
                 vm.wunderData = wunderAsyncService.formatWeather(response.data);
                 end = performance.now();
                 vm.wunderColor = colorCSS.applyColor(vm.wunderData.weather);
                 console.log("wunderAsync Call took: " + (end - begin));
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
             });
 
@@ -68,8 +68,8 @@
         var end = null;
 
         forecastAsyncService.forecastJSON()
-            .then(function (response) {
-              console.log("Forecast.io Restful JSON Data:");
+            .then(function(response) {
+                console.log("Forecast.io Restful JSON Data:");
                 console.log(response.data);
                 vm.forecastData = forecastAsyncService.formatWeather(response.data);
                 end = performance.now();
@@ -77,7 +77,7 @@
                 vm.forecastColor = colorCSS.applyColor(vm.forecastData.weather);
                 console.log(vm.forecastColor);
             })
-            .catch(function (error) {
+            .catch(function(error) {
                 console.log(error);
             });
 
@@ -90,14 +90,14 @@
                 "humidity": "loading...",
                 "windspeed": "loading...",
                 "condition": "loading..."
-        }]
+            }]
         };
 
         var begin = performance.now();
         var end = null;
 
         yahooAsyncService.yahooJSON()
-            .then(function (response) {
+            .then(function(response) {
                 console.log("Yahoo Restful JSON Data:");
                 console.log(response.data);
                 vm.yahooData = yahooAsyncService.formatWeather(response.data);
@@ -105,7 +105,35 @@
                 console.log("Yahoo Async Call took: " + (end - begin));
                 vm.yahooColor = colorCSS.applyColor(vm.yahooData.weather)
             })
-            .catch(function (error) {
+            .catch(function(error) {
+                console.log(error);
+            });
+
+
+        vm.wwonlineData = {
+            weather: [{
+                "date": "loading...",
+                "time": "loading...",
+                "temperature": "loading...",
+                "humidity": "loading...",
+                "windspeed": "loading...",
+                "condition": "loading..."
+            }]
+        };
+
+        var begin = performance.now();
+        var end = null;
+
+        wwonlineAsyncService.wwonlineJSON()
+            .then(function(response) {
+                console.log("World Weather Online Restful JSON Data:");
+                console.log(response.data.data);
+                vm.wwonlineData = wwonlineAsyncService.formatWeather(response.data.data);
+                end = performance.now();
+                console.log("World Weather Online Async Call took: " + (end - begin));
+                vm.wwonlineColor = colorCSS.applyColor(vm.wwonlineData.weather)
+            })
+            .catch(function(error) {
                 console.log(error);
             });
 

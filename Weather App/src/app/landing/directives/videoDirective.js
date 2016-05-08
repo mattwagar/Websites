@@ -17,9 +17,9 @@
             }
         };
 
-        GraphController.$inject = ['wunderAsyncService', '$timeout', 'forecastAsyncService', 'yahooAsyncService', 'colorCSS'];
+        GraphController.$inject = [];
 
-        function videoController(wunderAsyncService, $timeout, forecastAsyncService, yahooAsyncService, colorCSS) {
+        function videoController() {
           vm = this;
 
 
