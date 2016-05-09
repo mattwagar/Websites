@@ -11,19 +11,22 @@
             applyColor: applyColor,
             tempColor: tempColor,
             humidColor: humidColor,
-            windColor: windColor
+            windColor: windColor,
+            conditionColor: conditionColor
         };
 
         function applyColor(formattedWeather) {
             var color = {
                 "temp": [],
                 "humid": [],
-                "windspeed": []
+                "windspeed": [],
+                "condition": []
             };
             for (var i in formattedWeather) {
                 color.temp.push(tempColor(formattedWeather[i].temperature));
                 color.humid.push(humidColor(formattedWeather[i].humidity));
                 color.windspeed.push(windColor(formattedWeather[i].windspeed));
+                color.condition.push(conditionColor(formattedWeather[i].condition));
             }
             console.log(color);
             return color;
@@ -247,6 +250,29 @@
                 break;
             case 20:
                 return '#52B800';
+                break;
+            default:
+                return '#52B800';
+        }
+    }
+
+    function conditionColor(condition) {
+
+        switch (condition) {
+            case "Clear":
+                return '#FFFF66';
+                break;
+            case "Partly Cloudy":
+                return '#447799';
+                break;
+            case "Overcast":
+                return '#777799';
+                break;
+            case "Rain":
+                return '#3333cc';
+                break;
+            case "Chance of a Thunderstorm":
+                return '#6600cc';
                 break;
             default:
                 return '#52B800';

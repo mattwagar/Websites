@@ -34,7 +34,7 @@
             if (condition === "Partly Cloudy") {
                 return partlyCloudy();
             }
-            if (condition === "Chance of Rain") {
+            if (condition === "Chance of Rain", "Mostly Cloudy") {
                 return overcast();
             }
             if (condition === "Rain") {
@@ -85,19 +85,19 @@
         }
 
         function wwonlineCondition(condition) {
-            if (condition === "Cloudy ") {
+            if (condition === "Cloudy "|| condition === "Partly Cloudy ") {
                 return partlyCloudy();
             }
             if (condition === "Overcast ") {
                 return overcast();
             }
-            if (condition === "Light rain shower") {
+            if (condition === "Light rain shower" || condition === "Light rain" || condition === "Shower" || condition === "Moderate rain" || condition === "Light drizzle") {
                 return rain();
             }
             if (condition === "Sunny") {
                 return clear();
             }
-            if (condition === "Patchy light rain in area with thunder") {
+            if (condition === "Patchy light rain in area with thunder" || condition === "Moderate or heavy rain in area with thunder") {
                 return tStorm();
             }
         }

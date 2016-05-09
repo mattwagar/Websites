@@ -14,7 +14,7 @@
             <td ng-bind="x.date"></td>
             <td ng-style="{'background-color':vm.wunderColor.temp[$index]}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.wunderColor.humid[$index]}">{{x.humidity}}%</td>
-            <td ng-bind="x.condition"></td>
+            <td ng-style="{'background-color':vm.wunderColor.condition[$index]}">{{x.condition}}</td>
             <td ng-style="{'background-color':vm.wunderColor.windspeed[$index]}">{{x.windspeed}} mph</td>
         </tr>
     </tbody>
@@ -41,7 +41,7 @@
             <td ng-bind="x.date"></td>
             <td ng-style="{'background-color':vm.forecastColor.temp[$index]}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.forecastColor.humid[$index]}">{{x.humidity}}%</td>
-            <td ng-bind="x.condition"></td>
+            <td ng-style="{'background-color':vm.forecastColor.condition[$index]}">{{x.condition}}</td>
             <td ng-style="{'background-color':vm.forecastColor.windspeed[$index]}">{{x.windspeed}} mph</td>
         </tr>
     </tbody>
@@ -68,7 +68,7 @@
             <td ng-bind="x.date"></td>
             <td ng-style="{'background-color':vm.yahooColor.temp[$index]}">{{x.temperature}} &#8457;</td>
             <td ng-bind="x.humidity"></td>
-            <td ng-bind="x.condition"></td>
+            <td ng-style="{'background-color':vm.yahooColor.condition[$index]}">{{x.condition}}</td>
             <td>{{x.windspeed}}</td>
         </tr>
     </tbody>
@@ -95,7 +95,7 @@
             <td ng-bind="x.date"></td>
             <td ng-style="{'background-color':vm.wwonlineColor.temp[$index]}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.wwonlineColor.humid[$index]}">{{x.humidity}}%</td>
-            <td ng-bind="x.condition"></td>
+            <td ng-style="{'background-color':vm.wwonlineColor.condition[$index]}">{{x.condition}}</td>
             <td ng-style="{'background-color':vm.wwonlineColor.windspeed[$index]}">{{x.windspeed}} mph</td>
         </tr>
     </tbody>

@@ -18,24 +18,15 @@
         };
     }
 
-    GraphController.$inject = ['wunderAsyncService', '$timeout', 'forecastAsyncService', 'yahooAsyncService', 'colorCSS', 'wwonlineAsyncService'];
+    GraphController.$inject = ['wunderAsyncService', 'forecastAsyncService', 'yahooAsyncService', 'colorCSS', 'wwonlineAsyncService', 'loadingInit'];
 
-    function GraphController(wunderAsyncService, $timeout, forecastAsyncService, yahooAsyncService, colorCSS, wwonlineAsyncService) {
+    function GraphController(wunderAsyncService, forecastAsyncService, yahooAsyncService, colorCSS, wwonlineAsyncService, loadingInit) {
         var vm = this;
 
         vm.allWeatherData = {};
 
 
-        vm.wunderData = {
-            weather: [{
-                "date": "loading...",
-                "time": "loading...",
-                "temperature": "loading...",
-                "humidity": "loading...",
-                "windspeed": "loading...",
-                "condition": "loading..."
-            }]
-        };
+        vm.wunderData = loadingInit.loadJSON();
 
 
         var begin = performance.now();
@@ -58,16 +49,7 @@
 
 
 
-        vm.forecastData = {
-            weather: [{
-                "date": "loading...",
-                "time": "loading...",
-                "temperature": "loading...",
-                "humidity": "loading...",
-                "windspeed": "loading...",
-                "condition": "loading..."
-            }]
-        };
+        vm.forecastData = loadingInit.loadJSON();
 
         var begin = performance.now();
         var end = null;
@@ -88,16 +70,7 @@
             });
 
 
-        vm.yahooData = {
-            weather: [{
-                "date": "loading...",
-                "time": "loading...",
-                "temperature": "loading...",
-                "humidity": "loading...",
-                "windspeed": "loading...",
-                "condition": "loading..."
-            }]
-        };
+        vm.yahooData = loadingInit.loadJSON();
 
         var begin = performance.now();
         var end = null;
@@ -117,16 +90,7 @@
             });
 
 
-        vm.wwonlineData = {
-            weather: [{
-                "date": "loading...",
-                "time": "loading...",
-                "temperature": "loading...",
-                "humidity": "loading...",
-                "windspeed": "loading...",
-                "condition": "loading..."
-            }]
-        };
+        vm.wwonlineData = loadingInit.loadJSON();
 
         var begin = performance.now();
         var end = null;
