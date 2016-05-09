@@ -5,7 +5,9 @@
         .module('app.core')
         .factory('wunderAsyncService', wunderAsyncService);
 
-    function wunderAsyncService($http) {
+    wunderAsyncService.$inject = ['$http', 'conditionService'];
+
+    function wunderAsyncService($http, conditionService) {
 
         var service = null;
         var weatherJSON = null;
@@ -36,7 +38,7 @@
                 var temperature = day.high.fahrenheit;
                 var humidity = day.avehumidity;
                 var windspeed = parseInt(day.avewind.mph);
-                var condition = day.conditions;
+                var condition = conditionService.wunderCondition(day.conditions);
 
                 var compiledJSON = {
                     "date": date,

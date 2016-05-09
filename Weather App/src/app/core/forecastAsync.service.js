@@ -5,7 +5,9 @@
         .module('app.core')
         .factory('forecastAsyncService', forecastAsyncService);
 
-    function forecastAsyncService($http) {
+        forecastAsyncService.$inject = ['$http', 'conditionService'];
+
+    function forecastAsyncService($http, conditionService) {
 
         var service = null;
         var weatherJSON = null;
@@ -42,7 +44,7 @@
                 var temperature = Math.round(day.temperatureMax);
                 var humidity = parseInt(day.humidity * 100);
                 var windspeed = Math.round(day.windSpeed);
-                var condition = day.summary;
+                var condition = conditionService.forecastCondition(day.icon);
 
                 var compiledJSON = {
                     "date": date,

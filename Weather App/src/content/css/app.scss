@@ -22,9 +22,8 @@ body{
 h1{
   font-family: mean, Times;
   font-size: 6em;
-  color:rgb(158, 88, 79);
+  color:rgba(255, 255, 255, 0.5);
   text-align:center;
-  text-shadow:2px 2px #000000;
 }
 
 h2{
@@ -60,13 +59,13 @@ $black-grad : rgb(29, 2, 0);
 }
 
 
-.gradient{
-  background: $red-grad; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left, $red-grad , $black-grad); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, $red-grad, $black-grad); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, $red-grad, $black-grad); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, $red-grad , $black-grad); /* Standard syntax */
-}
+// .gradient{
+//   background: $red-grad; /* For browsers that do not support gradients */
+//   background: -webkit-linear-gradient(left, $red-grad , $black-grad); /* For Safari 5.1 to 6.0 */
+//   background: -o-linear-gradient(right, $red-grad, $black-grad); /* For Opera 11.1 to 12.0 */
+//   background: -moz-linear-gradient(right, $red-grad, $black-grad); /* For Firefox 3.6 to 15 */
+//   background: linear-gradient(to right, $red-grad , $black-grad); /* Standard syntax */
+// }
 
 
 .center-page {

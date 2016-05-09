@@ -23,6 +23,9 @@
     function GraphController(wunderAsyncService, $timeout, forecastAsyncService, yahooAsyncService, colorCSS, wwonlineAsyncService) {
         var vm = this;
 
+        vm.allWeatherData = {};
+
+
         vm.wunderData = {
             weather: [{
                 "date": "loading...",
@@ -44,6 +47,8 @@
                 console.log(response.data);
                 vm.wunderData = wunderAsyncService.formatWeather(response.data);
                 end = performance.now();
+                vm.allWeatherData["wunderground"] = vm.wunderData;
+                console.log(vm.allWeatherData);
                 vm.wunderColor = colorCSS.applyColor(vm.wunderData.weather);
                 console.log("wunderAsync Call took: " + (end - begin));
             })
@@ -73,6 +78,7 @@
                 console.log(response.data);
                 vm.forecastData = forecastAsyncService.formatWeather(response.data);
                 end = performance.now();
+                vm.allWeatherData["forecast.io"] = vm.forecastData;
                 console.log("Forecast.io Async Call took: " + (end - begin));
                 vm.forecastColor = colorCSS.applyColor(vm.forecastData.weather);
                 console.log(vm.forecastColor);
@@ -102,6 +108,7 @@
                 console.log(response.data);
                 vm.yahooData = yahooAsyncService.formatWeather(response.data);
                 end = performance.now();
+                vm.allWeatherData["yahoo"] = vm.yahooData;
                 console.log("Yahoo Async Call took: " + (end - begin));
                 vm.yahooColor = colorCSS.applyColor(vm.yahooData.weather);
             })
@@ -130,14 +137,13 @@
                 console.log(response.data.data);
                 vm.wwonlineData = wwonlineAsyncService.formatWeather(response.data.data);
                 end = performance.now();
+                vm.allWeatherData["wwonline"] = vm.wwonlineData;
                 console.log("World Weather Online Async Call took: " + (end - begin));
                 vm.wwonlineColor = colorCSS.applyColor(vm.wwonlineData.weather);
             })
             .catch(function(error) {
                 console.log(error);
             });
-
-
 
 
     }

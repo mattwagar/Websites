@@ -17,10 +17,10 @@
             }
         };
 
-        GraphController.$inject = [];
+        GraphController.$inject = ['conditionService'];
 
-        function videoController() {
-          vm = this;
+        function videoController(conditionService) {
+          var vm = this;
 
 
         }

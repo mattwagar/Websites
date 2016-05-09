@@ -5,7 +5,9 @@
         .module('app.core')
         .factory('wwonlineAsyncService', wwonlineAsyncService);
 
-    function wwonlineAsyncService($http) {
+    wwonlineAsyncService.$inject = ['$http', 'conditionService'];
+
+    function wwonlineAsyncService($http, conditionService) {
 
         var service = null;
         var weatherJSON = null;
@@ -38,7 +40,7 @@
 
                 var day = JSONdata.weather[i];
 
-                var d1 = parseInt(day.date.substring(5,7));
+                var d1 = parseInt(day.date.substring(5, 7));
 
                 var d2 = parseInt(day.date.substring(day.date.length - 2, day.date.length));
 
@@ -47,7 +49,7 @@
                 var temperature = day.maxtempF;
                 var humidity = day.hourly[4].humidity;
                 var windspeed = parseInt(day.hourly[4].windspeedMiles);
-                var condition = day.hourly[4].weatherDesc;
+                var condition = conditionService.wwonlineCondition(day.hourly[4].weatherDesc);
 
                 var compiledJSON = {
                     "date": date,
