@@ -73,7 +73,7 @@
             if (condition === "Mostly Cloudy") {
                 return overcast();
             }
-            if (condition === "Rain" || condition === "Showers") {
+            if (condition === "Rain" || condition === "Showers" || condition === "Scattered Showers") {
                 return rain();
             }
             if (condition === "Clear") {
