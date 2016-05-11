@@ -20,7 +20,7 @@
             return "Rain";
         }
         var tStorm = function() {
-            return "Chance of a Thunderstorm";
+            return "Thunderstorm";
         }
 
         return {
@@ -34,16 +34,16 @@
             if (condition === "Partly Cloudy") {
                 return partlyCloudy();
             }
-            if (condition === "Chance of Rain", "Mostly Cloudy") {
+            if (condition === "Mostly Cloudy") {
                 return overcast();
             }
-            if (condition === "Rain") {
+            if (condition === "Rain" || condition === "Chance of Rain") {
                 return rain();
             }
             if (condition === "Clear") {
                 return clear();
             }
-            if (condition === "Chance of a Thunderstorm") {
+            if (condition === "Chance of a Thunderstorm" || condition === "Thunderstorm") {
                 return tStorm();
             }
         }
@@ -79,7 +79,7 @@
             if (condition === "Clear") {
                 return clear();
             }
-            if (condition === "Thunder Storm") {
+            if (condition === "Thunder Storm" || condition === "Scattered Thunderstorms") {
                 return tStorm();
             }
         }
@@ -91,7 +91,7 @@
             if (condition === "Overcast ") {
                 return overcast();
             }
-            if (condition === "Light rain shower" || condition === "Light rain" || condition === "Shower" || condition === "Moderate rain" || condition === "Light drizzle") {
+            if (condition === "Light rain shower" || condition === "Light rain" || condition === "Shower" || condition === "Moderate rain" || condition === "Light drizzle" || condition === "Patchy rain nearby" || condition === "Heavy rain") {
                 return rain();
             }
             if (condition === "Sunny") {
