@@ -1,4 +1,5 @@
 <h2>Wunder Ground: </h2>
+
 <table class="center rounded-corner">
     <thead>
         <tr>
@@ -10,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr style="text-align:center;" ng-repeat="x in vm.wunderData.weather">
+        <tr style="text-align:center;" ng-repeat="x in vm.weather.wunderground.weather">
             <td ng-style="{'background-color':vm.wunderColor.date[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.date}}</td>
             <td ng-style="{'background-color':vm.wunderColor.temp[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.wunderColor.humid[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.humidity}}%</td>
@@ -37,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr style="text-align:center;" ng-repeat="x in vm.forecastData.weather">
+        <tr style="text-align:center;" ng-repeat="x in vm.weather.forecastio.weather">
             <td ng-style="{'background-color':vm.forecastColor.date[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.date}}</td>
             <td ng-style="{'background-color':vm.forecastColor.temp[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.forecastColor.humid[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.humidity}}%</td>
@@ -64,7 +65,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr style="text-align:center;" ng-repeat="x in vm.yahooData.weather">
+        <tr style="text-align:center;" ng-repeat="x in vm.weather.yahoo.weather">
             <td ng-style="{'background-color':vm.yahooColor.date[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.date}}</td>
             <td ng-style="{'background-color':vm.yahooColor.temp[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.temperature}} &#8457;</td>
             <td ng-bind="x.humidity"></td>
@@ -91,7 +92,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr style="text-align:center;" ng-repeat="x in vm.wwonlineData.weather">
+        <tr style="text-align:center;" ng-repeat="x in vm.weather.wwonline.weather">
             <td ng-style="{'background-color':vm.wwonlineColor.date[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.date}}</td>
             <td ng-style="{'background-color':vm.wwonlineColor.temp[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.temperature}} &#8457;</td>
             <td ng-style="{'background-color':vm.wwonlineColor.humid[$index], 'opacity':'0.6', 'border-radius': '8px', 'border': '1px solid black'}">{{x.humidity}}%</td>

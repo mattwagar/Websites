@@ -29,7 +29,6 @@
                 color.windspeed.push(windColor(formattedWeather[i].windspeed));
                 color.condition.push(conditionColor(formattedWeather[i].condition));
             }
-            console.log(color);
             return color;
         }
 

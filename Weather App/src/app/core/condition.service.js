@@ -34,7 +34,7 @@
             if (condition === "Partly Cloudy") {
                 return partlyCloudy();
             }
-            if (condition === "Mostly Cloudy") {
+            if (condition === "Mostly Cloudy" || condition === "Overcast") {
                 return overcast();
             }
             if (condition === "Rain" || condition === "Chance of Rain") {
@@ -91,7 +91,7 @@
             if (condition === "Overcast ") {
                 return overcast();
             }
-            if (condition === "Light rain shower" || condition === "Light rain" || condition === "Shower" || condition === "Moderate rain" || condition === "Light drizzle" || condition === "Patchy rain nearby" || condition === "Heavy rain") {
+            if (condition === "Moderate or heavy rain shower" || condition === "Light rain shower" || condition === "Light rain" || condition === "Shower" || condition === "Moderate rain" || condition === "Light drizzle" || condition === "Patchy rain nearby" || condition === "Heavy rain") {
                 return rain();
             }
             if (condition === "Sunny") {
