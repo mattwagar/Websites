@@ -3,11 +3,11 @@
 
     angular
         .module('app.landing')
-        .controller('landingController', landingController);
+        .controller('LandingController', LandingController);
 
-    landingController.$inject = ['wunderAsyncService', 'forecastAsyncService', 'yahooAsyncService', 'wwonlineAsyncService', 'loadingInit'];
+    LandingController.$inject = ['wunderAsyncService', 'forecastAsyncService', 'yahooAsyncService', 'wwonlineAsyncService', 'loadingInit'];
 
-    function landingController(wunderAsyncService, forecastAsyncService, yahooAsyncService, wwonlineAsyncService, loadingInit) {
+    function LandingController(wunderAsyncService, forecastAsyncService, yahooAsyncService, wwonlineAsyncService, loadingInit) {
         var vm = this;
 
         vm.allWeatherData = {
@@ -21,7 +21,7 @@
             .then(function(response) {
                 console.log("Wunder Data: ");
                 console.log(response.data);
-                vm.allWeatherData["wunderground"] = wunderAsyncService.formatWeather(response.data);
+                vm.allWeatherData.wunderground = wunderAsyncService.formatWeather(response.data);
             })
             .catch(function(error) {
                 console.log(error);
@@ -31,7 +31,7 @@
             .then(function(response) {
                 console.log("Forecast.io Data: ");
                 console.log(response.data);
-                vm.allWeatherData["forecastio"] = forecastAsyncService.formatWeather(response.data);
+                vm.allWeatherData.forecastio = forecastAsyncService.formatWeather(response.data);
             })
             .catch(function(error) {
                 console.log(error);
@@ -41,7 +41,7 @@
             .then(function(response) {
                 console.log("Yahoo Data: ");
                 console.log(response.data);
-                vm.allWeatherData["yahoo"] = yahooAsyncService.formatWeather(response.data);
+                vm.allWeatherData.yahoo = yahooAsyncService.formatWeather(response.data);
             })
             .catch(function(error) {
                 console.log(error);
@@ -51,7 +51,7 @@
             .then(function(response) {
                 console.log("WWOnline Data: ");
                 console.log(response.data.data);
-                vm.allWeatherData["wwonline"] = wwonlineAsyncService.formatWeather(response.data.data);
+                vm.allWeatherData.wwonline = wwonlineAsyncService.formatWeather(response.data.data);
             })
             .catch(function(error) {
                 console.log(error);

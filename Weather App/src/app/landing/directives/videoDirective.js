@@ -9,7 +9,7 @@
         return {
             templateUrl: 'app/landing/directives/video.html',
             restrict: 'E',
-            controller: videoController,
+            controller: VideoController,
             controllerAs: 'vm',
             bindToController: true,
             scope: {
@@ -17,10 +17,12 @@
             }
         };
 
-        GraphController.$inject = ['conditionService'];
+        /* jshint ignore:start */
+        VideoController.$inject = [];
+        /* jshint ignore:end */
 
-        function videoController(conditionService) {
-          var vm = this;
+        function VideoController() {
+            var vm = this;
 
 
         }

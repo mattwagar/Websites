@@ -47,7 +47,7 @@
                     "humidity": humidity,
                     "windspeed": windspeed,
                     "condition": condition,
-                }
+                };
 
                 cleanJSON.weather.push(compiledJSON);
 

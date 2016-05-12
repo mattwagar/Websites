@@ -9,26 +9,26 @@
 
         var clear = function() {
             return "Clear";
-        }
+        };
         var partlyCloudy = function() {
             return "Partly Cloudy";
-        }
+        };
         var overcast = function() {
             return "Overcast";
-        }
+        };
         var rain = function() {
             return "Rain";
-        }
+        };
         var tStorm = function() {
             return "Thunderstorm";
-        }
+        };
 
         return {
             wunderCondition: wunderCondition,
             forecastCondition: forecastCondition,
             yahooCondition: yahooCondition,
             wwonlineCondition: wwonlineCondition
-        }
+        };
 
         function wunderCondition(condition) {
             if (condition === "Partly Cloudy") {
@@ -76,7 +76,7 @@
             if (condition === "Rain" || condition === "Showers" || condition === "Scattered Showers") {
                 return rain();
             }
-            if (condition === "Clear") {
+            if (condition === "Clear" || condition === "Mostly Sunny") {
                 return clear();
             }
             if (condition === "Thunder Storm" || condition === "Scattered Thunderstorms") {
