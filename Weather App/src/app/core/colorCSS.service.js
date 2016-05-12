@@ -248,11 +248,11 @@
             case 19:
                 return '#5BBB0D';
                 break;
-            case 20:
+            case wind_num >= 20:
                 return '#52B800';
                 break;
             default:
-                return '#52B800';
+                return;
         }
     }
 

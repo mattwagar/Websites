@@ -3,9 +3,9 @@
 
     angular
         .module('app.landing')
-        .directive('mwWeatherGraph', mwWeatherGraph);
+        .directive('mwGraphs', mwGraphs);
 
-    function mwWeatherGraph() {
+    function mwGraphs() {
         return {
             templateUrl: 'app/landing/directives/graph.html',
             restrict: 'E',
@@ -22,6 +22,11 @@
 
     function GraphController(colorCSS, $scope) {
         var vm = this;
+
+        vm.wunderWebsite = ['https://www.wunderground.com/', 'content/images/wunder.png'];
+        vm.forecastWebsite = ['http://forecast.io/', 'content/images/favicon.ico'];
+        vm.yahooWebsite = ['https://www.yahoo.com/news/weather/', 'content/images/yahoo.ico'];
+        vm.wwonlineWebsite = ['http://us.worldweatheronline.com/', 'content/images/wwonline.png'];
 
 
         $scope.$watch('vm.weather.wunderground', function(before, after) {
