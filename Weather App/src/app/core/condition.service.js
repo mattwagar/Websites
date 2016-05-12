@@ -27,7 +27,8 @@
             wunderCondition: wunderCondition,
             forecastCondition: forecastCondition,
             yahooCondition: yahooCondition,
-            wwonlineCondition: wwonlineCondition
+            wwonlineCondition: wwonlineCondition,
+            videoCondition: videoCondition
         };
 
         function wunderCondition(condition) {
@@ -100,6 +101,21 @@
             if (condition === "Patchy light rain in area with thunder" || condition === "Moderate or heavy rain in area with thunder") {
                 return tStorm();
             }
+        }
+
+        function videoCondition(condition){
+          switch(condition){
+            case "Clear":
+              return 'content/videos/Into-The-Woods.mp4';
+            case "Partly Cloudy":
+              return 'content/videos/Sky-High.mp4';
+            case "Overcast":
+              return;
+            case 'Rain':
+              return 'content/videos/Puddle.mp4';
+            case 'Thunderstorm':
+              return 'content/videos/thunderStorm.mp4';
+          }
         }
 
 

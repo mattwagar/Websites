@@ -13,17 +13,21 @@
             controllerAs: 'vm',
             bindToController: true,
             scope: {
-                service: '='
+                weather: '='
             }
         };
 
         /* jshint ignore:start */
-        VideoController.$inject = [];
+        VideoController.$inject = ['$scope', conditionService];
         /* jshint ignore:end */
 
-        function VideoController() {
+        function VideoController($scope, conditionService) {
             var vm = this;
+            $scope.$watch('vm.weather.wunderground', function(before, after) {
+                vm.wunderVideo = conditionService.videoCondition(vm.weather.wunderground.weather[0].condition);
+            });
 
+            vm.video = 'content/videos/Into-The-Woods.mp4';
 
         }
     }

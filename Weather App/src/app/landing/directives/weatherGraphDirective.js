@@ -27,7 +27,5 @@
     function WeatherGraphController() {
         var vm = this;
 
-        console.log(vm.title);
-
     }
 })();
