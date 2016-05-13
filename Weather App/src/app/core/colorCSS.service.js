@@ -31,7 +31,7 @@
             }
             return color;
         }
-        
+
         function tempColor(temp_num) {
             var round5 = 0;
 
@@ -184,7 +184,12 @@
                 return '#64BF1A';
             case 19:
                 return '#5BBB0D';
-            case wind_num >= 20:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
                 return '#52B800';
             default:
                 return;
