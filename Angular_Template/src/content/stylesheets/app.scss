@@ -7,13 +7,6 @@
   font-family: weatherService;
   src:url(fonts/merge_light.otf) format("opentype");
 }
-
-@font-face {
-  font-family: 'Tangerine';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Tangerine'), url('http://example.com/tangerine.ttf') format('truetype');
-}
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +14,7 @@
 
 body{
     font-family: Calibri, sans-serif;
-    background-color: #999;
+    background-color: #abcdef;
 }
 
 h1{
