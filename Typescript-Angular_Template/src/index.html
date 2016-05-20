@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="content/stylesheets/app.css" />
+</head>
+
+<body>
+
+    <div ng-view></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.4/angular-route.js"></script>
+
+    <!--main app module-->
+    <script src="app/app.module.js"></script>
+
+    <!--landing module-->
+    <script src="app/landing/landing.module.js"></script>
+    <script src="app/landing/config.route.js"></script>
+    <script src="app/landing/landing.controller.js"></script>
+    <script src="app/landing/directives/template.directive.js"></script>
+
+    <!--core module-->
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/template.service.js"></script>
+
+</body>
+
+</html>

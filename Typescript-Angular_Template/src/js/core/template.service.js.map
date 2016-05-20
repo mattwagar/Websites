@@ -1,0 +1,1 @@
+{"version":3,"file":"template.service.js","sourceRoot":"","sources":["../../app/core/template.service.ts"],"names":[],"mappings":"AAAA,CAAC;IACG,YAAY,CAAC;IAEb,OAAO;SACF,MAAM,CAAC,UAAU,CAAC;SAClB,OAAO,CAAC,iBAAiB,EAAE,eAAe,CAAC,CAAC;IAEjD;QAEI,MAAM,CAAC;YACH,OAAO,EAAC,OAAO;SAClB,CAAC;QAEF,iBAAiB,MAAM;YACrB,MAAM,CAAC,MAAM,CAAC;QAChB,CAAC;IAEH,CAAC;AAEP,CAAC,CAAC,EAAE,CAAC"}
