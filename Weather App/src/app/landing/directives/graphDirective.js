@@ -29,6 +29,7 @@
         vm.wwonlineWebsite = ['http://us.worldweatheronline.com/', 'content/images/wwonline.png'];
 
 
+
         $scope.$watch('vm.weather.wunderground', function(before, after) {
             vm.wunderColor = colorCSS.applyColor(vm.weather.wunderground.weather);
         });
@@ -44,5 +45,6 @@
         $scope.$watch('vm.weather.wwonline', function(before, after) {
             vm.wwonlineColor = colorCSS.applyColor(vm.weather.wwonline.weather);
         });
+
     }
 })();

@@ -11,6 +11,7 @@
         var vm = this;
 
         vm.allWeatherData = {
+            "average": loadingInit.loadJSON(),
             "wunderground": loadingInit.loadJSON(),
             "forecastio": loadingInit.loadJSON(),
             "yahoo": loadingInit.loadJSON(),
@@ -52,6 +53,7 @@
                 console.log("WWOnline Data: ");
                 console.log(response.data.data);
                 vm.allWeatherData.wwonline = wwonlineAsyncService.formatWeather(response.data.data);
+                console.log(vm.allWeatherData);
             })
             .catch(function(error) {
                 console.log(error);
