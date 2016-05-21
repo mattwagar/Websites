@@ -18,9 +18,9 @@
         };
     }
 
-    GraphController.$inject = ['colorCSS', '$scope'];
+    GraphController.$inject = ['colorCSS', '$scope', 'averageWeatherService'];
 
-    function GraphController(colorCSS, $scope) {
+    function GraphController(colorCSS, $scope, averageWeatherService) {
         var vm = this;
 
         vm.wunderWebsite = ['https://www.wunderground.com/', 'content/images/wunder.png'];
@@ -28,6 +28,7 @@
         vm.yahooWebsite = ['https://www.yahoo.com/news/weather/', 'content/images/yahoo.ico'];
         vm.wwonlineWebsite = ['http://us.worldweatheronline.com/', 'content/images/wwonline.png'];
 
+        var load = 0;
 
 
         $scope.$watch('vm.weather.wunderground', function(before, after) {
@@ -44,6 +45,16 @@
 
         $scope.$watch('vm.weather.wwonline', function(before, after) {
             vm.wwonlineColor = colorCSS.applyColor(vm.weather.wwonline.weather);
+        });
+
+        $scope.$watchCollection('vm.weather', function(before, after) {
+            load+=1;
+            if(load == 5){
+              console.log(vm.weather);
+              vm.averageWeather = averageWeatherService.averageWeather(vm.weather);
+              vm.averageColor = colorCSS.applyColor(vm.averageWeather.weather);
+              console.log(vm.averageWeather);
+            }
         });
 
     }
