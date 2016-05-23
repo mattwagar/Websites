@@ -80,7 +80,7 @@
             if (condition === "Clear" || condition === "Mostly Sunny") {
                 return clear();
             }
-            if (condition === "Thunder Storm" || condition === "Scattered Thunderstorms") {
+            if (condition === "Thunder Storm" || condition === "Scattered Thunderstorms" || condition === "Thunderstorms") {
                 return tStorm();
             }
         }
@@ -110,7 +110,7 @@
             case "Partly Cloudy":
               return 'content/videos/Sky-High.mp4';
             case "Overcast":
-              return;
+              return 'content/videos/Overcast.mp4';
             case 'Rain':
               return 'content/videos/Puddle.mp4';
             case 'Thunderstorm':
