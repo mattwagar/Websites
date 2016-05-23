@@ -13,7 +13,7 @@
             controllerAs: 'vm',
             bindToController: true,
             scope: {
-                averageVideo: '='
+                video: '='
             }
         };
 
@@ -25,7 +25,7 @@
             var vm = this;
 
             setTimeout(function(){
-              console.log(vm.averageVideo);
+              console.log(vm.video);
             }, 5000);
 
         }

@@ -47,15 +47,13 @@
             vm.wwonlineColor = colorCSS.applyColor(vm.weather.wwonline.weather);
         });
 
-        vm.averageVideo = 'hi';
-
         $scope.$watchCollection('vm.weather', function(before, after) {
             load+=1;
             if(load == 5){
               console.log(vm.weather);
               vm.averageWeather = averageWeatherService.averageWeather(vm.weather);
               vm.averageColor = colorCSS.applyColor(vm.averageWeather.weather);
-              // vm.averageVideo = conditionService.videoCondition(vm.averageWeather.weather[0].condition);
+              vm.averageVideo = conditionService.videoCondition(vm.averageWeather.weather[0].condition);
               console.log(vm.averageVideo);
             }
         });
