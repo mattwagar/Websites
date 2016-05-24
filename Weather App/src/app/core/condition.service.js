@@ -77,7 +77,7 @@
             if (condition === "Rain" || condition === "Showers" || condition === "Scattered Showers") {
                 return rain();
             }
-            if (condition === "Clear" || condition === "Mostly Sunny") {
+            if (condition === "Clear" || condition === "Mostly Sunny" || condition === "Sunny") {
                 return clear();
             }
             if (condition === "Thunder Storm" || condition === "Scattered Thunderstorms" || condition === "Thunderstorms") {
