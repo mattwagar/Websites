@@ -15,7 +15,7 @@
             scope: {
                 service: '=',
                 colors: '=',
-                title: '@',
+                wname: '@',
                 website: '@',
                 icon:'='
             }
