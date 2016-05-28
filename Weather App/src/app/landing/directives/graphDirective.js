@@ -18,9 +18,9 @@
         };
     }
 
-    GraphController.$inject = ['colorCSS', '$scope', 'averageWeatherService'];
+    GraphController.$inject = ['colorCSS', '$scope', 'averageWeatherService', 'conditionService'];
 
-    function GraphController(colorCSS, $scope, averageWeatherService) {
+    function GraphController(colorCSS, $scope, averageWeatherService, conditionService) {
         var vm = this;
 
         vm.wunderWebsite = ['https://www.wunderground.com/', 'content/images/wunder.png'];
@@ -53,7 +53,8 @@
               console.log(vm.weather);
               vm.averageWeather = averageWeatherService.averageWeather(vm.weather);
               vm.averageColor = colorCSS.applyColor(vm.averageWeather.weather);
-              console.log(vm.averageWeather);
+              vm.averageVideo = conditionService.videoCondition(vm.averageWeather.weather[0].condition);
+              console.log(vm.averageVideo);
             }
         });
 

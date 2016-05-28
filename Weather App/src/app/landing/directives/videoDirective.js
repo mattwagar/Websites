@@ -13,7 +13,7 @@
             controllerAs: 'vm',
             bindToController: true,
             scope: {
-                weather: '='
+                video: '='
             }
         };
 
@@ -23,11 +23,10 @@
 
         function VideoController($scope, conditionService) {
             var vm = this;
-            $scope.$watch('vm.weather.wunderground', function(before, after) {
-                vm.wunderVideo = conditionService.videoCondition(vm.weather.wunderground.weather[0].condition);
-            });
 
-            vm.video = 'content/videos/Into-The-Woods.mp4';
+            setTimeout(function(){
+              console.log(vm.video);
+            }, 5000);
 
         }
     }
