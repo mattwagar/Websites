@@ -1,0 +1,1 @@
+{"version":3,"sources":["core/core.module.ts"],"names":[],"mappings":"AAAA,IAAU,GAAG,CAIZ;AAJD,WAAU,GAAG,EAAC,CAAC;IACb,YAAY,CAAC;IAEb,OAAO,CAAC,MAAM,CAAC,UAAU,EAAE,EAAE,CAAC,CAAC;AACjC,CAAC,EAJS,GAAG,KAAH,GAAG,QAIZ","file":"core/core.module.js","sourcesContent":["namespace app {\n  'use strict';\n\n  angular.module('app.core', []);\n}\n"],"sourceRoot":"/source/"}

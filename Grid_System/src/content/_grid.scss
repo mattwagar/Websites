@@ -1,0 +1,112 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.debug {
+    // outline-style: solid;
+    // outline-color: #f00;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.debug-red {
+    // outline-style: solid;
+    // outline-color: #f00;
+    background-color: rgba(255,0,0,0.2);
+}
+
+$gutter: 1em;
+.grid-gutters {
+  margin-left: -$gutter;
+}
+.grid-cell {
+  padding-left: $gutter;
+}
+
+@mixin column($column){
+  position: relative;
+  padding: 0;
+  margin: 0;
+  float: left;
+  min-height: 1px;
+  width: #{100% * $column / $grid-num-columns};
+}
+
+@mixin flex-column($column){
+  // box-sizing: border-box;
+  flex: 1 1 #{100% * $column / $grid-num-columns};
+  // flex-basis : #{100% * $column / $grid-num-columns};
+  max-width: #{100% * $column / $grid-num-columns};
+  // padding-right: 1rem;
+  // padding-left: 1rem;
+}
+
+.row {
+  @if $flex-on{ 
+    // box-sizing: border-box;
+    display: flex;
+    // flex: 0 1 auto;
+    // flex-direction: row;
+    flex-wrap: wrap;
+    // margin-right: -1rem;
+    // margin-left: -1rem;
+  } @else { 
+    display: block;
+    clear: both;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@each $device, $breakpoint in $grid-breakpoints{
+  
+  @if $flex-on{ 
+    
+    @if $device == 'xs'{
+      @media only screen and (max-width:map-get($grid-breakpoints-max, $device)) {
+      @for $i from 1 through $grid-num-columns {
+        .col-#{$device}-#{$i} {
+          @include flex-column($i);
+        }
+      }
+        .#{$device}-hide {
+          display: none;
+        }
+      } 
+    } @else if $device == 'xl' {
+      
+      @media only screen and (min-width : $breakpoint) {
+      @for $i from 1 through $grid-num-columns {
+        .col-#{$device}-#{$i} {
+          @include flex-column($i);
+        }
+      }
+        .#{$device}-hide {
+          display: none;
+        }
+      }
+    } @else {
+    @media only screen and (min-width : $breakpoint) and (max-width:map-get($grid-breakpoints-max, $device)) {
+      @for $i from 1 through $grid-num-columns {
+        .col-#{$device}-#{$i} {
+          @include flex-column($i);
+        }
+      }
+        .#{$device}-hide {
+          display: none;
+        }
+      }
+    }
+  } @else {   
+      @media only screen and (min-width : $breakpoint) and (max-width:map-get($grid-breakpoints-max, $device)) {
+      @for $i from 1 through $grid-num-columns {
+        .col-#{$device}-#{$i} {
+          @include column($i);
+        }
+      }
+        .#{$device}-hide {
+          display: none;
+        }
+      }
+  }
+}

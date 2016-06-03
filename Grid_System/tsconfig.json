@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "outDir": "src/js",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "target": "ES5",
+    "sourceMap": true,
+    "listFiles": false
+  },
+  // "filesGlob": [
+  //       "./src/app/**/*.ts"
+  // ],
+  "files": [
+      "./tools/typings/tsd.d.ts",
+      "./tools/typings/angularjs/angular.d.ts",
+      "./tools/typings/angularjs/angular-route.d.ts",
+      "./tools/typings/jquery/jquery.d.ts",
+      
+      "./src/app/app.module.ts",
+      "./src/app/core/core.module.ts",
+      "./src/app/core/template.service.ts",
+      "./src/app/landing/landing.controller.ts",
+      "./src/app/landing/landing.module.ts",
+      "./src/app/landing/config.route.ts",
+      "./src/app/landing/directives/template.directive.ts"
+  ]
+}

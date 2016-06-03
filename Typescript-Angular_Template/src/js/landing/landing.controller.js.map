@@ -1,1 +1,0 @@
-{"version":3,"file":"landing.controller.js","sourceRoot":"","sources":["../../app/landing/landing.controller.ts"],"names":[],"mappings":"AAAA,CAAC;IACG,YAAY,CAAC;IAEb,OAAO;SACF,MAAM,CAAC,aAAa,CAAC;SACrB,UAAU,CAAC,mBAAmB,EAAE,iBAAiB,CAAC,CAAC;IAExD,iBAAiB,CAAC,OAAO,GAAG,EAAE,CAAC;IAE/B;QACI,IAAI,EAAE,GAAG,IAAI,CAAC;IAElB,CAAC;AAEL,CAAC,CAAC,EAAE,CAAC"}
