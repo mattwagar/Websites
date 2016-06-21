@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "outDir": "src/js",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "target": "ES5",
+    "sourceMap": true,
+    "listFiles": false
+  },
+  // "filesGlob": [
+  //       "./src/app/**/*.ts"
+  // ],
+  "files": [
+      "./typings/index.d.ts",
+      "./typings/globals/angular/index.d.ts",
+      "./typings/globals/angular-route/index.d.ts",
+      "./typings/globals/jquery/index.d.ts",
+      
+      "./src/app/app.module.ts",
+      "./src/app/core/core.module.ts",
+      "./src/app/core/template.service.ts",
+      "./src/app/landing/landing.controller.ts",
+      "./src/app/landing/landing.module.ts",
+      "./src/app/landing/config.route.ts",
+      "./src/app/landing/directives/recorder.directive.ts",
+      "./src/app/landing/directives/video.directive.ts",
+      "./src/app/vmenu/vmenu.module.ts",
+      "./src/app/vmenu/config.route.ts",
+      "./src/app/vmenu/vmenu.controller.ts"
+  ]
+}
