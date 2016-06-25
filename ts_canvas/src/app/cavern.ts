@@ -1,0 +1,193 @@
+
+class Circle {
+
+    app: App;
+    x: number;
+    y: number;
+    fillcolor: string;
+    strokecolor: string;
+    width: number;
+    radius: number;
+    start: number;
+    end: number;
+
+    constructor(app: App, x: number, y: number, fillcolor: string, strokecolor: string, width: number, radius: number, start: number, end: number) {
+        this.app = app;
+        this.x = x;
+        this.y = y;
+        this.fillcolor = fillcolor;
+        this.strokecolor = strokecolor;
+        this.width = width;
+        this.radius = radius;
+        this.start = start;
+        this.end = end;
+    }
+    draw() {
+        const ctx = this.app.ctx;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, this.start, this.end);
+        ctx.strokeStyle = this.strokecolor;
+        ctx.lineWidth = this.width;
+        ctx.stroke();
+        ctx.fillStyle = this.fillcolor;
+        ctx.fill();
+    }
+}
+
+
+class Quad {
+
+    app: App;
+    fillcolor: string;
+    strokecolor: string;
+    linewidth: number;
+    radius: number;
+    start: number;
+    end: number;
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    x3: number;
+    y3: number;
+    x4: number;
+    y4: number;
+
+    constructor(app: App, fillcolor: string, strokecolor: string, linewidth: number, x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, x4: number, y4: number) {
+        this.app = app;
+        this.fillcolor = fillcolor;
+        this.strokecolor = strokecolor;
+        this.linewidth = linewidth;
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.x3 = x3;
+        this.y3 = y3;
+        this.x4 = x4;
+        this.y4 = y4;
+    }
+    draw() {
+        const ctx = this.app.ctx;
+        ctx.beginPath();
+        ctx.moveTo(this.x1, this.y1);
+        ctx.lineTo(this.x2, this.y2);
+        ctx.lineTo(this.x3, this.y3);
+        ctx.lineTo(this.x4, this.y4);
+        ctx.closePath();
+
+        if (this.linewidth !== 0) {
+            ctx.strokeStyle = this.strokecolor;
+            ctx.lineWidth = this.linewidth;
+            ctx.stroke();
+        }
+
+        ctx.fillStyle = this.fillcolor;
+        ctx.fill();
+    }
+}
+
+class Chasm {
+    app: App;
+    wall_left: Quad;
+    wall_right: Quad;
+    wall_top: Quad;
+    wall_bot: Quad;
+    wall_middle: Quad;
+    center_x: number;
+    center_y: number; 
+    size_x: number;
+    size_y: number; 
+    middle_x: number;
+    middle_y: number;
+    grd: CanvasGradient;
+    constructor(app: App, center_x: number, center_y: number, size_x:number, size_y:number, middle_x:number, middle_y:number) {
+        this.app = app;
+        this.center_x = center_x;
+        this.center_y = center_y;
+        this.size_x = size_x;
+        this.size_y = size_y;
+        this.middle_x = middle_x;
+        this.middle_y = middle_y;
+
+        this.grd = this.app.ctx.createLinearGradient(0, 0, 170, 0);
+        this.grd.addColorStop(0, "black");
+        this.grd.addColorStop(1, "white");
+
+
+    }
+    draw() {
+        this.wall_left = new Quad(this.app, 'hsl(30, 50%, 25%)', 'red', 0, (this.center_x - this.middle_x), (this.center_y - this.middle_y), (this.center_x - this.size_x), (this.center_y - this.size_y), (this.center_x - this.size_x), (this.center_y + this.size_y), (this.center_x - this.middle_x), (this.center_y + this.middle_y));
+        this.wall_top = new Quad(this.app, 'hsl(30, 50%, 35%)', 'red', 0, (this.center_x - this.middle_x), (this.center_y - this.middle_y), (this.center_x - this.size_x), (this.center_y - this.size_y), (this.center_x + this.size_x), (this.center_y - this.size_y), (this.center_x + this.middle_x), (this.center_y - this.middle_y));
+        this.wall_right = new Quad(this.app, 'hsl(30, 50%, 25%)', 'red', 0, (this.center_x + this.middle_x), (this.center_y + this.middle_y), (this.center_x + this.size_x), (this.center_y + this.size_y), (this.center_x + this.size_x), (this.center_y - this.size_y), (this.center_x + this.middle_x), (this.center_y - this.middle_y));
+        this.wall_bot = new Quad(this.app, 'hsl(30, 50%, 15%)', 'red', 0, (this.center_x + this.middle_x), (this.center_y + this.middle_y), (this.center_x + this.size_x), (this.center_y + this.size_y), (this.center_x - this.size_x), (this.center_y + this.size_y), (this.center_x - this.middle_x), (this.center_y + this.middle_y));
+        this.wall_middle = new Quad(this.app, 'black', 'red', 0, (this.center_x + this.middle_x), (this.center_y + this.middle_y), (this.center_x + this.middle_x), (this.center_y - this.middle_y), (this.center_x - this.middle_x), (this.center_y - this.middle_y), (this.center_x - this.middle_x), (this.center_y + this.middle_y));
+
+        this.wall_left.draw();
+        this.wall_right.draw();
+        this.wall_top.draw();
+        this.wall_bot.draw();
+        this.wall_middle.draw();
+    }
+}
+
+
+class App {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    w: number;
+    h: number;
+    chasm: Chasm;
+    arr: any[];
+
+    constructor() {
+        this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.sizeCanvas();
+        this.initEvents();
+        window.requestAnimationFrame((t) => { this.draw(t); });
+        console.log(this);
+
+        this.chasm = new Chasm(this, 500, 400, 300, 250, 10, 10);
+    }
+    sizeCanvas() {
+        this.w = this.ctx.canvas.width = window.innerWidth;
+        this.h = this.ctx.canvas.height = window.innerHeight;
+    }
+    draw(t) {
+        window.requestAnimationFrame((t) => { this.draw(t); });
+
+        this.ctx.clearRect(0, 0, this.w, this.h);
+        this.chasm.draw();
+
+        this.chasm.size_x += 1;
+        this.chasm.size_y += 1;
+
+
+    }
+    initEvents() {
+        window.onresize = (e) => { this.sizeCanvas() };
+    }
+
+    randomPath() {
+        return (Math.random() * 2 - 1);
+    }
+
+    randomSize() {
+        return (Math.random() * 60);
+    }
+
+    rngColor() {
+
+        let r = Math.round(Math.random() * 255);
+        let b = Math.round(Math.random() * 255);
+        let g = Math.round(Math.random() * 255);
+
+        return ('rgb(' + r + ',' + g + ',' + b + ')');
+
+    }
+
+
+}
+
+var app = new App();
