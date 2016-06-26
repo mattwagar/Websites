@@ -22,36 +22,6 @@ var Circle = (function () {
     };
     return Circle;
 }());
-var Tri = (function () {
-    function Tri(app, fillcolor, strokecolor, linewidth, x1, y1, x2, y2, x3, y3) {
-        this.app = app;
-        this.fillcolor = fillcolor;
-        this.strokecolor = strokecolor;
-        this.linewidth = linewidth;
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
-        this.x3 = x3;
-        this.y3 = y3;
-    }
-    Tri.prototype.draw = function () {
-        var ctx = this.app.ctx;
-        ctx.beginPath();
-        ctx.moveTo(this.x1, this.y1);
-        ctx.lineTo(this.x2, this.y2);
-        ctx.lineTo(this.x3, this.y3);
-        ctx.closePath();
-        if (this.linewidth !== 0) {
-            ctx.strokeStyle = this.strokecolor;
-            ctx.lineWidth = this.linewidth;
-            ctx.stroke();
-        }
-        ctx.fillStyle = this.fillcolor;
-        ctx.fill();
-    };
-    return Tri;
-}());
 var Quad = (function () {
     function Quad(app, fillcolor, strokecolor, linewidth, x1, y1, x2, y2, x3, y3, x4, y4) {
         this.app = app;
@@ -126,7 +96,6 @@ var App = (function () {
         window.requestAnimationFrame(function (t) { _this.draw(t); });
         console.log(this);
         this.chasm = new Chasm(this, 1, 'black', 'black', 500, 400, 300, 250, 10, 10);
-        this.player = new Tri(this, 'black', 'white', 2, 480, 600, 500, 550, 520, 600);
         this.arr = new Array;
         var colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
         for (var i in colors) {
@@ -134,8 +103,7 @@ var App = (function () {
         }
         this.iter = 0;
         this.start = false;
-        this.frequency = 3;
-        this.speed = 6;
+        this.frequency = 2;
     }
     App.prototype.sizeCanvas = function () {
         this.w = this.ctx.canvas.width = window.innerWidth;
@@ -143,51 +111,48 @@ var App = (function () {
     };
     App.prototype.draw = function (t) {
         var _this = this;
-        window.addEventListener('keydown', this.keyPress, false);
         window.requestAnimationFrame(function (t) { _this.draw(t); });
         this.ctx.clearRect(0, 0, this.w, this.h);
         // this.chasm.draw();
-        this.background();
-        this.player.draw();
-    };
-    App.prototype.keyPress = function (e) {
-        var code = e.keyCode;
-        console.log(this.player);
-        switch (code) {
-            case 37:
-                left(this.player);
-                break; //Left key
-            case 38:
-                up(this.player);
-                break; //Up key
-            case 39:
-                right(this.player);
-                break; //Right key
-            case 40:
-                down(this.player);
-                break; //Down key
-            default: alert(code); //Everything else
+        if (this.start) {
+            for (var i = 0; i < this.frequency; i++) {
+                if (this.iter >= this.frequency) {
+                    console.log(this.iter);
+                    this.arr[this.iter - this.frequency].draw();
+                }
+                else {
+                    this.arr[this.arr.length - this.frequency + i].draw();
+                    console.log(this.iter);
+                }
+            }
         }
-        function left(tri) {
-            console.log(tri);
-            tri.x1 -= 1;
-            tri.x2 -= 1;
-            tri.x3 -= 1;
+        if (this.start) {
+            for (var i = 0; i < this.frequency - 1; i++) {
+                if (this.iter >= (this.frequency - 1)) {
+                    this.arr[this.iter - (this.frequency - 1)].size_y += 5;
+                    this.arr[this.iter - (this.frequency - 1)].size_x += 5 * this.chasm.ratio;
+                    this.arr[this.iter - (this.frequency - 1)].draw();
+                }
+                else {
+                    this.arr[(this.arr.length - 1) - i].size_y += 5;
+                    this.arr[(this.arr.length - 1) - i].size_x += 5 * this.chasm.ratio;
+                    this.arr[(this.arr.length - 1) - i].draw();
+                }
+            }
         }
-        function right(tri) {
-            tri.x1 += 1;
-            tri.x2 += 1;
-            tri.x3 += 1;
+        this.arr[this.iter].draw();
+        this.arr[this.iter].size_y += 5;
+        this.arr[this.iter].size_x += 5 * this.chasm.ratio;
+        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
+            this.iter += 1;
+            this.start = true;
         }
-        function down(tri) {
-            tri.y1 -= 1;
-            tri.y2 -= 1;
-            tri.y3 -= 1;
+        if (this.iter > this.arr.length - 1) {
+            this.iter = 0;
         }
-        function up(tri) {
-            tri.y1 -= 1;
-            tri.y2 -= 1;
-            tri.y3 -= 1;
+        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
+            this.arr[this.iter].size_y = 10;
+            this.arr[this.iter].size_x = 10;
         }
     };
     App.prototype.initEvents = function () {
@@ -205,77 +170,6 @@ var App = (function () {
         var b = Math.round(Math.random() * 255);
         var g = Math.round(Math.random() * 255);
         return ('rgb(' + r + ',' + g + ',' + b + ')');
-    };
-    App.prototype.background = function () {
-        if (this.start) {
-            //iter - 3/3 -- background one
-            for (var i = 0; i < this.frequency; i++) {
-                if (this.iter >= this.frequency) {
-                    // console.log(this.iter);
-                    this.arr[this.iter - this.frequency].draw();
-                }
-                else {
-                    this.arr[this.arr.length - this.frequency + i].draw();
-                }
-            }
-            //     //the middle parts
-            //     for (let j = 1; j <= (this.frequency - 1); j++) {
-            //         for (let k = 0; k < j; k++) {
-            //             if (this.iter === k) {
-            //                 this.arr[this.arr.length - 1 - k].size_y += this.speed;
-            //                 this.arr[this.arr.length - 1 - k].size_x += this.speed * this.chasm.ratio;
-            //                 this.arr[this.arr.length - 1 - k].draw();
-            //             }
-            //         }
-            //     } else {
-            //         this.arr[this.iter - j].size_y += this.speed;
-            //         this.arr[this.iter - j].size_x += this.speed * this.chasm.ratio;
-            //         this.arr[this.iter - j].draw();
-            //     }
-            // }
-            //iter - 2/3
-            if (this.iter === 0) {
-                this.arr[this.arr.length - 2].size_y += this.speed;
-                this.arr[this.arr.length - 2].size_x += this.speed * this.chasm.ratio;
-                this.arr[this.arr.length - 2].draw();
-            }
-            else if (this.iter === 1) {
-                this.arr[this.arr.length - 1].size_y += this.speed;
-                this.arr[this.arr.length - 1].size_x += this.speed * this.chasm.ratio;
-                this.arr[this.arr.length - 1].draw();
-            }
-            else {
-                this.arr[this.iter - 2].size_y += this.speed;
-                this.arr[this.iter - 2].size_x += this.speed * this.chasm.ratio;
-                this.arr[this.iter - 2].draw();
-            }
-            //iter - 1/3
-            if (this.iter === 0) {
-                this.arr[this.arr.length - 1].size_y += this.speed;
-                this.arr[this.arr.length - 1].size_x += this.speed * this.chasm.ratio;
-                this.arr[this.arr.length - 1].draw();
-            }
-            else {
-                this.arr[this.iter - 1].size_y += this.speed;
-                this.arr[this.iter - 1].size_x += this.speed * this.chasm.ratio;
-                this.arr[this.iter - 1].draw();
-            }
-        }
-        //current iter -- 0/3
-        this.arr[this.iter].draw();
-        this.arr[this.iter].size_y += this.speed;
-        this.arr[this.iter].size_x += this.speed * this.chasm.ratio;
-        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
-            this.iter += 1;
-            this.start = true;
-        }
-        if (this.iter > this.arr.length - 1) {
-            this.iter = 0;
-        }
-        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
-            this.arr[this.iter].size_y = 10;
-            this.arr[this.iter].size_x = 10;
-        }
     };
     return App;
 }());
