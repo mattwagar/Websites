@@ -34,6 +34,54 @@ class Circle {
     }
 }
 
+class Tri {
+
+    app: App;
+    fillcolor: string;
+    strokecolor: string;
+    linewidth: number;
+    radius: number;
+    start: number;
+    end: number;
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    x3: number;
+    y3: number;
+
+    constructor(app: App, fillcolor: string, strokecolor: string, linewidth: number, x1: number, y1: number, x2: number, y2: number, x3: number, y3: number) {
+        this.app = app;
+        this.fillcolor = fillcolor;
+        this.strokecolor = strokecolor;
+        this.linewidth = linewidth;
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.x3 = x3;
+        this.y3 = y3;
+
+    }
+    draw() {
+        const ctx = this.app.ctx;
+        ctx.beginPath();
+        ctx.moveTo(this.x1, this.y1);
+        ctx.lineTo(this.x2, this.y2);
+        ctx.lineTo(this.x3, this.y3);
+        ctx.closePath();
+
+        if (this.linewidth !== 0) {
+            ctx.strokeStyle = this.strokecolor;
+            ctx.lineWidth = this.linewidth;
+            ctx.stroke();
+        }
+
+        ctx.fillStyle = this.fillcolor;
+        ctx.fill();
+    }
+}
+
 
 class Quad {
 
@@ -150,11 +198,12 @@ class App {
     w: number;
     h: number;
     chasm: Chasm;
-    chasm2: Chasm;
+    player: Tri;
     arr: any[];
     iter: number;
     start: boolean;
     frequency: number;
+    speed: number;
 
     constructor() {
         this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
@@ -166,11 +215,11 @@ class App {
 
         this.chasm = new Chasm(this, 1, 'black', 'black', 500, 400, 300, 250, 10, 10);
 
+        this.player = new Tri(this, 'black', 'white', 2, 480, 600, 500, 550, 520, 600);
+
+
         this.arr = new Array;
-
-
         let colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
-
         for (let i in colors) {
             this.arr.push(new Chasm(this, 1, 'black', colors[i], 500, 400, 10, 10, 30 * this.chasm.ratio, 30));
         }
@@ -179,8 +228,8 @@ class App {
 
         this.start = false;
 
-        this.frequency = 2;
-
+        this.frequency = 3;
+        this.speed = 6;
 
     }
     sizeCanvas() {
@@ -188,71 +237,56 @@ class App {
         this.h = this.ctx.canvas.height = window.innerHeight;
     }
     draw(t) {
+        window.addEventListener('keydown', this.keyPress, false);
+
         window.requestAnimationFrame((t) => { this.draw(t); });
         this.ctx.clearRect(0, 0, this.w, this.h);
         // this.chasm.draw();
+        this.background();
+
+        this.player.draw();
+    }
+
+    keyPress(e) {
+        var code = e.keyCode;
+        console.log(this.player);
+    switch (code) {
+        case 37: left(this.player); break; //Left key
+        case 38: up(this.player); break; //Up key
+        case 39: right(this.player); break; //Right key
+        case 40: down(this.player); break; //Down key
+        default: alert(code); //Everything else
+    }
+
+    function left(tri) {
+
+        console.log(tri);
+
+        tri.x1 -= 1;
+        tri.x2 -= 1;
+        tri.x3 -= 1;
+    }
+    function right(tri) {
+        tri.x1 += 1;
+        tri.x2 += 1;
+        tri.x3 += 1;
+    }
+    function down(tri) {
+        tri.y1 -= 1;
+        tri.y2 -= 1;
+        tri.y3 -= 1;
+    }
+    function up(tri) {
+        tri.y1 -= 1;
+        tri.y2 -= 1;
+        tri.y3 -= 1;
+    }
 
 
-
-
-
-        if (this.start) {
-
-            for (let i = 0; i < this.frequency; i++) {
-                if (this.iter >= this.frequency) {
-                    console.log(this.iter);
-                    this.arr[this.iter - this.frequency].draw();
-                } else {
-                    this.arr[this.arr.length - this.frequency + i].draw();
-                    console.log(this.iter);
-                }
-            }
-        }
-        if (this.start) {
-
-            
-            for (let i = 0; i < this.frequency - 1; i++) {
-                if (this.iter >= (this.frequency - 1)) {
-                    this.arr[this.iter - (this.frequency - 1)].size_y += 5;
-                    this.arr[this.iter - (this.frequency - 1)].size_x += 5 * this.chasm.ratio;
-                    this.arr[this.iter - (this.frequency - 1)].draw();
-                } else {
-                    this.arr[(this.arr.length - 1) - i].size_y += 5;
-                    this.arr[(this.arr.length - 1) - i].size_x += 5 * this.chasm.ratio;
-                    this.arr[(this.arr.length - 1) - i].draw();
-                }
-            }   
-
-
-            // if (this.iter === 0) {
-            //     this.arr[this.arr.length - 1].size_y += 5;
-            //     this.arr[this.arr.length - 1].size_x += 5 * this.chasm.ratio;
-            //     this.arr[this.arr.length - 1].draw();
-            // } else {
-            //     this.arr[this.iter - 1].size_y += 5;
-            //     this.arr[this.iter - 1].size_x += 5 * this.chasm.ratio;
-            //     this.arr[this.iter - 1].draw();
-            // }
-        }
-        this.arr[this.iter].draw();
-        this.arr[this.iter].size_y += 5;
-        this.arr[this.iter].size_x += 5 * this.chasm.ratio;
-
-        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
-            this.iter += 1;
-            this.start = true;
-        }
-
-        if (this.iter > this.arr.length - 1) {
-            this.iter = 0;
-        }
-
-        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
-            this.arr[this.iter].size_y = 10;
-            this.arr[this.iter].size_x = 10;
-        }
 
     }
+
+
     initEvents() {
         window.onresize = (e) => { this.sizeCanvas() };
     }
@@ -274,6 +308,87 @@ class App {
         return ('rgb(' + r + ',' + g + ',' + b + ')');
 
     }
+
+    background() {
+        if (this.start) {
+
+            //iter - 3/3 -- background one
+            for (let i = 0; i < this.frequency; i++) {
+                if (this.iter >= this.frequency) {
+                    // console.log(this.iter);
+                    this.arr[this.iter - this.frequency].draw();
+                } else {
+                    this.arr[this.arr.length - this.frequency + i].draw();
+                    // console.log(this.iter);
+                }
+            }
+
+            //     //the middle parts
+            //     for (let j = 1; j <= (this.frequency - 1); j++) {
+
+            //         for (let k = 0; k < j; k++) {
+            //             if (this.iter === k) {
+            //                 this.arr[this.arr.length - 1 - k].size_y += this.speed;
+            //                 this.arr[this.arr.length - 1 - k].size_x += this.speed * this.chasm.ratio;
+            //                 this.arr[this.arr.length - 1 - k].draw();
+            //             }
+            //         }
+            //     } else {
+            //         this.arr[this.iter - j].size_y += this.speed;
+            //         this.arr[this.iter - j].size_x += this.speed * this.chasm.ratio;
+            //         this.arr[this.iter - j].draw();
+            //     }
+            // }
+
+
+            //iter - 2/3
+            if (this.iter === 0) {
+                this.arr[this.arr.length - 2].size_y += this.speed;
+                this.arr[this.arr.length - 2].size_x += this.speed * this.chasm.ratio;
+                this.arr[this.arr.length - 2].draw();
+            } else if (this.iter === 1) {
+                this.arr[this.arr.length - 1].size_y += this.speed;
+                this.arr[this.arr.length - 1].size_x += this.speed * this.chasm.ratio;
+                this.arr[this.arr.length - 1].draw();
+            } else {
+                this.arr[this.iter - 2].size_y += this.speed;
+                this.arr[this.iter - 2].size_x += this.speed * this.chasm.ratio;
+                this.arr[this.iter - 2].draw();
+            }
+
+            //iter - 1/3
+            if (this.iter === 0) {
+                this.arr[this.arr.length - 1].size_y += this.speed;
+                this.arr[this.arr.length - 1].size_x += this.speed * this.chasm.ratio;
+                this.arr[this.arr.length - 1].draw();
+            } else {
+                this.arr[this.iter - 1].size_y += this.speed;
+                this.arr[this.iter - 1].size_x += this.speed * this.chasm.ratio;
+                this.arr[this.iter - 1].draw();
+            }
+
+        }
+
+        //current iter -- 0/3
+        this.arr[this.iter].draw();
+        this.arr[this.iter].size_y += this.speed;
+        this.arr[this.iter].size_x += this.speed * this.chasm.ratio;
+
+        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
+            this.iter += 1;
+            this.start = true;
+        }
+
+        if (this.iter > this.arr.length - 1) {
+            this.iter = 0;
+        }
+
+        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
+            this.arr[this.iter].size_y = 10;
+            this.arr[this.iter].size_x = 10;
+        }
+    }
+
 
 
 }
