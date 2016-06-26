@@ -154,6 +154,7 @@ class App {
     arr: any[];
     iter: number;
     start: boolean;
+    frequency: number;
 
     constructor() {
         this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
@@ -178,9 +179,7 @@ class App {
 
         this.start = false;
 
-
-
-
+        this.frequency = 2;
 
 
     }
@@ -190,39 +189,56 @@ class App {
     }
     draw(t) {
         window.requestAnimationFrame((t) => { this.draw(t); });
-
         this.ctx.clearRect(0, 0, this.w, this.h);
+        // this.chasm.draw();
 
 
-        this.chasm.draw();
+
+
 
         if (this.start) {
-            if (this.iter === 0) {
-                this.arr[this.arr.length - 2].draw();
-            } else if (this.iter === 1) {
-                this.arr[this.arr.length - 1].draw();
-            } else {
-                this.arr[this.iter - 2].draw();
+
+            for (let i = 0; i < this.frequency; i++) {
+                if (this.iter >= this.frequency) {
+                    console.log(this.iter);
+                    this.arr[this.iter - this.frequency].draw();
+                } else {
+                    this.arr[this.arr.length - this.frequency + i].draw();
+                    console.log(this.iter);
+                }
             }
         }
         if (this.start) {
-            if (this.iter === 0) {
-                this.arr[this.arr.length - 1].size_y += 8;
-                this.arr[this.arr.length - 1].size_x += 8 * this.chasm.ratio;
-                this.arr[this.arr.length - 1].draw();
-            } else {
-                this.arr[this.iter - 1].size_y += 8;
-                this.arr[this.iter - 1].size_x += 8 * this.chasm.ratio;
-                this.arr[this.iter - 1].draw();
-            }
-        }
 
-        console.log(this.iter);
+            
+            for (let i = 0; i < this.frequency - 1; i++) {
+                if (this.iter >= (this.frequency - 1)) {
+                    this.arr[this.iter - (this.frequency - 1)].size_y += 5;
+                    this.arr[this.iter - (this.frequency - 1)].size_x += 5 * this.chasm.ratio;
+                    this.arr[this.iter - (this.frequency - 1)].draw();
+                } else {
+                    this.arr[(this.arr.length - 1) - i].size_y += 5;
+                    this.arr[(this.arr.length - 1) - i].size_x += 5 * this.chasm.ratio;
+                    this.arr[(this.arr.length - 1) - i].draw();
+                }
+            }   
+
+
+            // if (this.iter === 0) {
+            //     this.arr[this.arr.length - 1].size_y += 5;
+            //     this.arr[this.arr.length - 1].size_x += 5 * this.chasm.ratio;
+            //     this.arr[this.arr.length - 1].draw();
+            // } else {
+            //     this.arr[this.iter - 1].size_y += 5;
+            //     this.arr[this.iter - 1].size_x += 5 * this.chasm.ratio;
+            //     this.arr[this.iter - 1].draw();
+            // }
+        }
         this.arr[this.iter].draw();
-        this.arr[this.iter].size_y += 8;
-        this.arr[this.iter].size_x += 8 * this.chasm.ratio;
+        this.arr[this.iter].size_y += 5;
+        this.arr[this.iter].size_x += 5 * this.chasm.ratio;
 
-        if (this.arr[this.iter].size_y >= this.chasm.size_y / 2) {
+        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
             this.iter += 1;
             this.start = true;
         }
@@ -231,7 +247,7 @@ class App {
             this.iter = 0;
         }
 
-        if (this.arr[this.iter].size_y >= this.chasm.size_y / 2) {
+        if (this.arr[this.iter].size_y >= this.chasm.size_y / this.frequency) {
             this.arr[this.iter].size_y = 10;
             this.arr[this.iter].size_x = 10;
         }
