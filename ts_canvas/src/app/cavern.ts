@@ -49,6 +49,7 @@ class Tri {
     y2: number;
     x3: number;
     y3: number;
+    speed: number;
 
     constructor(app: App, fillcolor: string, strokecolor: string, linewidth: number, x1: number, y1: number, x2: number, y2: number, x3: number, y3: number) {
         this.app = app;
@@ -61,6 +62,8 @@ class Tri {
         this.y2 = y2;
         this.x3 = x3;
         this.y3 = y3;
+
+        this.speed = 10;
 
     }
     draw() {
@@ -221,7 +224,7 @@ class App {
         this.arr = new Array;
         let colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
         for (let i in colors) {
-            this.arr.push(new Chasm(this, 1, 'black', colors[i], 500, 400, 10, 10, 30 * this.chasm.ratio, 30));
+            this.arr.push(new Chasm(this, 1, 'black', colors[i], 300, 300, 10, 10, 30 * this.chasm.ratio, 30));
         }
 
         this.iter = 0;
@@ -233,16 +236,15 @@ class App {
 
     }
     sizeCanvas() {
-        this.w = this.ctx.canvas.width = window.innerWidth;
-        this.h = this.ctx.canvas.height = window.innerHeight;
+        this.w = this.ctx.canvas.width = 700;
+        this.h = this.ctx.canvas.height = 600;
     }
     draw(t) {
-        window.addEventListener('keydown', this.keyPress, false);
-
         window.requestAnimationFrame((t) => { this.draw(t); });
         this.ctx.clearRect(0, 0, this.w, this.h);
         // this.chasm.draw();
         this.background();
+        
 
         this.player.draw();
     }
@@ -255,31 +257,29 @@ class App {
         case 38: up(this.player); break; //Up key
         case 39: right(this.player); break; //Right key
         case 40: down(this.player); break; //Down key
-        default: alert(code); //Everything else
     }
-
     function left(tri) {
 
         console.log(tri);
 
-        tri.x1 -= 1;
-        tri.x2 -= 1;
-        tri.x3 -= 1;
+        tri.x1 -= tri.speed;
+        tri.x2 -= tri.speed;
+        tri.x3 -= tri.speed;
     }
     function right(tri) {
-        tri.x1 += 1;
-        tri.x2 += 1;
-        tri.x3 += 1;
+        tri.x1 += tri.speed;
+        tri.x2 += tri.speed;
+        tri.x3 += tri.speed;
     }
     function down(tri) {
-        tri.y1 -= 1;
-        tri.y2 -= 1;
-        tri.y3 -= 1;
+        tri.y1 += tri.speed;
+        tri.y2 += tri.speed;
+        tri.y3 += tri.speed;
     }
     function up(tri) {
-        tri.y1 -= 1;
-        tri.y2 -= 1;
-        tri.y3 -= 1;
+        tri.y1 -= tri.speed;
+        tri.y2 -= tri.speed;
+        tri.y3 -= tri.speed;
     }
 
 
@@ -289,6 +289,7 @@ class App {
 
     initEvents() {
         window.onresize = (e) => { this.sizeCanvas() };
+        window.addEventListener('keydown', event => this.keyPress(event));
     }
 
     randomPath() {

@@ -34,6 +34,7 @@ var Tri = (function () {
         this.y2 = y2;
         this.x3 = x3;
         this.y3 = y3;
+        this.speed = 10;
     }
     Tri.prototype.draw = function () {
         var ctx = this.app.ctx;
@@ -130,7 +131,7 @@ var App = (function () {
         this.arr = new Array;
         var colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
         for (var i in colors) {
-            this.arr.push(new Chasm(this, 1, 'black', colors[i], 500, 400, 10, 10, 30 * this.chasm.ratio, 30));
+            this.arr.push(new Chasm(this, 1, 'black', colors[i], 300, 300, 10, 10, 30 * this.chasm.ratio, 30));
         }
         this.iter = 0;
         this.start = false;
@@ -138,12 +139,11 @@ var App = (function () {
         this.speed = 6;
     }
     App.prototype.sizeCanvas = function () {
-        this.w = this.ctx.canvas.width = window.innerWidth;
-        this.h = this.ctx.canvas.height = window.innerHeight;
+        this.w = this.ctx.canvas.width = 700;
+        this.h = this.ctx.canvas.height = 600;
     };
     App.prototype.draw = function (t) {
         var _this = this;
-        window.addEventListener('keydown', this.keyPress, false);
         window.requestAnimationFrame(function (t) { _this.draw(t); });
         this.ctx.clearRect(0, 0, this.w, this.h);
         // this.chasm.draw();
@@ -166,33 +166,33 @@ var App = (function () {
             case 40:
                 down(this.player);
                 break; //Down key
-            default: alert(code); //Everything else
         }
         function left(tri) {
             console.log(tri);
-            tri.x1 -= 1;
-            tri.x2 -= 1;
-            tri.x3 -= 1;
+            tri.x1 -= tri.speed;
+            tri.x2 -= tri.speed;
+            tri.x3 -= tri.speed;
         }
         function right(tri) {
-            tri.x1 += 1;
-            tri.x2 += 1;
-            tri.x3 += 1;
+            tri.x1 += tri.speed;
+            tri.x2 += tri.speed;
+            tri.x3 += tri.speed;
         }
         function down(tri) {
-            tri.y1 -= 1;
-            tri.y2 -= 1;
-            tri.y3 -= 1;
+            tri.y1 += tri.speed;
+            tri.y2 += tri.speed;
+            tri.y3 += tri.speed;
         }
         function up(tri) {
-            tri.y1 -= 1;
-            tri.y2 -= 1;
-            tri.y3 -= 1;
+            tri.y1 -= tri.speed;
+            tri.y2 -= tri.speed;
+            tri.y3 -= tri.speed;
         }
     };
     App.prototype.initEvents = function () {
         var _this = this;
         window.onresize = function (e) { _this.sizeCanvas(); };
+        window.addEventListener('keydown', function (event) { return _this.keyPress(event); });
     };
     App.prototype.randomPath = function () {
         return (Math.random() * 2 - 1);
