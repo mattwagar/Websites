@@ -203,6 +203,9 @@ class App {
     chasm: Chasm;
     player: Tri;
     player1: Quad;
+    player2: Quad;
+    player3: Quad;
+    player4: Tri;
     arr: any[];
     iter: number;
     start: boolean;
@@ -216,6 +219,8 @@ class App {
     last_frame: number;
 
     constructor() {
+        //Codepen doesn't like casting :'(
+        // this.canvas = document.getElementById('canvas');
         this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.sizeCanvas();
@@ -225,11 +230,11 @@ class App {
 
         this.chasm = new Chasm(this, 1, 'black', 'black', 300, 300, 300, 250, 10, 10);
 
-        this.player = new Tri(this, 'black', 'white', 2, this.chasm.pos_x - 20, this.chasm.pos_y, this.chasm.pos_x, this.chasm.pos_y, this.chasm.pos_x + 20, this.chasm.pos_y);
-        this.player1 = new Quad(this, 'black', 'white', 2, this.player.x1, this.player.y1, this.player.x3, this.player.y3, this.player.x3, this.player.y3 +20, this.player.x1, this.player.y1+20);
-        // this.player2 = new Quad();
-        // this.player3 = new Quad();
-
+        this.player = new Tri(this, 'black', 'white', 1, this.chasm.pos_x - 20, this.chasm.pos_y, this.chasm.pos_x, this.chasm.pos_y, this.chasm.pos_x + 20, this.chasm.pos_y);
+        this.player1 = new Quad(this, 'black', 'white', 1, this.player.x1, this.player.y1, this.player.x3, this.player.y3, this.player.x3, this.player.y3 +20, this.player.x1, this.player.y1+20);
+        this.player2 = new Quad(this, 'black', 'white', 1, this.player.x1, this.player.y1, this.player.x2, this.player.y2, this.player.x2, this.player.y2 +20, this.player.x1, this.player.y1+20);
+        this.player3 = new Quad(this, 'black', 'white', 1, this.player.x3, this.player.y3, this.player.x2, this.player.y2, this.player.x2, this.player.y2 +20, this.player.x3, this.player.y3+20);
+        this.player4 = new Tri(this, 'black', 'white', 1, this.player.x1, this.player.y1 + 20, this.player.x2, this.player.y2 + 20, this.player.x3, this.player.x3 + 20)
         this.arr = new Array;
         let colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
         for (let i in colors) {
@@ -255,64 +260,12 @@ class App {
     }
     draw(t) {
         window.requestAnimationFrame((t) => { this.draw(t); });
-        let delta = t - (this.last_frame || t);
+        
 
         this.ctx.clearRect(0, 0, this.w, this.h);
         // this.chasm.draw();
         this.background();
-
-        if (this.left_pressed) {
-            console.log(this.player.x2);
-            this.player.x1 -= this.player.speed * delta;
-            this.player.x2 -= this.player.speed * delta / 1.4;
-            this.player.x3 -= this.player.speed * delta;
-
-            this.player1.x1 -= this.player.speed * delta;
-            this.player1.x2 -= this.player.speed * delta;
-            this.player1.x3 -= this.player.speed * delta;
-            this.player1.x4 -= this.player.speed * delta;
-        }
-        if (this.up_pressed) {
-            console.log(this.player.x2);
-            this.player.y1 -= this.player.speed * delta;
-            this.player.y2 -= this.player.speed * delta / 1.4;
-            this.player.y3 -= this.player.speed * delta;
-
-            this.player1.y1 -= this.player.speed * delta;
-            this.player1.y2 -= this.player.speed * delta;
-            this.player1.y3 -= this.player.speed * delta;
-            this.player1.y4 -= this.player.speed * delta;
-        }
-        if (this.right_pressed) {
-            console.log(this.player.x2);
-            this.player.x1 += this.player.speed * delta;
-            this.player.x2 += this.player.speed * delta / 1.4;
-            this.player.x3 += this.player.speed * delta;
-
-            this.player1.x1 += this.player.speed * delta;
-            this.player1.x2 += this.player.speed * delta;
-            this.player1.x3 += this.player.speed * delta;
-            this.player1.x4 += this.player.speed * delta;
-        }
-        if (this.down_pressed) {
-            console.log(this.player.x2);
-            this.player.y1 += this.player.speed * delta;
-            this.player.y2 += this.player.speed * delta / 1.4;
-            this.player.y3 += this.player.speed * delta;
-
-            this.player1.y1 += this.player.speed * delta;
-            this.player1.y2 += this.player.speed * delta;
-            this.player1.y3 += this.player.speed * delta;
-            this.player1.y4 += this.player.speed * delta;
-        }
-
-
-
-
-        this.player.draw();
-        this.player1.draw();
-        
-
+        this.draw_player(t)
 
         this.last_frame = t;
     }
@@ -359,6 +312,130 @@ class App {
 
         return ('rgb(' + r + ',' + g + ',' + b + ')');
 
+    }
+
+    draw_player(t) {
+
+        let delta = t - (this.last_frame || t);
+        
+        if (this.left_pressed) {
+            console.log(this.player.x2);
+            this.player.x1 -= this.player.speed * delta;
+            this.player.x2 -= this.player.speed * delta / 1.3;
+            this.player.x3 -= this.player.speed * delta;
+
+            this.player1.x1 = this.player.x1;
+            this.player1.x2 = this.player.x3;
+            this.player1.x3 = this.player.x3;
+            this.player1.x4 = this.player.x1;
+
+            this.player2.x1 = this.player.x1;
+            this.player2.x2 = this.player.x2;
+            this.player2.x3 = this.player.x2;
+            this.player2.x4 = this.player.x1;
+
+            this.player3.x1 = this.player.x3;
+            this.player3.x2 = this.player.x2;
+            this.player3.x3 = this.player.x2;
+            this.player3.x4 = this.player.x3;
+
+            this.player4.x1 = this.player.x1;
+            this.player4.x2 = this.player.x2;
+            this.player4.x3 = this.player.x3;
+        }
+        if (this.up_pressed) {
+            console.log(this.player.y2);
+            this.player.y1 -= this.player.speed * delta;
+            this.player.y2 -= this.player.speed * delta / 1.3;
+            this.player.y3 -= this.player.speed * delta;
+
+            this.player1.y1 = this.player.y1;
+            this.player1.y2 = this.player.y3;
+            this.player1.y3 = this.player.y3 + 20;
+            this.player1.y4 = this.player.y1 + 20;
+
+            this.player2.y1 = this.player.y1;
+            this.player2.y2 = this.player.y2;
+            this.player2.y3 = this.player.y2 + 20;
+            this.player2.y4 = this.player.y1 + 20;
+
+            this.player3.y1 = this.player.y3;
+            this.player3.y2 = this.player.y2;
+            this.player3.y3 = this.player.y2 + 20;
+            this.player3.y4 = this.player.y3 + 20;
+
+            this.player4.y1 = this.player.y1 + 20;
+            this.player4.y2 = this.player.y2 + 20;
+            this.player4.y3 = this.player.y3 + 20;
+        }
+        if (this.right_pressed) {
+            console.log(this.player.x2);
+            this.player.x1 += this.player.speed * delta;
+            this.player.x2 += this.player.speed * delta / 1.3;
+            this.player.x3 += this.player.speed * delta;
+
+            this.player1.x1 = this.player.x1;
+            this.player1.x2 = this.player.x3;
+            this.player1.x3 = this.player.x3;
+            this.player1.x4 = this.player.x1;
+
+            this.player2.x1 = this.player.x1;
+            this.player2.x2 = this.player.x2;
+            this.player2.x3 = this.player.x2;
+            this.player2.x4 = this.player.x1;
+
+            this.player3.x1 = this.player.x3;
+            this.player3.x2 = this.player.x2;
+            this.player3.x3 = this.player.x2;
+            this.player3.x4 = this.player.x3;
+
+            this.player4.x1 = this.player.x1;
+            this.player4.x2 = this.player.x2;
+            this.player4.x3 = this.player.x3;
+        }
+        if (this.down_pressed) {
+            console.log(this.player.y2);
+            this.player.y1 += this.player.speed * delta;
+            this.player.y2 += this.player.speed * delta / 1.3;
+            this.player.y3 += this.player.speed * delta;
+
+            this.player1.y1 = this.player.y1;
+            this.player1.y2 = this.player.y3;
+            this.player1.y3 = this.player.y3 + 20;
+            this.player1.y4 = this.player.y1 + 20;
+
+            this.player2.y1 = this.player.y1;
+            this.player2.y2 = this.player.y2;
+            this.player2.y3 = this.player.y2 + 20;
+            this.player2.y4 = this.player.y1 + 20;
+
+            this.player3.y1 = this.player.y3;
+            this.player3.y2 = this.player.y2;
+            this.player3.y3 = this.player.y2 + 20;
+            this.player3.y4 = this.player.y3 + 20;
+
+            this.player4.y1 = this.player.y1 + 20;
+            this.player4.y2 = this.player.y2 + 20;
+            this.player4.y3 = this.player.y3 + 20;
+        }
+
+
+        
+
+        if(this.player.x2 < this.arr[0].pos_x){
+            this.player3.draw();
+        } else {
+            this.player2.draw();
+        }
+
+        if(this.player.y2 < this.arr[0].pos_y){
+            this.player4.draw();
+        } else {
+            this.player.draw();
+        }
+
+        
+        this.player1.draw();
     }
 
     background() {
