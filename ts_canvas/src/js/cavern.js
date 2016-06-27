@@ -34,7 +34,7 @@ var Tri = (function () {
         this.y2 = y2;
         this.x3 = x3;
         this.y3 = y3;
-        this.speed = 10;
+        this.speed = 0.3;
     }
     Tri.prototype.draw = function () {
         var ctx = this.app.ctx;
@@ -126,8 +126,11 @@ var App = (function () {
         this.initEvents();
         window.requestAnimationFrame(function (t) { _this.draw(t); });
         console.log(this);
-        this.chasm = new Chasm(this, 1, 'black', 'black', 500, 400, 300, 250, 10, 10);
-        this.player = new Tri(this, 'black', 'white', 2, 480, 600, 500, 550, 520, 600);
+        this.chasm = new Chasm(this, 1, 'black', 'black', 300, 300, 300, 250, 10, 10);
+        this.player = new Tri(this, 'black', 'white', 2, this.chasm.pos_x - 20, this.chasm.pos_y, this.chasm.pos_x, this.chasm.pos_y, this.chasm.pos_x + 20, this.chasm.pos_y);
+        this.player1 = new Quad(this, 'black', 'white', 2, this.player.x1, this.player.y1, this.player.x3, this.player.y3, this.player.x3, this.player.y3 + 20, this.player.x1, this.player.y1 + 20);
+        // this.player2 = new Quad();
+        // this.player3 = new Quad();
         this.arr = new Array;
         var colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
         for (var i in colors) {
@@ -137,6 +140,11 @@ var App = (function () {
         this.start = false;
         this.frequency = 3;
         this.speed = 6;
+        this.up_pressed = false;
+        this.down_pressed = false;
+        this.left_pressed = false;
+        this.right_pressed = false;
+        this.last_frame = null;
     }
     App.prototype.sizeCanvas = function () {
         this.w = this.ctx.canvas.width = 700;
@@ -145,54 +153,93 @@ var App = (function () {
     App.prototype.draw = function (t) {
         var _this = this;
         window.requestAnimationFrame(function (t) { _this.draw(t); });
+        var delta = t - (this.last_frame || t);
         this.ctx.clearRect(0, 0, this.w, this.h);
         // this.chasm.draw();
         this.background();
+        if (this.left_pressed) {
+            console.log(this.player.x2);
+            this.player.x1 -= this.player.speed * delta;
+            this.player.x2 -= this.player.speed * delta / 1.4;
+            this.player.x3 -= this.player.speed * delta;
+            this.player1.x1 -= this.player.speed * delta;
+            this.player1.x2 -= this.player.speed * delta;
+            this.player1.x3 -= this.player.speed * delta;
+            this.player1.x4 -= this.player.speed * delta;
+        }
+        if (this.up_pressed) {
+            console.log(this.player.x2);
+            this.player.y1 -= this.player.speed * delta;
+            this.player.y2 -= this.player.speed * delta / 1.4;
+            this.player.y3 -= this.player.speed * delta;
+            this.player1.y1 -= this.player.speed * delta;
+            this.player1.y2 -= this.player.speed * delta;
+            this.player1.y3 -= this.player.speed * delta;
+            this.player1.y4 -= this.player.speed * delta;
+        }
+        if (this.right_pressed) {
+            console.log(this.player.x2);
+            this.player.x1 += this.player.speed * delta;
+            this.player.x2 += this.player.speed * delta / 1.4;
+            this.player.x3 += this.player.speed * delta;
+            this.player1.x1 += this.player.speed * delta;
+            this.player1.x2 += this.player.speed * delta;
+            this.player1.x3 += this.player.speed * delta;
+            this.player1.x4 += this.player.speed * delta;
+        }
+        if (this.down_pressed) {
+            console.log(this.player.x2);
+            this.player.y1 += this.player.speed * delta;
+            this.player.y2 += this.player.speed * delta / 1.4;
+            this.player.y3 += this.player.speed * delta;
+            this.player1.y1 += this.player.speed * delta;
+            this.player1.y2 += this.player.speed * delta;
+            this.player1.y3 += this.player.speed * delta;
+            this.player1.y4 += this.player.speed * delta;
+        }
         this.player.draw();
+        this.player1.draw();
+        this.last_frame = t;
     };
-    App.prototype.keyPress = function (e) {
+    App.prototype.keyDown = function (e) {
         var code = e.keyCode;
-        console.log(this.player);
         switch (code) {
             case 37:
-                left(this.player);
+                this.left_pressed = true;
                 break; //Left key
             case 38:
-                up(this.player);
+                this.up_pressed = true;
                 break; //Up key
             case 39:
-                right(this.player);
+                this.right_pressed = true;
                 break; //Right key
             case 40:
-                down(this.player);
+                this.down_pressed = true;
                 break; //Down key
         }
-        function left(tri) {
-            console.log(tri);
-            tri.x1 -= tri.speed;
-            tri.x2 -= tri.speed;
-            tri.x3 -= tri.speed;
-        }
-        function right(tri) {
-            tri.x1 += tri.speed;
-            tri.x2 += tri.speed;
-            tri.x3 += tri.speed;
-        }
-        function down(tri) {
-            tri.y1 += tri.speed;
-            tri.y2 += tri.speed;
-            tri.y3 += tri.speed;
-        }
-        function up(tri) {
-            tri.y1 -= tri.speed;
-            tri.y2 -= tri.speed;
-            tri.y3 -= tri.speed;
+    };
+    App.prototype.keyUp = function (e) {
+        var code = e.keyCode;
+        switch (code) {
+            case 37:
+                this.left_pressed = false;
+                break; //Left key
+            case 38:
+                this.up_pressed = false;
+                break; //Up key
+            case 39:
+                this.right_pressed = false;
+                break; //Right key
+            case 40:
+                this.down_pressed = false;
+                break; //Down key
         }
     };
     App.prototype.initEvents = function () {
         var _this = this;
         window.onresize = function (e) { _this.sizeCanvas(); };
-        window.addEventListener('keydown', function (event) { return _this.keyPress(event); });
+        window.addEventListener('keydown', function (event) { return _this.keyDown(event); });
+        window.addEventListener('keyup', function (event) { return _this.keyUp(event); });
     };
     App.prototype.randomPath = function () {
         return (Math.random() * 2 - 1);

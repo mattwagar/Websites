@@ -63,7 +63,7 @@ class Tri {
         this.x3 = x3;
         this.y3 = y3;
 
-        this.speed = 10;
+        this.speed = 0.3;
 
     }
     draw() {
@@ -202,11 +202,18 @@ class App {
     h: number;
     chasm: Chasm;
     player: Tri;
+    player1: Quad;
     arr: any[];
     iter: number;
     start: boolean;
     frequency: number;
     speed: number;
+
+    up_pressed: boolean;
+    down_pressed: boolean;
+    left_pressed: boolean;
+    right_pressed: boolean;
+    last_frame: number;
 
     constructor() {
         this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
@@ -216,10 +223,12 @@ class App {
         window.requestAnimationFrame((t) => { this.draw(t); });
         console.log(this);
 
-        this.chasm = new Chasm(this, 1, 'black', 'black', 500, 400, 300, 250, 10, 10);
+        this.chasm = new Chasm(this, 1, 'black', 'black', 300, 300, 300, 250, 10, 10);
 
-        this.player = new Tri(this, 'black', 'white', 2, 480, 600, 500, 550, 520, 600);
-
+        this.player = new Tri(this, 'black', 'white', 2, this.chasm.pos_x - 20, this.chasm.pos_y, this.chasm.pos_x, this.chasm.pos_y, this.chasm.pos_x + 20, this.chasm.pos_y);
+        this.player1 = new Quad(this, 'black', 'white', 2, this.player.x1, this.player.y1, this.player.x3, this.player.y3, this.player.x3, this.player.y3 +20, this.player.x1, this.player.y1+20);
+        // this.player2 = new Quad();
+        // this.player3 = new Quad();
 
         this.arr = new Array;
         let colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
@@ -228,11 +237,16 @@ class App {
         }
 
         this.iter = 0;
-
         this.start = false;
-
         this.frequency = 3;
         this.speed = 6;
+
+        this.up_pressed = false;
+        this.down_pressed = false;
+        this.left_pressed = false;
+        this.right_pressed = false;
+
+        this.last_frame = null;
 
     }
     sizeCanvas() {
@@ -241,55 +255,92 @@ class App {
     }
     draw(t) {
         window.requestAnimationFrame((t) => { this.draw(t); });
+        let delta = t - (this.last_frame || t);
+
         this.ctx.clearRect(0, 0, this.w, this.h);
         // this.chasm.draw();
         this.background();
-        
+
+        if (this.left_pressed) {
+            console.log(this.player.x2);
+            this.player.x1 -= this.player.speed * delta;
+            this.player.x2 -= this.player.speed * delta / 1.4;
+            this.player.x3 -= this.player.speed * delta;
+
+            this.player1.x1 -= this.player.speed * delta;
+            this.player1.x2 -= this.player.speed * delta;
+            this.player1.x3 -= this.player.speed * delta;
+            this.player1.x4 -= this.player.speed * delta;
+        }
+        if (this.up_pressed) {
+            console.log(this.player.x2);
+            this.player.y1 -= this.player.speed * delta;
+            this.player.y2 -= this.player.speed * delta / 1.4;
+            this.player.y3 -= this.player.speed * delta;
+
+            this.player1.y1 -= this.player.speed * delta;
+            this.player1.y2 -= this.player.speed * delta;
+            this.player1.y3 -= this.player.speed * delta;
+            this.player1.y4 -= this.player.speed * delta;
+        }
+        if (this.right_pressed) {
+            console.log(this.player.x2);
+            this.player.x1 += this.player.speed * delta;
+            this.player.x2 += this.player.speed * delta / 1.4;
+            this.player.x3 += this.player.speed * delta;
+
+            this.player1.x1 += this.player.speed * delta;
+            this.player1.x2 += this.player.speed * delta;
+            this.player1.x3 += this.player.speed * delta;
+            this.player1.x4 += this.player.speed * delta;
+        }
+        if (this.down_pressed) {
+            console.log(this.player.x2);
+            this.player.y1 += this.player.speed * delta;
+            this.player.y2 += this.player.speed * delta / 1.4;
+            this.player.y3 += this.player.speed * delta;
+
+            this.player1.y1 += this.player.speed * delta;
+            this.player1.y2 += this.player.speed * delta;
+            this.player1.y3 += this.player.speed * delta;
+            this.player1.y4 += this.player.speed * delta;
+        }
+
+
+
 
         this.player.draw();
+        this.player1.draw();
+        
+
+
+        this.last_frame = t;
     }
 
-    keyPress(e) {
+    keyDown(e) {
         var code = e.keyCode;
-        console.log(this.player);
-    switch (code) {
-        case 37: left(this.player); break; //Left key
-        case 38: up(this.player); break; //Up key
-        case 39: right(this.player); break; //Right key
-        case 40: down(this.player); break; //Down key
+        switch (code) {
+            case 37: this.left_pressed = true; break; //Left key
+            case 38: this.up_pressed = true; break; //Up key
+            case 39: this.right_pressed = true; break; //Right key
+            case 40: this.down_pressed = true; break; //Down key
+        }
     }
-    function left(tri) {
-
-        console.log(tri);
-
-        tri.x1 -= tri.speed;
-        tri.x2 -= tri.speed;
-        tri.x3 -= tri.speed;
-    }
-    function right(tri) {
-        tri.x1 += tri.speed;
-        tri.x2 += tri.speed;
-        tri.x3 += tri.speed;
-    }
-    function down(tri) {
-        tri.y1 += tri.speed;
-        tri.y2 += tri.speed;
-        tri.y3 += tri.speed;
-    }
-    function up(tri) {
-        tri.y1 -= tri.speed;
-        tri.y2 -= tri.speed;
-        tri.y3 -= tri.speed;
-    }
-
-
-
+    keyUp(e) {
+        var code = e.keyCode;
+        switch (code) {
+            case 37: this.left_pressed = false; break; //Left key
+            case 38: this.up_pressed = false; break; //Up key
+            case 39: this.right_pressed = false; break; //Right key
+            case 40: this.down_pressed = false; break; //Down key
+        }
     }
 
 
     initEvents() {
         window.onresize = (e) => { this.sizeCanvas() };
-        window.addEventListener('keydown', event => this.keyPress(event));
+        window.addEventListener('keydown', event => this.keyDown(event));
+        window.addEventListener('keyup', event => this.keyUp(event));
     }
 
     randomPath() {
