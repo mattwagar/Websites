@@ -100,8 +100,8 @@ var Chasm = (function () {
         this.linewidth = linewidth;
         this.ratio = this.size_x / this.size_y;
         this.grd = this.app.ctx.createLinearGradient(0, 0, 170, 0);
-        this.grd.addColorStop(0, "black");
-        this.grd.addColorStop(1, "white");
+        this.grd.addColorStop(0, 'black');
+        this.grd.addColorStop(1, 'white');
     }
     Chasm.prototype.draw = function () {
         this.wall_left = new Quad(this.app, this.fillcolor, this.strokecolor, this.linewidth, (this.pos_x - this.middle_x), (this.pos_y - this.middle_y), (this.pos_x - this.size_x), (this.pos_y - this.size_y), (this.pos_x - this.size_x), (this.pos_y + this.size_y), (this.pos_x - this.middle_x), (this.pos_y + this.middle_y));

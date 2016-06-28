@@ -174,8 +174,8 @@ class Chasm {
         this.ratio = this.size_x / this.size_y;
 
         this.grd = this.app.ctx.createLinearGradient(0, 0, 170, 0);
-        this.grd.addColorStop(0, "black");
-        this.grd.addColorStop(1, "white");
+        this.grd.addColorStop(0, 'black');
+        this.grd.addColorStop(1, 'white');
 
 
     }
@@ -231,10 +231,10 @@ class App {
         this.chasm = new Chasm(this, 1, 'black', 'black', 300, 300, 300, 250, 10, 10);
 
         this.player = new Tri(this, 'black', 'white', 1, this.chasm.pos_x - 20, this.chasm.pos_y, this.chasm.pos_x, this.chasm.pos_y, this.chasm.pos_x + 20, this.chasm.pos_y);
-        this.player1 = new Quad(this, 'black', 'white', 1, this.player.x1, this.player.y1, this.player.x3, this.player.y3, this.player.x3, this.player.y3 +20, this.player.x1, this.player.y1+20);
-        this.player2 = new Quad(this, 'black', 'white', 1, this.player.x1, this.player.y1, this.player.x2, this.player.y2, this.player.x2, this.player.y2 +20, this.player.x1, this.player.y1+20);
-        this.player3 = new Quad(this, 'black', 'white', 1, this.player.x3, this.player.y3, this.player.x2, this.player.y2, this.player.x2, this.player.y2 +20, this.player.x3, this.player.y3+20);
-        this.player4 = new Tri(this, 'black', 'white', 1, this.player.x1, this.player.y1 + 20, this.player.x2, this.player.y2 + 20, this.player.x3, this.player.x3 + 20)
+        this.player1 = new Quad(this, 'black', 'white', 1, this.player.x1, this.player.y1, this.player.x3, this.player.y3, this.player.x3, this.player.y3 + 20, this.player.x1, this.player.y1 + 20);
+        this.player2 = new Quad(this, 'black', 'white', 1, this.player.x1, this.player.y1, this.player.x2, this.player.y2, this.player.x2, this.player.y2 + 20, this.player.x1, this.player.y1 + 20);
+        this.player3 = new Quad(this, 'black', 'white', 1, this.player.x3, this.player.y3, this.player.x2, this.player.y2, this.player.x2, this.player.y2 + 20, this.player.x3, this.player.y3 + 20);
+        this.player4 = new Tri(this, 'black', 'white', 1, this.player.x1, this.player.y1 + 20, this.player.x2, this.player.y2 + 20, this.player.x3, this.player.x3 + 20);
         this.arr = new Array;
         let colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink'];
         for (let i in colors) {
@@ -258,19 +258,19 @@ class App {
         this.w = this.ctx.canvas.width = 700;
         this.h = this.ctx.canvas.height = 600;
     }
-    draw(t) {
+    draw(t: any) {
         window.requestAnimationFrame((t) => { this.draw(t); });
-        
+
 
         this.ctx.clearRect(0, 0, this.w, this.h);
         // this.chasm.draw();
         this.background();
-        this.draw_player(t)
+        this.draw_player(t);
 
         this.last_frame = t;
     }
 
-    keyDown(e) {
+    keyDown(e: any) {
         var code = e.keyCode;
         switch (code) {
             case 37: this.left_pressed = true; break; //Left key
@@ -279,7 +279,7 @@ class App {
             case 40: this.down_pressed = true; break; //Down key
         }
     }
-    keyUp(e) {
+    keyUp(e: any) {
         var code = e.keyCode;
         switch (code) {
             case 37: this.left_pressed = false; break; //Left key
@@ -291,7 +291,7 @@ class App {
 
 
     initEvents() {
-        window.onresize = (e) => { this.sizeCanvas() };
+        window.onresize = (e) => { this.sizeCanvas(); };
         window.addEventListener('keydown', event => this.keyDown(event));
         window.addEventListener('keyup', event => this.keyUp(event));
     }
@@ -314,10 +314,10 @@ class App {
 
     }
 
-    draw_player(t) {
+    draw_player(t: any) {
 
         let delta = t - (this.last_frame || t);
-        
+
         if (this.left_pressed) {
             console.log(this.player.x2);
             this.player.x1 -= this.player.speed * delta;
@@ -420,21 +420,21 @@ class App {
         }
 
 
-        
 
-        if(this.player.x2 < this.arr[0].pos_x){
+
+        if (this.player.x2 < this.arr[0].pos_x) {
             this.player3.draw();
         } else {
             this.player2.draw();
         }
 
-        if(this.player.y2 < this.arr[0].pos_y){
+        if (this.player.y2 < this.arr[0].pos_y) {
             this.player4.draw();
         } else {
             this.player.draw();
         }
 
-        
+
         this.player1.draw();
     }
 
