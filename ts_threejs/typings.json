@@ -1,0 +1,8 @@
+{
+  "name": "playground",
+  "globalDependencies": {
+    "angular": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular.d.ts#398bd742115e2b071ab3edf8b543b6df6fa62dc2",
+    "angular-route": "github:DefinitelyTyped/DefinitelyTyped/angularjs/angular-route.d.ts#e0abafb1a6ff652f7ff967120e312d5c1916eaef",
+    "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#e0abafb1a6ff652f7ff967120e312d5c1916eaef"
+  }
+}
