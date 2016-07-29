@@ -105,6 +105,7 @@ gulp.task('watch', function () {
 
 gulp.task('watch-ts', function (cb) {
     gulp.watch([config.allTypeScript], ['ts-lint', 'compile-ts']);
+    gulp.watch('./src/**/*.jade', ['jade']);
 });
 
 gulp.task('serve', ['sass', 'compile-ts', 'watch'], function () {
