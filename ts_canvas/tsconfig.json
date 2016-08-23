@@ -16,6 +16,8 @@
       "./typings/globals/angular/index.d.ts",
       "./typings/globals/angular-route/index.d.ts",
       "./typings/globals/jquery/index.d.ts",
+
+      "/src/app/gradient.ts",
       
       "./src/app/app.module.ts",
       "./src/app/core/core.module.ts",

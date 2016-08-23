@@ -97,9 +97,10 @@ gulp.task('sass', function () {
 });
 
 gulp.task('watch', function () {
+    gulp.watch([config.allTypeScript], ['ts-lint', 'compile-ts']);
     gulp.watch('./src/content/**/*.scss', ['sass']);
     gulp.watch('./src/**/*.jade', ['jade']);
-    gulp.watch("./**/*.html").on('change', browserSync.reload);
+    // gulp.watch("./**/*.html").on('change', browserSync.reload);
     // gulp.watch([config.allTypeScript], ['compile-ts', 'ts-lint']);
 });
 
