@@ -31,6 +31,10 @@ class Mountain {
     curves: Bezier[];
     height: number;
 
+    translate: number;
+    n_translated: number;
+    generate_bound:number;
+
     w: number;
     h: number;
     range_min: number;
@@ -51,22 +55,21 @@ class Mountain {
         vm.range_min = range_min;
         vm.range_max = range_max;
 
-
-
-        console.dir(vm.canvas);
-
-
         vm.left = 0;
         vm.right = w;
 
         vm.curves = [];
         vm.height = Math.round(h / 2);
 
-        vm.y_pos = rand(0,4)* 32 * Math.PI / 256;
+        vm.y_pos = rand(0, 4) * 32 * Math.PI / 256;
         vm.x_pos = 0;
 
+        vm.translate = 0;
+        vm.n_translated = 1;
+        vm.generate_bound = 5000;
+
         var new_x = 0;
-        var new_y = rand(range_min, range_max);
+        var new_y = rand(vm.range_min, vm.range_max);
 
 
         var slope_y;
@@ -81,54 +84,79 @@ class Mountain {
         new_slope_y = new_y + rand(-tension, 0);
 
         vm.curves.push(new Bezier(slope_x, slope_y, new_slope_x, new_slope_y, new_x, new_y));
+        
+        vm.generate();
 
-
-        while (new_x < 5000) {
-
-            slope_x = 2 * new_x - new_slope_x;
-            slope_y = 2 * new_y - new_slope_y;
-
-            new_x += rand(35,40)*10;
-            new_y += rand(-150, 150);
-            while (new_y > range_min && new_y > range_max) {
-                new_y += rand(-150, 150);
-            }
-
-
-
-            new_slope_x = new_x + rand(-tension * 3 / 4, -tension / 8);
-            new_slope_y = new_y + rand(-tension, -tension / 2);
-
-            vm.curves.push(new Bezier(slope_x, slope_y, new_slope_x, new_slope_y, new_x, new_y));
-
-
-
-        }
+        
 
         console.log(vm.curves);
 
 
     }
 
-    animate() {
+    generate() {
         const vm = this;
 
+        var new_x = vm.curves[vm.curves.length - 1].x;
+        var new_y = vm.curves[vm.curves.length - 1].y;
 
 
-        for (var i = 0; i < vm.curves.length-1; i++) {
-            vm.curves[i].cp2y += Math.sin(vm.y_pos) * 4;
-            vm.curves[i].cp1y -= Math.sin(vm.y_pos) * 4;
+        var slope_y;
+        var slope_x;
+
+        var new_slope_x = vm.curves[vm.curves.length - 1].cp2x;
+        var new_slope_y = vm.curves[vm.curves.length - 1].cp2y;;
+
+        var tension = 250;
+        
+
+        while (new_x < vm.generate_bound * vm.n_translated) {
+            slope_x = 2 * new_x - new_slope_x;
+            slope_y = 2 * new_y - new_slope_y;
+            new_x += rand(35, 40) * 10;
+            // new_y += rand(-150, 150);
+            // while (new_y > vm.range_min && new_y > vm.range_max) {
+            //     new_y += rand(-150, 150);
+            // }
+            new_slope_x = new_x + rand(-tension * 3 / 4, -tension / 8);
+            new_slope_y = new_y + rand(-tension, -tension / 2);
+            vm.curves.push(new Bezier(slope_x, slope_y, new_slope_x, new_slope_y, new_x, new_y));
         }
+    }
 
+    increment(increment){
+        this.translate += increment;
+    }
+
+    animate() {
+        const vm = this;
+        for (var i = 0; i < vm.curves.length; i++) {
+            vm.curves[i].cp2y += Math.sin(vm.y_pos) * vm.h/500;
+            vm.curves[i].cp1y -= Math.sin(vm.y_pos) * vm.h/500;
+        }
         vm.y_pos += Math.PI / 256;
+    }
 
+    conditional() {
+        const vm = this;
+        if(vm.translate > vm.generate_bound - vm.w){
+            
+            vm.translate = 0;
+            vm.n_translated++;
+
+            console.log(vm.n_translated*vm.generate_bound);
+            vm.generate();
+            console.log(vm.curves.length);
+        }
     }
 
 
     draw(color: string) {
         const vm = this;
 
+        vm.conditional();
         vm.animate();
+        
 
         vm.ctx.beginPath();
         vm.ctx.moveTo(0, vm.curves[0].y);
@@ -140,12 +168,17 @@ class Mountain {
         vm.ctx.lineTo(vm.curves[vm.curves.length - 1].x, vm.h);
         vm.ctx.lineTo(-50, vm.h);
         vm.ctx.closePath();
-        // vm.ctx.closePath();
         // vm.ctx.strokeStyle = "rgba(0,0,0,1)";
         // vm.ctx.lineWidth = 1;
         // vm.ctx.stroke();
 
-        vm.ctx.fillStyle = color;
+        var grad = vm.ctx.createLinearGradient(0, vm.curves[0].y - 250, 0, vm.h);
+        var opac_color = color.replace(', 1)', ', 0.001)');
+
+        grad.addColorStop(0, opac_color);
+        grad.addColorStop(1, color);
+
+        vm.ctx.fillStyle = grad;
         vm.ctx.fill();
     }
 
@@ -159,6 +192,7 @@ class App {
     mountain: Mountain;
     mountain2: Mountain;
     mountain3: Mountain;
+    mountain4: Mountain;
     offset: number;
 
 
@@ -175,16 +209,17 @@ class App {
         window.requestAnimationFrame((t) => { vm.draw(t); });
         console.log(vm);
 
-        vm.mountain = new Mountain(vm.w, vm.h, vm.h/8, vm.h/8+50);
-        vm.mountain.draw("rgba(0, 255, 0, 1)");
+        vm.mountain = new Mountain(vm.w, vm.h, 2 * vm.h / 16, 2 * vm.h / 16 + 25);
         vm.ctx.drawImage(vm.mountain.canvas, 0, 0, this.w, this.h);
+        console.log(vm.mountain.ctx)
 
-        vm.mountain2 = new Mountain(vm.w, vm.h, 4*vm.h/8, 4*vm.h/8+50);
-        vm.mountain2.draw("rgba(255, 0, 0, 1)");
+        vm.mountain2 = new Mountain(vm.w, vm.h, 6 * vm.h / 16, 6 * vm.h / 16 + 25);
         vm.ctx.drawImage(vm.mountain2.canvas, 0, 0, this.w, this.h);
 
-        vm.mountain3 = new Mountain(vm.w, vm.h, 7*vm.h/8, 7*vm.h/8+50);
-        vm.mountain3.draw("rgba(0, 0, 255, 1)");
+        vm.mountain3 = new Mountain(vm.w, vm.h, 10 * vm.h / 16, 10 * vm.h / 16 + 25);
+        vm.ctx.drawImage(vm.mountain3.canvas, 0, 0, this.w, this.h);
+
+        vm.mountain4 = new Mountain(vm.w, vm.h, 14 * vm.h / 16, 14 * vm.h / 16 + 25);
         vm.ctx.drawImage(vm.mountain3.canvas, 0, 0, this.w, this.h);
 
 
@@ -202,20 +237,35 @@ class App {
 
         vm.ctx.clearRect(0, 0, vm.w, vm.h);
 
-        // vm.mountain.ctx.translate(-1, 0);
+        vm.ctx.fillStyle ="rgba(29,98,255, 1)";
+        vm.ctx.fill();
+        vm.ctx.fillRect(0,0, vm.w, vm.h);
+
+        
         vm.mountain.ctx.clearRect(0, 0, 50000, vm.h);
-        vm.mountain.draw("rgba(0, 255, 0, 1)");
+        vm.mountain.draw("rgba(10, 171, 232, 1)");
+        vm.mountain.ctx.translate(-1, 0);
+        vm.mountain.increment(1);
         vm.ctx.drawImage(vm.mountain.canvas, 0, 0, this.w, this.h);
 
         vm.mountain2.ctx.clearRect(0, 0, 50000, vm.h);
-        vm.mountain2.draw("rgba(255, 0, 0, 1)");
-        // vm.mountain2.ctx.translate(-1, 0);
+        vm.mountain2.draw("rgba(2, 255, 216, 1)");
+        vm.mountain2.ctx.translate(-0.8, 0);
+        vm.mountain2.increment(0.8);
         vm.ctx.drawImage(vm.mountain2.canvas, 0, 0, this.w, this.h);
 
         vm.mountain3.ctx.clearRect(0, 0, 50000, vm.h);
-        vm.mountain3.draw("rgba(0, 0, 255, 1)");
-        // vm.mountain3.ctx.translate(-1, 0);
+        vm.mountain3.draw("rgba(2, 255, 111, 1)");
+        vm.mountain3.ctx.translate(-1.8, 0);
+        vm.mountain3.increment(1.8);
+        
         vm.ctx.drawImage(vm.mountain3.canvas, 0, 0, this.w, this.h);
+
+        vm.mountain4.ctx.clearRect(0, 0, 50000, vm.h);
+        vm.mountain4.draw("rgba(27, 255, 11, 1)");
+        vm.mountain4.ctx.translate(-1.2, 0);
+        vm.mountain4.increment(1.2);
+        vm.ctx.drawImage(vm.mountain4.canvas, 0, 0, this.w, this.h);
 
 
 
