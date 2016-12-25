@@ -1,0 +1,52 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title Hello World!
+    link(rel='stylesheet', type='text/css', href='portfolio.css')
+    link(rel='stylesheet', type='text/css', href='font-awesome/css/font-awesome.css')
+  body
+    #welcome-page
+      canvas#canvas
+      #canvas-container
+      .row.row-fill
+        .col-md-offset-1
+        .col-md-6.row.vertical-center
+            .col.chicle Matt Wagar
+            .col.title-text Front End Developer
+            .col.justify-center
+              .welcome-button.row 
+                .col.title-text Welcome
+        .col-md-6
+    #about-me
+      .text Skills      
+      .row
+        .col-md-3
+          img(src="web-design.svg")
+          //- <img src="web-design.svg" onerror="this.onerror=null; this.src='image.png'">
+          .text Front End Developer
+        .col-md-3
+          img(src="code.svg" width='100%')
+          .text Software Engineering
+        .col-md-3
+          img(src="pencil-case.svg")
+          .text Design
+        .col-md-3
+          img(src="idea.svg")
+          .text Additional Skills
+        
+
+    //-   .col-md-6
+    //-   .col-md-6
+    //-     h1 Portfolio
+    //-     .row
+    //-       - for(var x = 0; x < 4; x++)
+    //-         .col-md-5(style='height:100px; margin-bottom: 15px; background-color:green')
+    //-         .col-md-1
+
+    //-   .col-md-12
+    //-     h1.center Contact Me
+      
+    
+    script(src='bundle.js')
+    //- script(src='page.js')

@@ -1,0 +1,120 @@
+
+@import 'flexboxgrid';
+/*@import '../node_modules/font-awesome/scss/font-awesome';*/
+
+
+@font-face{
+  font-family: chicle;
+  src: url(chicle.regular.ttf) format('truetype');
+}
+
+@font-face{
+  font-family: roboto;
+  src: url(roboto.regular.ttf) format('truetype');
+}
+
+$color1: hsl(300, 20%, 50%);
+
+
+html, body {
+  height: 100%;
+  /*overflow: hidden;*/
+  margin: 0;
+  padding: 0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+
+.offset{
+  margin-left: 8em;
+}
+
+.chicle{ 
+    font-family: chicle;
+    font-size: 4em;
+    font-weight: normal;
+    color:white;
+
+    margin-top: 32vh;
+}
+
+.title-text{
+  font-family: roboto;
+  font-size: 0.8em;
+  font-weight:normal;
+  color:white;
+  text-align: center;
+}
+
+.text{
+  font-family: roboto;
+  font-size: 0.8em;
+  font-weight:normal;
+  color:white;
+  text-align: center;
+}
+
+.vertical-center{
+  /*margin-top:0.5em;*/
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.welcome-button{
+  position: relative;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+  border-radius: 6px;
+  background-color: rgba(255,255,255,0.3);
+  height:2em;
+  width:6em;
+  align-items:center;
+  justify-content:center;
+  margin-top: 0.5em;
+
+  transition: 0.5s;
+  
+  &:hover{
+    background-color: rgba(255,255,255,0.7);
+    cursor: pointer;
+  }
+}
+
+.center{
+  text-align:center;    
+}
+
+#welcome-page{
+  position:relative;
+  width: 100vw;
+  height: 80vh;
+}
+
+#canvas-container{
+  position:absolute;
+  height:100%;
+  width:100%;
+}
+
+.row-fill{
+  height:100%;
+  width:100%;
+}
+
+#bg{
+  z-index: -5;
+}
+
+#canvas{
+  z-index:-6;
+  position:absolute;
+
+}
+
+#about-me{
+  background-color: $color1;
+  position:relative;
+}
