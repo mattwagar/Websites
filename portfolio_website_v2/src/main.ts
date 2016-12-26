@@ -3,6 +3,68 @@ function lerp(from: number, to: number, percent: number) {
     return from + (differance * percent);
 }
 
+function numToStr(num: number) {
+    switch (num) {
+        case 1: return "one";
+        case 2: return "two";
+        case 3: return "three";
+        case 4: return "four";
+        case 5: return "five";
+        case 6: return "six";
+        case 7: return "seven";
+        case 8: return "eight";
+        case 9: return "nine";
+        case 10: return "ten";
+        case 11: return "eleven";
+        case 12: return "twelve";
+    }
+}
+
+class Collection {
+    id: string;
+    images: string[];
+    path: string;
+    constructor(id: string, path: string, images: string[]) {
+        const vm = this;
+        vm.id = id;
+        vm.images = images;
+        vm.path = path;
+
+        var element = <HTMLImageElement>document.getElementById(vm.id);
+
+        element.onmouseup = function(){
+            vm.load();
+        }
+    }
+
+    load() { //sets src's to the dom. then once everything is loaded, it adds class active to make them appear via css
+        const vm = this;
+        for (var i = 0; i < 12; i++) {
+            var element = <HTMLImageElement>document.getElementById(numToStr(i+1));
+            if (i < vm.images.length) {
+                 
+                element.src = vm.path + vm.images[i];
+                element.style.display = 'inline';
+                element.onload = function () {
+                    //css class is turned on to fade in.
+                    
+                }
+            } else {
+                element.src = "#";
+                element.style.display = 'none'; 
+            }
+        }
+    }
+}
+
+var frontend = new Collection('frontend','./skills/frontend/', ['html5.svg', 'javascript-2.svg', 'css-3.svg', 'angular-icon.svg', 'jquery-1.svg', 'node-sass.svg', 'typescript.svg', 'phaser.svg', 'gulp.svg', 'd3-2.svg', 'bootstrap-4.svg', 'pug.svg']);
+var softeng = new Collection('softeng','./skills/softeng/', ['java-14.svg', 'python-5.svg', 'c-seeklogo.com.svg', 'Android_studio.svg']);
+var design = new Collection('design','./skills/design/', ['photoshop-cc.svg','adobe-illustrator-cc.svg', 'after-effects-cc.svg', 'maya.png', 'mudbox.png']);
+frontend.load();
+
+
+
+
 class Img {
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
@@ -61,10 +123,6 @@ class Img {
 
             vm.anchorX = (vm.imgWidth - vm.screenWidth);
             vm.anchorY = (vm.imgHeight - vm.screenHeight);
-            console.log(vm.anchorX);
-            console.log(vm.anchorY);
-            console.log(vm.imgWidth);
-            console.log(vm.screenWidth);
 
             vm.x_offset_dest = vm.x_offset = vm.anchorX;
             vm.y_offset_dest = vm.y_offset = vm.anchorY;
@@ -111,7 +169,7 @@ class App {
         vm.container = <HTMLDivElement>document.getElementById('canvas-container');
 
         vm.container.onmousemove = function (e) {
-            vm.drawImgIn(0,e);
+            vm.drawImgIn(0, e);
         }
 
         vm.container.onmouseenter = function (e) {
@@ -119,9 +177,8 @@ class App {
         }
 
         vm.container.onmouseout = function (e) {
-            console.log('hi');
             vm.mouseIn = false;
-            vm.drawImgOut(0,e);
+            vm.drawImgOut(0, e);
         }
 
 
@@ -149,7 +206,7 @@ class App {
     drawImgIn(t: any, e: any) {
         const vm = this;
 
-        
+
         /*ratio = (imgWidth / screenWidth)  */
 
         var moveRatioX = (e.clientX / vm.img.screenWidth); //range from [0, 1]: 0 being left, 1 being right
@@ -163,18 +220,15 @@ class App {
         vm.img.x_offset_dest = vm.img.anchorX + moveOffsetX;
         vm.img.y_offset_dest = vm.img.anchorY + moveOffsetY;
 
-        
-        console.log(vm.mouseIn === true && Math.round(vm.img.y_offset) !== Math.round(vm.img.y_offset_dest) && Math.round(vm.img.x_offset) !== Math.round(vm.img.x_offset_dest));
-
         if (vm.mouseIn === true && Math.round(vm.img.y_offset) !== Math.round(vm.img.y_offset_dest) && Math.round(vm.img.x_offset) !== Math.round(vm.img.x_offset_dest)) {
-            
+
 
             vm.img.x_offset = Math.round(lerp(vm.img.x_offset, vm.img.x_offset_dest, 0.1));
             vm.img.y_offset = Math.round(lerp(vm.img.y_offset, vm.img.y_offset_dest, 0.1));
 
             // window.requestAnimationFrame((t) => { vm.drawImgIn(t, e) });
 
-            
+
         }
     }
 
@@ -194,16 +248,14 @@ class App {
         vm.img.x_offset_dest = vm.img.anchorX;
         vm.img.y_offset_dest = vm.img.anchorY;
 
-        console.log(vm.mouseIn === false && Math.round(vm.img.y_offset) !== Math.round(vm.img.y_offset_dest) && Math.round(vm.img.x_offset) !== Math.round(vm.img.x_offset_dest));
-
         if (vm.mouseIn === false && Math.round(vm.img.y_offset) !== Math.round(vm.img.y_offset_dest) && Math.round(vm.img.x_offset) !== Math.round(vm.img.x_offset_dest)) {
-            
+
 
             vm.img.x_offset = lerp(vm.img.x_offset, vm.img.x_offset_dest, 0.1);
             vm.img.y_offset = lerp(vm.img.y_offset, vm.img.y_offset_dest, 0.1);
 
             window.requestAnimationFrame((t) => { vm.drawImgOut(t, e) });
-            
+
         }
 
     }
