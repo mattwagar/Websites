@@ -13,8 +13,20 @@
   src: url(roboto.regular.ttf) format('truetype');
 }
 
-$color1: hsl(300, 20%, 50%);
+$hue-offset: 30;
+$saturation : 100;
+$lightness : 30;
 
+$color1: hsl(282, 44%, 47%);
+$color2: adjust-hue($color: $color1, $degrees: (-2 * $hue-offset));
+$color3: adjust-hue($color: $color1, $degrees: (-1 * $hue-offset));
+$color4: adjust-hue($color: $color1, $degrees: (1 * $hue-offset));
+$color5: adjust-hue($color: $color1, $degrees: (2 * $hue-offset));
+
+/*$color2: hsl(0, 44%, 47%);
+$color3: hsl(57, 44%, 47%);
+$color4: hsl(107, 44%, 47%);
+$color5: hsl(217, 44%, 47%);*/
 
 html, body {
   height: 100%;
@@ -39,12 +51,25 @@ html, body {
     margin-top: 32vh;
 }
 
+
+
 .title-text{
   font-family: roboto;
-  font-size: 0.8em;
+  font-size: 3em;
+  font-weight:bold;
+  color:white;
+  text-align: center;
+  padding-bottom: 0.2em;
+  text-shadow: 2px 2px darken($color: $color1, $amount: 10);
+}
+
+.desc-text{
+  font-family: roboto;
+  font-size: 1.5em;
   font-weight:normal;
   color:white;
   text-align: center;
+  text-shadow: 2px 2px darken($color: $color1, $amount: 10);
 }
 
 .text{
@@ -53,7 +78,10 @@ html, body {
   font-weight:normal;
   color:white;
   text-align: center;
+  text-shadow: 2px 2px darken($color: $color1, $amount: 10);
 }
+
+
 
 .vertical-center{
   /*margin-top:0.5em;*/
@@ -117,32 +145,91 @@ html, body {
 #about-me{
   background-color: $color1;
   position:relative;
-}
-
-.col-margin{
-  margin:1em;
+  padding-top: 3em;
+  padding-left: 5em;
+  padding-right: 5em;
+  padding-bottom: 3em;
 }
 
 .col-padding{
-  padding-right:0.5rem;
-  padding-left:0.5rem;
-  margin-top: 1.5em;
-  width: 4em;
-  height: 4em;
+  padding:0.5em;
+  margin: 0.6em;
+  width: 60px;
+  height: 60px;
+  margin-top:2%;
+  background-color: lighten($color: $color1, $amount: 35);
+  border-radius: 25px;
+
+  .text{
+    padding-top:0.5em;
+  }
+}
+
+.svg-white{
+  -webkit-filter: drop-shadow( 1px 1px 1px $color1 );
+  filter: drop-shadow( 1px 1px 1px darken($color: $color1, $amount: 10));
+}
+
+.box{
+  padding-top:1em;
+  padding-left:2em;
+  padding-right:2em;
+  padding-bottom:1em;
+  margin-top: 1em;
+  background-color: lighten($color: $color1, $amount: 10);
+  border-radius: 30px;
+
+  .desc-text{
+    margin-top:0.5em;
+  }
 }
 
 
-.row-margin{
-  margin-left:3em;
-  margin-right:3em;
+.row-padding{
+  /*padding-top:1em;*/
+  padding-left:3em;
+  padding-right:2em;
+  padding-bottom:1em;
 }
 
 .justify-center{
   justify-content: center;
-  align-items: center;
+  /*align-items: center;*/
 }
 
 img{
   width:100%;
   height:100%;
+}
+
+
+.collection{
+  background-color: lighten($color: saturate($color: $color2, $amount: $saturation), $amount: $lightness);
+}
+
+#frontend{
+  svg {
+    fill: lighten($color: saturate($color: $color2, $amount: $saturation), $amount: $lightness);
+  }
+}
+
+
+#softeng{
+  svg {
+    fill: lighten($color: saturate($color: $color3, $amount: $saturation), $amount: $lightness);
+  }
+}
+
+
+#design{
+  svg {
+    fill: lighten($color: saturate($color: $color4, $amount: $saturation), $amount: $lightness);
+  }
+}
+
+
+#additional{
+  svg {
+    fill: lighten($color: saturate($color: $color5, $amount: $saturation), $amount:$lightness);
+  }
 }

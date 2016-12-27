@@ -30,7 +30,7 @@ class Collection {
         vm.images = images;
         vm.path = path;
 
-        var element = <HTMLImageElement>document.getElementById(vm.id);
+        var element = <HTMLDivElement>document.getElementById(vm.id);
 
         element.onmouseup = function(){
             vm.load();
@@ -57,7 +57,7 @@ class Collection {
     }
 }
 
-var frontend = new Collection('frontend','./skills/frontend/', ['html5.svg', 'javascript-2.svg', 'css-3.svg', 'angular-icon.svg', 'jquery-1.svg', 'node-sass.svg', 'typescript.svg', 'phaser.svg', 'gulp.svg', 'd3-2.svg', 'bootstrap-4.svg', 'pug.svg']);
+var frontend = new Collection('frontend','./skills/frontend/', ['html5.svg', 'javascript-2.svg', 'css-3.svg', 'angular-icon.svg', 'jquery-1.svg', 'sass-1.svg', 'typescript.svg', 'phaser.svg', 'gulp.svg', 'd3-2.svg', 'bootstrap-4.svg', 'pug.svg']);
 var softeng = new Collection('softeng','./skills/softeng/', ['java-14.svg', 'python-5.svg', 'c-seeklogo.com.svg', 'Android_studio.svg']);
 var design = new Collection('design','./skills/design/', ['photoshop-cc.svg','adobe-illustrator-cc.svg', 'after-effects-cc.svg', 'maya.png', 'mudbox.png']);
 frontend.load();
