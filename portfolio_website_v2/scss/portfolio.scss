@@ -13,15 +13,24 @@
   src: url(roboto.regular.ttf) format('truetype');
 }
 
-$hue-offset: 30;
-$saturation : 100;
-$lightness : 30;
+$hue-offset: 35;
+$desaturation : 100;
+$darkness :30;
+$scale-lightness: 80;
+$box-lightness: 10;
 
-$color1: hsl(282, 44%, 47%);
-$color2: adjust-hue($color: $color1, $degrees: (-2 * $hue-offset));
-$color3: adjust-hue($color: $color1, $degrees: (-1 * $hue-offset));
+/*$color1: hsl(250, 80%, 10%);*/
+
+$color1: hsl(0, 0%, 100%);
+$color2: adjust-hue($color: $color1, $degrees: (-2.5 * $hue-offset));
+$color3: adjust-hue($color: $color1, $degrees: (-2 * $hue-offset));
 $color4: adjust-hue($color: $color1, $degrees: (1 * $hue-offset));
 $color5: adjust-hue($color: $color1, $degrees: (2 * $hue-offset));
+
+$badge1: hsl(210, 100%, 50%);
+$badge2: adjust-hue($color: $badge1, $degrees: -90);
+$badge3: adjust-hue($color: $badge1, $degrees: -140);
+$badge4: adjust-hue($color: $badge1, $degrees: -210);
 
 /*$color2: hsl(0, 44%, 47%);
 $color3: hsl(57, 44%, 47%);
@@ -57,7 +66,7 @@ html, body {
   font-family: roboto;
   font-size: 3em;
   font-weight:bold;
-  color:white;
+  color:black;
   text-align: center;
   padding-bottom: 0.2em;
   text-shadow: 2px 2px darken($color: $color1, $amount: 10);
@@ -67,7 +76,7 @@ html, body {
   font-family: roboto;
   font-size: 1.5em;
   font-weight:normal;
-  color:white;
+  color:black;
   text-align: center;
   text-shadow: 2px 2px darken($color: $color1, $amount: 10);
 }
@@ -76,7 +85,7 @@ html, body {
   font-family: roboto;
   font-size: 0.8em;
   font-weight:normal;
-  color:white;
+  color:black;
   text-align: center;
   text-shadow: 2px 2px darken($color: $color1, $amount: 10);
 }
@@ -117,7 +126,7 @@ html, body {
 
 #welcome-page{
   position:relative;
-  width: 100vw;
+  width: 100%;
   height: 80vh;
 }
 
@@ -151,24 +160,187 @@ html, body {
   padding-bottom: 3em;
 }
 
-.col-padding{
-  padding:0.5em;
-  margin: 0.6em;
+
+.flex-item{
+  padding:12px;
+  margin: 12px;
   width: 60px;
   height: 60px;
   margin-top:2%;
-  background-color: lighten($color: $color1, $amount: 35);
-  border-radius: 25px;
+  background-color: darken($color: $color1, $amount: 20);
+  border-radius: 60px;
+
+
+  .scale-amount{
+    position:absolute;
+    width:42px;
+    height:45px;
+    margin-top:-12px;
+    margin-left:30px;
+    border-radius: 0 85px 0px 0;
+    background-color: lighten($color: green, $amount: 30);
+  }
 
   .text{
-    padding-top:0.5em;
+      font-size: 0.6em;
+  }    
+
+
+  
+  
+  .scale-box{
+    position:absolute;
+    width: 60px;
+    height: 60px;
+    padding:4px;
+    margin-left:-4px;
+    margin-top:-4px;
+    background-color: lighten($color: $color1, $amount: $scale-lightness);
+    border-radius: 60px;
+
+    .text{
+      padding-top:12px;
+    }
+  }
+
+  .scale-box-mid{
+    position:absolute;
+    width: 50px;
+    height: 50px;
+    padding: 9px;
+    margin-left:-4px;
+    margin-top:-4px;
+    background-color: lighten($color: $color1, $amount: $scale-lightness);
+    border-radius: 60px;
+
+    .text{
+      padding-top:18px;
+    }
+  }
+
+  .scale-box-square{
+    position:absolute;
+    width: 44px;
+    height: 44px;
+    padding: 12px;
+    margin-left:-4px;
+    margin-top:-4px;
+    background-color: lighten($color: $color1, $amount: $scale-lightness);
+    border-radius: 60px;
+
+    .text{
+      padding-top:22px;
+
+    }
+  }
+
+  .scale{
+    position:absolute;
+    background-color: darken($color: $color1, $amount: 30);
+    height:50px;
+    width:14px;
+    margin-left:62px;
+    margin-top:5px;
+    border-radius:7px;
+  }
+
+  
+}
+
+.circle-25, .circle-50, .circle-75, .circle-100{
+  position:absolute;
+  margin-top: -12px;
+  margin-left: -12px;
+  stroke-dashoffset: 534;
+  
+}
+
+.outer {
+  fill: transparent;
+  
+  stroke-width: 10;
+  stroke-dasharray: 534;
+  transition: stroke-dashoffset 1s;
+  -webkit-animation-play-state: running;
+  
+  /* firefox bug fix - won't rotate at 90deg angles */
+  -moz-transform: rotate(-89deg) translateX(-190px);
+}
+
+.flex-item:hover .outer {
+  stroke-dashoffset: 534 !important;
+  -webkit-animation-play-state: paused;
+}
+
+/*initial values*/
+.circle-25{
+  stroke-dashoffset: 477;
+  -webkit-animation: show25 0.5s;
+  animation: show25 0.5s;
+
+  .outer{
+    stroke: $badge1;
   }
 }
+
+.circle-50{
+  stroke-dashoffset: 418;
+  -webkit-animation: show25 0.5s;
+  animation: show25 0.5s;
+
+  .outer{
+    stroke: $badge2;
+  }
+}
+
+.circle-75{
+  stroke-dashoffset: 360;
+  -webkit-animation: show25 0.5s;
+  animation: show25 0.5s;
+
+  .outer{
+    stroke: $badge3;
+  }
+}
+
+.circle-100{
+  stroke-dashoffset: 302;
+  -webkit-animation: show25 0.5s;
+  animation: show25 0.5s;
+
+  .outer{
+    stroke: $badge4;
+  }
+}
+
+@-webkit-keyframes show25 {
+  from {
+    stroke-dashoffset: 534;
+
+  }
+  
+  to {
+    stroke-dashoffset: 475;
+  }
+}
+
+@keyframes show25 {
+  from {
+    stroke-dashoffset: 534;
+  }
+  
+  to {
+    stroke-dashoffset: 475;
+  }
+}
+
 
 .svg-white{
   -webkit-filter: drop-shadow( 1px 1px 1px $color1 );
   filter: drop-shadow( 1px 1px 1px darken($color: $color1, $amount: 10));
 }
+
+
 
 .box{
   padding-top:1em;
@@ -176,7 +348,7 @@ html, body {
   padding-right:2em;
   padding-bottom:1em;
   margin-top: 1em;
-  background-color: lighten($color: $color1, $amount: 10);
+  background-color: lighten($color: $color1, $amount: $box-lightness);
   border-radius: 30px;
 
   .desc-text{
@@ -204,32 +376,35 @@ img{
 
 
 .collection{
-  background-color: lighten($color: saturate($color: $color2, $amount: $saturation), $amount: $lightness);
+  background-color: darken($color: saturate($color: $color2, $amount: $desaturation), $amount: $darkness);
+}
+
+#frontend:hover, #softeng:hover, #design:hover, #additional:hover {
+  cursor: pointer;
 }
 
 #frontend{
   svg {
-    fill: lighten($color: saturate($color: $color2, $amount: $saturation), $amount: $lightness);
+    fill: darken($color: desaturate($color: $color2, $amount: $desaturation), $amount: $darkness);
   }
 }
 
-
 #softeng{
   svg {
-    fill: lighten($color: saturate($color: $color3, $amount: $saturation), $amount: $lightness);
+    fill: darken($color: desaturate($color: $color3, $amount: $desaturation), $amount: $darkness);
   }
 }
 
 
 #design{
   svg {
-    fill: lighten($color: saturate($color: $color4, $amount: $saturation), $amount: $lightness);
+    fill: darken($color: desaturate($color: $color4, $amount: $desaturation), $amount: $darkness);
   }
 }
 
 
 #additional{
   svg {
-    fill: lighten($color: saturate($color: $color5, $amount: $saturation), $amount:$lightness);
+    fill: darken($color: desaturate($color: $color5, $amount: $desaturation), $amount:$darkness);
   }
 }

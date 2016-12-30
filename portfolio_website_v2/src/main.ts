@@ -1,271 +1,42 @@
-function lerp(from: number, to: number, percent: number) {
-    var differance = to - from;
-    return from + (differance * percent);
-}
 
-function numToStr(num: number) {
-    switch (num) {
-        case 1: return "one";
-        case 2: return "two";
-        case 3: return "three";
-        case 4: return "four";
-        case 5: return "five";
-        case 6: return "six";
-        case 7: return "seven";
-        case 8: return "eight";
-        case 9: return "nine";
-        case 10: return "ten";
-        case 11: return "eleven";
-        case 12: return "twelve";
-    }
-}
 
-class Collection {
-    id: string;
-    images: string[];
-    path: string;
-    constructor(id: string, path: string, images: string[]) {
-        const vm = this;
-        vm.id = id;
-        vm.images = images;
-        vm.path = path;
+import * as image_canvas from "./image_canvas";
 
-        var element = <HTMLDivElement>document.getElementById(vm.id);
+import * as skill_badge from "./skill_badge";
 
-        element.onmouseup = function(){
-            vm.load();
-        }
-    }
 
-    load() { //sets src's to the dom. then once everything is loaded, it adds class active to make them appear via css
-        const vm = this;
-        for (var i = 0; i < 12; i++) {
-            var element = <HTMLImageElement>document.getElementById(numToStr(i+1));
-            if (i < vm.images.length) {
-                 
-                element.src = vm.path + vm.images[i];
-                element.style.display = 'inline';
-                element.onload = function () {
-                    //css class is turned on to fade in.
-                    
-                }
-            } else {
-                element.src = "#";
-                element.style.display = 'none'; 
-            }
-        }
-    }
-}
 
-var frontend = new Collection('frontend','./skills/frontend/', ['html5.svg', 'javascript-2.svg', 'css-3.svg', 'angular-icon.svg', 'jquery-1.svg', 'sass-1.svg', 'typescript.svg', 'phaser.svg', 'gulp.svg', 'd3-2.svg', 'bootstrap-4.svg', 'pug.svg']);
-var softeng = new Collection('softeng','./skills/softeng/', ['java-14.svg', 'python-5.svg', 'c-seeklogo.com.svg', 'Android_studio.svg']);
-var design = new Collection('design','./skills/design/', ['photoshop-cc.svg','adobe-illustrator-cc.svg', 'after-effects-cc.svg', 'maya.png', 'mudbox.png']);
+var frontend = new skill_badge.Collection('frontend','./skills/frontend/', [{"name": 'HTML5',           "class":'circle-100', "image":'html5.svg'}, 
+                                                                {"name": 'Java Script',     "class":'circle-75', "image":'javascript-2.svg'}, 
+                                                                {"name": 'CSS3',            "class":'circle-50', "image":'css-3.svg'}, 
+                                                                {"name": 'Angular JS',      "class":'circle-75', "image":'angular-icon.svg'}, 
+                                                                {"name": 'jQuery',          "class":'circle-50', "image":'jquery-1.svg'}, 
+                                                                {"name": 'SCSS',            "class":'circle-75', "image":'sass-1.svg'}, 
+                                                                {"name": 'Type Script',     "class":'circle-75', "image":'typescript.svg'}, 
+                                                                {"name": 'Phaser.js',       "class":'circle-100', "image":'phaser.svg'}, 
+                                                                {"name": 'Gulp',            "class":'circle-75', "image":'gulp.svg'}, 
+                                                                {"name": 'D3.js',           "class":'circle-25', "image":'d3-2.svg'}, 
+                                                                {"name": 'Bootstrap',     "class":'circle-100', "image":'bootstrap-4.svg'}, 
+                                                                {"name": 'Pug/Jade',        "class":'circle-100', "image":'pug.svg'}]);
+var softeng = new skill_badge.Collection('softeng','./skills/softeng/',    [{"name": 'Java',        "class":'circle-75', "image":'java-14.svg'}, 
+                                                                {"name": 'Python',      "class":'circle-50', "image":'python-5.svg'}, 
+                                                                {"name": 'C++',          "class":'circle-25', "image":'c-seeklogo.com.svg'}, 
+                                                                {"name": 'Android Studio',  "class":'circle-25', "image":'Android_studio.svg'}]);
+var design = new skill_badge.Collection('design','./skills/design/',       [{"name": 'Photoshop',       "class":'circle-25', "image":'photoshop-cc.svg'},
+                                                                {"name": 'Illustrator',     "class":'circle-25', "image":'adobe-illustrator-cc.svg'}, 
+                                                                {"name": 'After Effects',   "class":'circle-25', "image":'after-effects-cc.svg'}, 
+                                                                {"name": 'Maya',            "class":'circle-50', "image":'maya.png'}, 
+                                                                {"name": 'Mudbox',          "class":'circle-25', "image":'mudbox.png'}]);
 frontend.load();
 
 
+var app = new image_canvas.App();
 
 
-class Img {
-    canvas: HTMLCanvasElement;
-    ctx: CanvasRenderingContext2D;
-    image: HTMLImageElement
-    w: number;
-    h: number;
-    x_offset_dest: number;
-    y_offset_dest: number;
-    x_offset: number;
-    y_offset: number;
-    anchorX: number;
-    anchorY: number;
-
-    imgWidth: number;
-    screenWidth: number;
-    scaleX: number;
-    scaleY: number;
-    scale: number;
-    imgHeight: number;
-    screenHeight: number;
-
-
-    constructor(width: number, height: number) {
-        const vm = this;
-        vm.canvas = document.createElement('canvas');
-        vm.ctx = vm.canvas.getContext('2d');
-        vm.w = vm.canvas.width = width;
-        vm.h = vm.canvas.height = height;
-        vm.image = new Image();
-        vm.image.src = 'city_scape.jpg';
-
-        vm.image.onload = function () {
-
-            /*gets scaleX based on screen and image width */
-            vm.imgWidth = vm.image.naturalWidth;
-            vm.screenWidth = vm.canvas.width;
-            vm.scaleX = 1;
-            vm.scaleX = vm.screenWidth / vm.imgWidth;
-
-            /*gets scaleY based on screen and image width */
-            vm.imgHeight = vm.image.naturalHeight;
-            vm.screenHeight = vm.canvas.height;
-            vm.scaleY = 1;
-            vm.scaleY = vm.screenHeight / vm.imgHeight;
-
-
-            /*sets basic scale to X */
-
-            vm.scale = vm.scaleX
-            if (vm.scaleX < vm.scaleY) {
-                vm.scale = vm.scaleY;
-            }
-
-            vm.imgWidth *= vm.scale * 1.05;
-            vm.imgHeight *= vm.scale * 1.05;
-
-            vm.anchorX = (vm.imgWidth - vm.screenWidth);
-            vm.anchorY = (vm.imgHeight - vm.screenHeight);
-
-            vm.x_offset_dest = vm.x_offset = vm.anchorX;
-            vm.y_offset_dest = vm.y_offset = vm.anchorY;
-
-
-
-            vm.draw();
-        }
-    }
-
-    draw() {
-        const vm = this;
-        // vm.ctx.clearRect(0,0,vm.w, vm.h);
-
-        vm.ctx.drawImage(vm.image, vm.x_offset, vm.y_offset, vm.image.naturalWidth, vm.image.naturalHeight, 0, 0, vm.imgWidth, vm.imgHeight);
-    }
+window.onscroll = function(){
+    console.log(window.scrollY);
 }
 
-class App {
-    canvas: HTMLCanvasElement;
-    ctx: CanvasRenderingContext2D;
-    w: number;
-    h: number;
-    // rect: Rectangle
-    img: Img;
-
-    mouseIn: boolean;
-    container: HTMLDivElement;
-
-    constructor() {
-        const vm = this;
-
-        vm.canvas = <HTMLCanvasElement>document.getElementById('canvas');
-        vm.ctx = vm.canvas.getContext('2d');
-
-        vm.sizeCanvas();
-        vm.initEvents();
-        window.requestAnimationFrame((t) => { vm.draw(t); });
-
-        vm.img = new Img(vm.w, vm.h);
-
-        vm.mouseIn = false;
-
-        vm.container = <HTMLDivElement>document.getElementById('canvas-container');
-
-        vm.container.onmousemove = function (e) {
-            vm.drawImgIn(0, e);
-        }
-
-        vm.container.onmouseenter = function (e) {
-            vm.mouseIn = true;
-        }
-
-        vm.container.onmouseout = function (e) {
-            vm.mouseIn = false;
-            vm.drawImgOut(0, e);
-        }
 
 
-    }
 
-    sizeCanvas() {
-        const vm = this;
-        vm.canvas.style.width = '100%';
-        vm.canvas.style.height = '100%';
-        this.w = this.canvas.width = vm.canvas.offsetWidth;
-        this.h = this.canvas.height = vm.canvas.offsetHeight;
-
-    }
-    draw(t: any) {
-        const vm = this;
-        window.requestAnimationFrame((t) => { this.draw(t); });
-        vm.ctx.clearRect(0, 0, vm.w, vm.h);
-
-        vm.ctx.drawImage(vm.img.canvas, 0, 0);
-        vm.img.draw();
-
-
-    }
-
-    drawImgIn(t: any, e: any) {
-        const vm = this;
-
-
-        /*ratio = (imgWidth / screenWidth)  */
-
-        var moveRatioX = (e.clientX / vm.img.screenWidth); //range from [0, 1]: 0 being left, 1 being right
-        var moveOffsetX = -vm.img.anchorX + (moveRatioX * vm.img.anchorX * 2);
-
-        var moveRatioY = (e.clientY / vm.img.screenHeight) * 2; //range from [0, 1]: 0 being left, 1 being right
-        var moveOffsetY = -vm.img.anchorY + (moveRatioY * vm.img.anchorY);
-
-
-        /*offset = middle_anchor + dragged_offset*/
-        vm.img.x_offset_dest = vm.img.anchorX + moveOffsetX;
-        vm.img.y_offset_dest = vm.img.anchorY + moveOffsetY;
-
-        if (vm.mouseIn === true && Math.round(vm.img.y_offset) !== Math.round(vm.img.y_offset_dest) && Math.round(vm.img.x_offset) !== Math.round(vm.img.x_offset_dest)) {
-
-
-            vm.img.x_offset = Math.round(lerp(vm.img.x_offset, vm.img.x_offset_dest, 0.1));
-            vm.img.y_offset = Math.round(lerp(vm.img.y_offset, vm.img.y_offset_dest, 0.1));
-
-            // window.requestAnimationFrame((t) => { vm.drawImgIn(t, e) });
-
-
-        }
-    }
-
-    drawImgOut(t: any, e: any) {
-        const vm = this;
-
-        /*ratio = (imgWidth / screenWidth)  */
-
-        // var moveRatioX = (e.clientX / vm.img.screenWidth); //range from [0, 1]: 0 being left, 1 being right
-        // var moveOffsetX = -vm.img.anchorX + (moveRatioX * vm.img.anchorX * 2);
-
-        // var moveRatioY = (e.clientY / vm.img.screenHeight) * 2; //range from [0, 1]: 0 being left, 1 being right
-        // var moveOffsetY = -vm.img.anchorY + (moveRatioY * vm.img.anchorY);
-
-
-        /*offset = middle_anchor + dragged_offset*/
-        vm.img.x_offset_dest = vm.img.anchorX;
-        vm.img.y_offset_dest = vm.img.anchorY;
-
-        if (vm.mouseIn === false && Math.round(vm.img.y_offset) !== Math.round(vm.img.y_offset_dest) && Math.round(vm.img.x_offset) !== Math.round(vm.img.x_offset_dest)) {
-
-
-            vm.img.x_offset = lerp(vm.img.x_offset, vm.img.x_offset_dest, 0.1);
-            vm.img.y_offset = lerp(vm.img.y_offset, vm.img.y_offset_dest, 0.1);
-
-            window.requestAnimationFrame((t) => { vm.drawImgOut(t, e) });
-
-        }
-
-    }
-
-    initEvents() {
-        window.onresize = (e) => {
-            this.sizeCanvas();
-        };
-    }
-
-}
-
-var app = new App();
