@@ -152,23 +152,38 @@ html, body {
 }
 
 #about-me{
+  background-color: darken($color: $color1, $amount: 10);
+  position:relative;
+  padding-top: 3em;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-bottom: 3em;
+}
+
+#skills{
   background-color: $color1;
   position:relative;
   padding-top: 3em;
-  padding-left: 5em;
-  padding-right: 5em;
+  padding-left: 3em;
+  padding-right: 3em;
   padding-bottom: 3em;
 }
 
 
 .flex-item{
   padding:12px;
-  margin: 12px;
+  /*margin-left: 12px;*/
+  margin-right: 12px;
+  margin-bottom: 24px;
   width: 60px;
   height: 60px;
-  margin-top:2%;
   background-color: darken($color: $color1, $amount: 20);
   border-radius: 60px;
+
+  .text{
+      padding-top:75px;
+      font-size: 0.6em;
+    }
 
 
   .scale-amount{
@@ -179,11 +194,7 @@ html, body {
     margin-left:30px;
     border-radius: 0 85px 0px 0;
     background-color: lighten($color: green, $amount: 30);
-  }
-
-  .text{
-      font-size: 0.6em;
-  }    
+  }  
 
 
   
@@ -197,10 +208,7 @@ html, body {
     margin-top:-4px;
     background-color: lighten($color: $color1, $amount: $scale-lightness);
     border-radius: 60px;
-
-    .text{
-      padding-top:12px;
-    }
+    
   }
 
   .scale-box-mid{
@@ -212,10 +220,6 @@ html, body {
     margin-top:-4px;
     background-color: lighten($color: $color1, $amount: $scale-lightness);
     border-radius: 60px;
-
-    .text{
-      padding-top:18px;
-    }
   }
 
   .scale-box-square{
@@ -227,11 +231,6 @@ html, body {
     margin-top:-4px;
     background-color: lighten($color: $color1, $amount: $scale-lightness);
     border-radius: 60px;
-
-    .text{
-      padding-top:22px;
-
-    }
   }
 
   .scale{
@@ -335,11 +334,6 @@ html, body {
 }
 
 
-.svg-white{
-  -webkit-filter: drop-shadow( 1px 1px 1px $color1 );
-  filter: drop-shadow( 1px 1px 1px darken($color: $color1, $amount: 10));
-}
-
 
 
 .box{
@@ -359,14 +353,20 @@ html, body {
 
 .row-padding{
   /*padding-top:1em;*/
-  padding-left:3em;
-  padding-right:2em;
-  padding-bottom:1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
 }
 
 .justify-center{
   justify-content: center;
   /*align-items: center;*/
+}
+
+.align-center{
+  flex-direction: column;
+  align-content:center;
 }
 
 img{
@@ -383,28 +383,70 @@ img{
   cursor: pointer;
 }
 
+$circle-size: 150px;
+/*.svg-white{
+  -webkit-filter: drop-shadow( 1px 1px 1px $color1 );
+  filter: drop-shadow( 1px 1px 1px darken($color: $color1, $amount: 10));
+}*/
+
+/*.circle{
+    background-color: hsl(210, 100%, 50%);
+    border-radius: $circle-size;
+    height: $circle-size;
+    width: $circle-size;
+}*/
+
 #frontend{
-  svg {
-    fill: darken($color: desaturate($color: $color2, $amount: $desaturation), $amount: $darkness);
+  .circle{
+    background-color: hsl(275, 100%, 50%);
+    border-radius: $circle-size;
+    height: $circle-size;
+    width: $circle-size;
+    svg {
+      /*fill: darken($color: desaturate($color: $color2, $amount: $desaturation), $amount: $darkness);*/
+      fill: black;
+      margin: 22px;
+    }
   }
 }
 
 #softeng{
-  svg {
-    fill: darken($color: desaturate($color: $color3, $amount: $desaturation), $amount: $darkness);
+  .circle{
+    background-color: hsl(225, 100%, 50%);
+    border-radius: $circle-size;
+    height: $circle-size;
+    width: $circle-size;
+    svg {
+      fill: black;
+      margin: 22px;
+    }
   }
 }
 
 
 #design{
-  svg {
-    fill: darken($color: desaturate($color: $color4, $amount: $desaturation), $amount: $darkness);
+  .circle{
+    background-color: hsl(175, 100%, 50%);
+    border-radius: $circle-size;
+    height: $circle-size;
+    width: $circle-size;
+    svg {
+      fill: black;
+      margin: 22px;
+    }
   }
 }
 
 
 #additional{
-  svg {
-    fill: darken($color: desaturate($color: $color5, $amount: $desaturation), $amount:$darkness);
+  .circle{
+    background-color: hsl(50, 100%, 50%);
+    border-radius: $circle-size;
+    height: $circle-size;
+    width: $circle-size;
+    svg {
+      fill: black;
+      margin: 22px;
+    }
   }
 }

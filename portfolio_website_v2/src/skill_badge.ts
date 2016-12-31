@@ -7,8 +7,11 @@ export class Skill {
   scale_box: HTMLDivElement;
   image: HTMLImageElement;
   text: HTMLDivElement;
-  constructor(name: string, classpercent: string, image: string) {
+  flex_grid_id: string;
+  constructor(name: string, classpercent: string, image: string, flex_grid_id: string) {
     const vm = this;
+
+    vm.flex_grid_id = flex_grid_id;
 
     vm.flex_item = document.createElement('div');
     vm.flex_item.className += 'flex-item';
@@ -52,12 +55,12 @@ export class Skill {
     vm.svg.appendChild(vm.svg_circle);
     vm.flex_item.appendChild(vm.scale_box);
     vm.scale_box.appendChild(vm.image);
-    vm.scale_box.appendChild(vm.text);
+    vm.flex_item.appendChild(vm.text);
   }
 
   append() {
     const vm = this;
-    var flex_grid = document.getElementById('flex-grid');
+    var flex_grid = document.getElementById(vm.flex_grid_id);
     flex_grid.appendChild(vm.flex_item);
   }
 }
@@ -73,17 +76,19 @@ export class Collection {
   images: ISkillInfo[];
   path: string;
   skills: Skill[];
+  flex_grid_id: string;
 
-  constructor(id: string, path: string, images: ISkillInfo[]) {
+  constructor(id: string, path: string, flex_grid_id: string, images: ISkillInfo[]) {
     const vm = this;
     vm.id = id;
     vm.images = images;
     vm.path = path;
+    vm.flex_grid_id = flex_grid_id;
 
     vm.skills = [];
 
     for (var i = 0; i < images.length; i++) {
-      vm.skills.push(new Skill(images[i].name, images[i].class, vm.path + images[i].image));
+      vm.skills.push(new Skill(images[i].name, images[i].class, vm.path + images[i].image, vm.flex_grid_id));
     }
     var element = <HTMLDivElement>document.getElementById(vm.id);
 
@@ -94,7 +99,7 @@ export class Collection {
 
   public load() { //sets src's to the dom. then once everything is loaded, it adds class active to make them appear via css
     const vm = this;
-    var flex_grid = document.getElementById('flex-grid');
+    var flex_grid = document.getElementById(vm.flex_grid_id);
     while (flex_grid.firstChild) {
       flex_grid.removeChild(flex_grid.firstChild);
     }

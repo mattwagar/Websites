@@ -742,21 +742,33 @@ html, body {
   position: absolute; }
 
 #about-me {
+  background-color: #e6e6e6;
+  position: relative;
+  padding-top: 3em;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-bottom: 3em; }
+
+#skills {
   background-color: white;
   position: relative;
   padding-top: 3em;
-  padding-left: 5em;
-  padding-right: 5em;
+  padding-left: 3em;
+  padding-right: 3em;
   padding-bottom: 3em; }
 
 .flex-item {
   padding: 12px;
-  margin: 12px;
+  /*margin-left: 12px;*/
+  margin-right: 12px;
+  margin-bottom: 24px;
   width: 60px;
   height: 60px;
-  margin-top: 2%;
   background-color: #cccccc;
   border-radius: 60px; }
+  .flex-item .text {
+    padding-top: 75px;
+    font-size: 0.6em; }
   .flex-item .scale-amount {
     position: absolute;
     width: 42px;
@@ -765,8 +777,6 @@ html, body {
     margin-left: 30px;
     border-radius: 0 85px 0px 0;
     background-color: #1aff1a; }
-  .flex-item .text {
-    font-size: 0.6em; }
   .flex-item .scale-box {
     position: absolute;
     width: 60px;
@@ -776,8 +786,6 @@ html, body {
     margin-top: -4px;
     background-color: white;
     border-radius: 60px; }
-    .flex-item .scale-box .text {
-      padding-top: 12px; }
   .flex-item .scale-box-mid {
     position: absolute;
     width: 50px;
@@ -787,8 +795,6 @@ html, body {
     margin-top: -4px;
     background-color: white;
     border-radius: 60px; }
-    .flex-item .scale-box-mid .text {
-      padding-top: 18px; }
   .flex-item .scale-box-square {
     position: absolute;
     width: 44px;
@@ -798,8 +804,6 @@ html, body {
     margin-top: -4px;
     background-color: white;
     border-radius: 60px; }
-    .flex-item .scale-box-square .text {
-      padding-top: 22px; }
   .flex-item .scale {
     position: absolute;
     background-color: #b3b3b3;
@@ -869,10 +873,6 @@ html, body {
   to {
     stroke-dashoffset: 475; } }
 
-.svg-white {
-  -webkit-filter: drop-shadow(1px 1px 1px white);
-  filter: drop-shadow(1px 1px 1px #e6e6e6); }
-
 .box {
   padding-top: 1em;
   padding-left: 2em;
@@ -886,13 +886,18 @@ html, body {
 
 .row-padding {
   /*padding-top:1em;*/
+  padding-top: 1em;
+  padding-bottom: 1em;
   padding-left: 3em;
-  padding-right: 2em;
-  padding-bottom: 1em; }
+  padding-right: 3em; }
 
 .justify-center {
   justify-content: center;
   /*align-items: center;*/ }
+
+.align-center {
+  flex-direction: column;
+  align-content: center; }
 
 img {
   width: 100%;
@@ -904,14 +909,49 @@ img {
 #frontend:hover, #softeng:hover, #design:hover, #additional:hover {
   cursor: pointer; }
 
-#frontend svg {
-  fill: #b3b3b3; }
+/*.svg-white{
+  -webkit-filter: drop-shadow( 1px 1px 1px $color1 );
+  filter: drop-shadow( 1px 1px 1px darken($color: $color1, $amount: 10));
+}*/
+/*.circle{
+    background-color: hsl(210, 100%, 50%);
+    border-radius: $circle-size;
+    height: $circle-size;
+    width: $circle-size;
+}*/
+#frontend .circle {
+  background-color: #9500ff;
+  border-radius: 150px;
+  height: 150px;
+  width: 150px; }
+  #frontend .circle svg {
+    /*fill: darken($color: desaturate($color: $color2, $amount: $desaturation), $amount: $darkness);*/
+    fill: black;
+    margin: 22px; }
 
-#softeng svg {
-  fill: #b3b3b3; }
+#softeng .circle {
+  background-color: #0040ff;
+  border-radius: 150px;
+  height: 150px;
+  width: 150px; }
+  #softeng .circle svg {
+    fill: black;
+    margin: 22px; }
 
-#design svg {
-  fill: #b3b3b3; }
+#design .circle {
+  background-color: #00ffea;
+  border-radius: 150px;
+  height: 150px;
+  width: 150px; }
+  #design .circle svg {
+    fill: black;
+    margin: 22px; }
 
-#additional svg {
-  fill: #b3b3b3; }
+#additional .circle {
+  background-color: #ffd500;
+  border-radius: 150px;
+  height: 150px;
+  width: 150px; }
+  #additional .circle svg {
+    fill: black;
+    margin: 22px; }
