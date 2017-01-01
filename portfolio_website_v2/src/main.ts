@@ -33,10 +33,32 @@ design.load();
 var app = new image_canvas.App();
 
 
-window.onscroll = function(){
-    console.log(window.scrollY);
+// window.onscroll = function(){
+//     console.log(window.scrollY);
+// }
+
+
+var w = document.getElementById("wrapper");
+var b = document.getElementById('p1');
+
+
+b.onclick = function(){
+    if(w.classList[0] === "open"){
+        w.classList.remove('open');
+    } else {
+        w.classList.add('open');
+    }
 }
 
+// class Portfolio {
+//     title: string;
+//     desc: string;
+//     stack: string;
+//     links: string;
+//     cover_img: any;
+//     constructor(){
 
+//     }
+// }
 
 
