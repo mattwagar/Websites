@@ -57,6 +57,10 @@ export class Skill {
     vm.scale_box.appendChild(vm.image);
     vm.flex_item.appendChild(vm.text);
   }
+  resetId(id: string){
+    const vm = this;
+    vm.flex_grid_id = id;
+  }
 
   append() {
     const vm = this;
@@ -78,9 +82,9 @@ export class Collection {
   skills: Skill[];
   flex_grid_id: string;
 
-  constructor(id: string, path: string, flex_grid_id: string, images: ISkillInfo[]) {
+  constructor(path: string, flex_grid_id: string, images: ISkillInfo[], id?: string) {
     const vm = this;
-    vm.id = id;
+    
     vm.images = images;
     vm.path = path;
     vm.flex_grid_id = flex_grid_id;
@@ -90,10 +94,20 @@ export class Collection {
     for (var i = 0; i < images.length; i++) {
       vm.skills.push(new Skill(images[i].name, images[i].class, vm.path + images[i].image, vm.flex_grid_id));
     }
-    var element = <HTMLDivElement>document.getElementById(vm.id);
+    if(id){
+      vm.id = id;
+      var element = <HTMLDivElement>document.getElementById(vm.id);
+      element.onmouseup = function (e) {
+        vm.load();
+      }
+    }
+  }
 
-    element.onmouseup = function (e) {
-      vm.load();
+  public resetIds(id: string){
+    const vm = this;
+    vm.flex_grid_id = id;
+    for (var i = 0; i < vm.skills.length; i++) {
+      vm.skills[i].resetId(vm.flex_grid_id);
     }
   }
 
@@ -107,4 +121,11 @@ export class Collection {
       vm.skills[i].append();
     }
   }
+  // public close(){
+  //   const vm = this;
+  //   var flex_grid = document.getElementById(vm.flex_grid_id);
+  //   while (flex_grid.firstChild) {
+  //     flex_grid.removeChild(flex_grid.firstChild);
+  //   }
+  // }
 }

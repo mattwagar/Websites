@@ -57,7 +57,7 @@ html, body {
     font-weight: normal;
     color:white;
 
-    margin-top: 32vh;
+    margin-top: 45vh;
 }
 
 
@@ -85,8 +85,22 @@ html, body {
   font-family: roboto;
   font-size: 0.8em;
   font-weight:normal;
+  text-decoration: underline;
   color:black;
   text-align: left;
+  text-shadow: 2px 2px darken($color: $color1, $amount: 10);
+}
+
+.padding-left{
+  padding-left: 2em;
+}
+
+.description-text{
+  font-family: roboto;
+  font-size: 0.8em;
+  font-weight:normal;
+  text-decoration: none;
+  color:black;
   text-shadow: 2px 2px darken($color: $color1, $amount: 10);
 }
 
@@ -96,7 +110,16 @@ html, body {
   font-weight:normal;
   color:black;
   text-align: center;
-  text-shadow: 2px 2px darken($color: $color1, $amount: 10);
+  /*text-shadow: 2px 2px darken($color: $color1, $amount: 10);*/
+}
+
+.canvas-text{
+  font-family: roboto;
+  font-size: 0.8em;
+  font-weight:normal;
+  color:white;
+  text-align: center;
+  /*text-shadow: 2px 2px darken($color: $color1, $amount: 10);*/
 }
 
 
@@ -178,14 +201,31 @@ img{
 }
 
 .wrapper {
-  background: #ccc;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  /*padding-bottom:0.5em;*/
+  /*padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.5em;*/
+  border: 1px solid #c9c9c9;
   overflow: hidden;
-  transition: max-height 1s;
+  -webkit-transition: max-height 1s ease-in-out;
+  transition:         max-height 1s ease-in-out;
   max-height:0;
+  box-shadow: inset 0px 0px 10px #b6b6b6;
+  background-color: white;
+
+  
 } 
 
 .open{
-  max-height:500px !important;
+  max-height: 600px !important;
+}
+
+#content{
+  padding-top:0.5em;
+  margin-bottom: 0.5em;
+  transition: height 500ms;
 }
 
 
@@ -195,6 +235,7 @@ img{
 #about-me{
   background-color: darken($color: $color1, $amount: 10);
   position:relative;
+  z-index:-10;
   padding-top: 3em;
   padding-left: 3em;
   padding-right: 3em;
@@ -416,6 +457,7 @@ img{
 }
 
 .justify-center{
+  position: relative;
   justify-content: center;
   /*align-items: center;*/
 }
@@ -504,4 +546,179 @@ $circle-size: 150px;
       margin: 22px;
     }
   }
+}
+
+.dropshadow{
+  box-shadow: 0px 2px 5px #888;
+}
+
+.card-dropshadow{
+  box-shadow: 0px 0px 10px #888;
+  /*width: 100%;*/
+  /*height: 100%;*/
+  background-color: white;
+  padding-bottom:3px;
+  margin-top:3px;
+  margin-left:3px;
+  margin-right:3px;
+  transition: all 500ms;
+  cursor:pointer;
+
+  &:hover{
+    margin-top:0px;
+    /*width: 101%;
+    height: 101%;*/
+    box-shadow: 0px 0px 30px #888;
+  }
+}
+
+.image{
+  background: url('./portfolio/breathless.jpg')
+}
+
+
+.nopad{
+  padding:0; 
+}
+
+.align-button{
+  margin:0;
+  margin-left:-1rem;
+  margin-right:1rem;
+}
+
+#portfolio1{
+  background-color: darken($color: $color1, $amount: 10);
+  position:relative;
+  padding-top: 3em;
+  padding-left: 3em;
+  padding-right: 3em;
+  padding-bottom: 3em;
+  }
+
+.text_light{
+    font-family: roboto;
+  font-size: 0.7em;
+  font-weight:normal;
+  color:#666;
+  text-align: center;
+  text-shadow: 2px 2px darken($color: $color1, $amount: 10);
+}
+
+.portfolio-flex{
+  position:relative;
+}
+
+$github-color: /*rgba(211, 253, 175, 0.5)*/ #f6f6f6;
+
+.github-button{
+  position: relative;
+  /*border-style: solid;*/
+  border-color: black;
+  border-width: 1px;
+  border-radius: 6px;
+  border:none;
+  background-color: $github-color;
+  height:2em;
+  width:6em;
+  align-items:center;
+  justify-content:center;
+  transition: 0.5s;
+  box-shadow: 0px 1px 3px #666;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  
+  &:hover{
+    background-color: rgba(211, 253, 175, 1);
+    cursor: pointer;
+    box-shadow: 0px 2px 3px #666;
+  }
+
+  &:after{
+    content: '';
+    opacity:0;
+    /*padding-left: 1em;*/
+    /*font-size:0em;*/
+    /*padding-left:1em;*/
+    transition: all 750ms;
+    /*font-size: 0em;*/
+    /*text-shadow: none;*/
+  }
+
+  &:hover:after{
+    content:'\00a0\21E8';
+    /*font-size:0.8em;*/
+    /*font-size: 1em;*/
+    padding-left:0em;
+    opacity:1;
+  }
+  .text{
+    text-shadow:none;
+  }
+
+  .icon:after{
+    opacity:0;
+    transition: all 500ms;
+    font-size: 0em;
+    text-shadow: none;
+  }
+}
+
+.media-container{
+  position:relative;
+  padding-top:0.5em;
+  padding-bottom:0.5em;
+  overflow: hidden;
+}
+
+.media-item{
+  position:absolute;
+  cursor: pointer;
+  width:150px;
+  height:90px;
+  z-index:1000;
+  transition: background-color 500ms;
+  background:rgba(255,255,255,0.5);
+  &:hover{
+    background-color:rgba(255,255,255,0.25);
+  }
+}
+
+.selected{
+  background-color:rgba(255,255,255,0) !important;
+}
+
+#media-selected{
+  position:relative;
+}
+
+.close-media{
+  background-color:rgba(255,255,255,1) !important;
+}
+
+.overlay-media{
+  position:absolute;
+  margin-left:-6px;
+  margin-top:-6px;
+  width:470px;
+  height:340px;
+  background-color:rgba(255,255,255,0);
+  transition: background-color 600ms;
+}
+
+.nomar{
+  margin:0;
+}
+
+.nopad-left{
+  padding-left:0;
+}
+
+iframe{
+  width:100%;
+}
+
+.whitebox{
+  background-color:white;
+  
 }

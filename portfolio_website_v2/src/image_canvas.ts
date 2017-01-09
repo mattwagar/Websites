@@ -36,7 +36,7 @@ export class Img {
     vm.w = vm.canvas.width = width;
     vm.h = vm.canvas.height = height;
     vm.image = new Image();
-    vm.image.src = 'bw_philadelphia.jpg';
+    vm.image.src = 'city.jpg';
 
     vm.image.onload = function () {
 

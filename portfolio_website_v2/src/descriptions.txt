@@ -1,0 +1,19 @@
+Descriptions:
+
+Breathless: The Space Pirate, Aria, is on a mission to loot a mineral cargo ship. However, upon landing
+on the cargo ship, Aria's helmet cracks causing her to slowly lose oxygen. It's now a race against time to collect
+all the gems before her oxygen runs out!  
+
+Breathless is a 2D Platformer made in the modern HTML5 game engine, Phaser.js. As a group project for my Introduction to Video
+Game Design at Drexel University, me and a team of five collaborated in a psuedo Agile Environement for five weeks. 
+I was in charge of coding many of the core mechanics such as the player movement, phyiscs, rocket boost, particle effects, and parallax background.
+I also contributed to the art by pixelating the background, tileset, and particle animations.
+
+Mean Weather: Weather App
+
+As a crash course in Angular JS, Web API's and D3.js, I decided to create a weather app that calculates the average of 4 weather services:
+Wunderground, Forecast.io, Yahoo weather, and World Weather Online. The webapp itself has many subtleties that are affected by weather
+data. For example, the video background resembles the current weather. Also each graph is color coated by a gradient based on the 
+weather data. 
+
+
