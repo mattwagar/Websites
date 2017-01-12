@@ -21,8 +21,5 @@
     "typescript": "^2.0.7",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
-  },
-  "dependencies": {
-    "jump.js": "^1.0.2"
   }
 }

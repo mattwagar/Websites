@@ -1165,12 +1165,5 @@ img {
 iframe {
   width: 100%; }
 
-.pad-spacing {
-  padding-bottom: 0.5em; }
-
 .whitebox {
-  background-color: white;
-  z-index: -1;
-  padding: 3em; }
-  .whitebox .text {
-    text-align: left; }
+  background-color: white; }

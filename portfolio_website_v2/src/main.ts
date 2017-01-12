@@ -1,4 +1,4 @@
-import * as jump from "jump.js";
+
 
 import * as image_canvas from "./image_canvas";
 
@@ -305,15 +305,15 @@ export class Wrapper {
 
         var row = document.createElement('div');
         row.id = 'content';
-        row.classList.add('row', 'nomar');
+        row.classList.add('row');
 
         vm.title_element = document.createElement('div');
-        vm.title_element.classList.add('col-md-12', 'desc-text', 'pad-spacing');
+        vm.title_element.classList.add('col-md-12', 'desc-text');
         vm.title_element_text = document.createTextNode('');
         vm.title_element.appendChild(vm.title_element_text);
 
-        var col6 = document.createElement('div');
-        col6.classList.add('col-md-6', 'row');
+        var col3 = document.createElement('div');
+        col3.classList.add('col-md-3');
 
         var row_fill = document.createElement('div');
         row_fill.classList.add('row','justify-center', 'nomar');
@@ -323,39 +323,32 @@ export class Wrapper {
 
         vm.col6 = document.createElement('div');
         vm.col6.id = 'media-'+row_num;
-        vm.col6.classList.add('col-md-6');
+        vm.col6.classList.add('col-md-6', 'nopad');
 
         var col3_2 = document.createElement('div');
         col3_2.classList.add('col-md-3', 'nopad-left');
 
         vm.description = document.createElement('div');
-        vm.description.classList.add('header-text', 'pad-spacing');
+        vm.description.classList.add('header-text', 'padding-left');
         vm.description.appendChild(document.createTextNode('Description'));
 
         var desc = document.createElement('div');
-        desc.classList.add('description-text', 'pad-spacing');
+        desc.classList.add('description-text', 'padding-left');
         vm.description_text = document.createTextNode('');
         desc.appendChild(vm.description_text);
 
         vm.stack = document.createElement('div');
-        vm.stack.classList.add('col-md-8');
-        // vm.stack.appendChild(document.createTextNode('Stack'));
+        vm.stack.classList.add('col-md-12', 'header-text');
+        vm.stack.appendChild(document.createTextNode('Stack'));
 
-        var stack_title = document.createElement('div');
-        stack_title.classList.add('header-text', 'pad-spacing')
-        stack_title.appendChild(document.createTextNode('Stack'));
 
         vm.flex_grid = document.createElement('div');
         vm.flex_grid.id = 'pflex-grid-'+row_num;
         vm.flex_grid.classList.add('row','portfolio-flex', 'col-md-12');
 
         vm.demo = document.createElement('div');
-        vm.demo.classList.add('col-md-4');
-        // vm.demo.appendChild(document.createTextNode('Live Demo'));
-
-        var demo_title = document.createElement('div');
-        demo_title.classList.add('header-text', 'pad-spacing')
-        demo_title.appendChild(document.createTextNode('Live Demo'));
+        vm.demo.classList.add('col-md-12', 'header-text');
+        vm.demo.appendChild(document.createTextNode('Live Demo'));
 
         vm.link = document.createElement('div');
         vm.link.classList.add('github-button','row');
@@ -371,31 +364,29 @@ export class Wrapper {
 
         vm.html.appendChild(row);
         row.appendChild(vm.title_element);
-        row.appendChild(col6);
+        row.appendChild(col3);
+        col3.appendChild(vm.description);
+        col3.appendChild(desc);
         row.appendChild(vm.col6);
-        
-        col6.appendChild(col12);
-        col12.appendChild(vm.description);
-        col12.appendChild(desc);
-        col6.appendChild(vm.stack)
-        vm.stack.appendChild(stack_title);
-        vm.stack.appendChild(vm.flex_grid);
-        col6.appendChild(vm.demo)
-        vm.demo.appendChild(demo_title);
-        vm.demo.appendChild(vm.link);
+        row.appendChild(col3_2);
+        col3_2.appendChild(row_fill);
+        row_fill.appendChild(vm.demo)
+        row_fill.appendChild(vm.link);
         vm.link.appendChild(vm.link_text);
-        
+        row_fill.appendChild(vm.stack)
+        row_fill.appendChild(vm.flex_grid);
 
         //#wrapper-0.wrapper.open
         // .row#content
         //   .col-md-12.desc-text Breathless
-        //   .col-md-6#media-0
-        //   .col-md-6.row
-        //       .col-md-12
+        //   .col-md-3
         //         .header-text.padding-left Description:
         //         .description-text.padding-left asdfasdf
-        //       .col-md-6.header-text Stack:
-        //       .col-md-6.header-text Live Demo:
+        //   .col-md-6#media-0
+        //   .col-md-3
+        //     .row.row-fill
+        //       .col-md-12.header-text Live Demo:
+        //       .col-md-12.header-text Stack:
 
         vm.html.addEventListener("transitionend", function(event) {
             if(vm.change){
@@ -549,18 +540,6 @@ var portfolio = new Portfolio('portfolio', [
     {title: 'Q*Bert', title_image: "./portfolio/qbert_play.jpg", desc:'This is my Bouncing Ball Assignment for Animation 1 at Drexel University. When picking a game that mixes my love of retro video games and bouncing balls, Q*Bert was a no-brainer. Everything is individually modelled, textured, and animated by me. Made in Maya, and rendered in V-Ray.', stack:qbert_stack, media: m[1], type: 'Animation'},
     {title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc:'asdf', stack:qbert_stack, media: m[2], type: '3D Render'}]);
 
-
-
-var welcome_b = document.getElementById('welcome-button');
-welcome_b.onclick = function(){
-    jump('#portfolio',{
-        duration:1000,
-        offset:0,
-        callback: undefined,
-        easing: jump.easeInOutQuad,
-        ally: false
-    })
-}
 
 
 /** 
