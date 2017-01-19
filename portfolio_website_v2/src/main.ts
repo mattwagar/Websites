@@ -535,6 +535,8 @@ var breathless_stack = new skill_badge.Collection('./skills/', '', [   {"name": 
 var qbert_stack = new skill_badge.Collection('./skills/', '', [   {"name": 'Maya',            "class":'circle-100', "image":'maya.png'},
                                                                                     {"name": 'Photoshop',       "class":'circle-25', "image":'photoshop-cc.svg'}
                                                                                     ]);
+ var weather_stack = new skill_badge.Collection('./skills/', '', [   {"name": 'Angular JS',      "class":'circle-100', "image":'angular-icon.svg'},
+                                                                                    ]);
                                                                         
 // var breathless_media = new media.Media('media-0', ["./portfolio/breathless.jpg","./portfolio/breathless.jpg","./portfolio/cat.jpg"], ["./portfolio/breathless.jpg","./portfolio/cat.jpg"], '<iframe src="https://player.vimeo.com/video/198149795" width="471" height="335" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
    
@@ -549,9 +551,9 @@ m.push(new media.Media('', ["./portfolio/cgi_final_1.png","./portfolio/cgi_final
 
 var portfolio = new Portfolio('portfolio', [
     {title: 'Breathless', title_image: './portfolio/breathless.jpg', desc:"The Space Pirate, Aria, is on a mission to loot a mineral cargo ship. However, upon landing on the cargo ship, Aria's helmet cracks causing her to slowly lose oxygen. It's now a race against time to collect all the gems before her oxygen runs out!", stack:breathless_stack, media: m[0], type: 'HTML5 Game'},
+    {title: 'Mean Forecast', title_image: './portfolio/mean_forecast_1.jpg', desc:'A small web app that calculates the average of 3 weather API\'s: Wunderground, Forecast.io, and World Weather Online. The webapp itself has many subtleties that are affected by weather data. For example, the video  resembles the current weather. Also each graph is color coated by a gradient based on the weather data.', stack:weather_stack, media: m[0], type: 'Website'},
     {title: 'Q*Bert', title_image: "./portfolio/qbert_play.jpg", desc:'This is my Bouncing Ball Assignment for Animation 1 at Drexel University. When picking a game that mixes my love of retro video games and bouncing balls, Q*Bert was a no-brainer. Everything is individually modelled, textured, and animated by me. Made in Maya, and rendered in V-Ray.', stack:qbert_stack, media: m[1], type: 'Animation'},
-    {title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc:'asdf', stack:qbert_stack, media: m[2], type: '3D Render'}]);
-
+    {title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc:'This is my final for CGI 2 at Drexel University. The assignment was to recreate any type of room, so I chose a little boy\'s room. We were tasked with creating at least one complex object, so I decided to go with a train set.', stack:qbert_stack, media: m[2], type: '3D Render'}]);
 
 
 var welcome_b = document.getElementById('welcome-button');
