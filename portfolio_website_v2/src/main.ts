@@ -105,7 +105,7 @@ export class PortfolioItem {
     col12.classList.add('col-md-12');
 
     vm.text = document.createElement('div');
-    vm.text.classList.add('text');
+    vm.text.classList.add('text', 'padding-top');
     vm.text.appendChild(document.createTextNode(title));
 
     var col12_2 = document.createElement('div');
