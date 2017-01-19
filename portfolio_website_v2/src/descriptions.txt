@@ -16,4 +16,13 @@ Wunderground, Forecast.io, Yahoo weather, and World Weather Online. The webapp i
 data. For example, the video background resembles the current weather. Also each graph is color coated by a gradient based on the 
 weather data. 
 
+Hello, I'm Matthew Wagar
+
+I am a creative mind with a technical skillset. A designer at heart, but with an engineer's brain...
+
+And so sprouted my interest in computer graphics.
+
+From Front-End Development, to Data Visualizaiton, to Video Game Design I pursue all facets of graphical interfaces.
+
+I am currently a junior pursuing a BS in Computer Science at Drexel University. 
 
