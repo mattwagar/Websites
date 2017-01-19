@@ -18,7 +18,7 @@
         };
 
         /* jshint ignore:start */
-        VideoController.$inject = ['$scope', conditionService];
+        VideoController.$inject = ['$scope', 'conditionService'];
         /* jshint ignore:end */
 
         function VideoController($scope, conditionService) {

@@ -646,6 +646,13 @@
   font-family: roboto;
   src: url(roboto.regular.ttf) format("truetype"); }
 
+.container {
+  margin: 0 auto; }
+
+#body {
+  background-color: #eee;
+  z-index: -9999; }
+
 /*$color1: hsl(250, 80%, 10%);*/
 /*$color2: hsl(0, 44%, 47%);
 $color3: hsl(57, 44%, 47%);
@@ -667,7 +674,7 @@ html, body {
   font-size: 4em;
   font-weight: normal;
   color: white;
-  margin-top: 45vh; }
+  margin-top: 25vh; }
 
 .title-text {
   font-family: roboto;
@@ -689,11 +696,7 @@ html, body {
 .header-text {
   font-family: roboto;
   font-size: 0.8em;
-  font-weight: normal;
-  text-decoration: underline;
-  color: black;
-  text-align: left;
-  text-shadow: 2px 2px #e6e6e6; }
+  font-weight: bold; }
 
 .padding-left {
   padding-left: 2em; }
@@ -751,7 +754,7 @@ html, body {
 #welcome-page {
   position: relative;
   width: 100%;
-  height: 80vh; }
+  height: 60vh; }
 
 #canvas-container {
   position: absolute;
@@ -773,12 +776,8 @@ html, body {
   position: absolute; }
 
 #portfolio {
-  background-color: #e6e6e6;
   position: relative;
-  padding-top: 3em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-bottom: 3em; }
+  padding: 1.5em; }
 
 img {
   width: 100%; }
@@ -807,30 +806,22 @@ img {
   transition: height 500ms; }
 
 #about-me {
-  background-color: #e6e6e6;
   position: relative;
-  z-index: -10;
-  padding-top: 3em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-bottom: 3em; }
+  padding: 1.5em; }
 
 #skills {
-  background-color: white;
   position: relative;
-  padding-top: 3em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-bottom: 3em; }
+  padding: 1.5em; }
 
 .flex-item {
   padding: 12px;
   /*margin-left: 12px;*/
-  margin-right: 12px;
+  margin-right: 7px;
+  margin-left: 7px;
   margin-bottom: 24px;
   width: 60px;
   height: 60px;
-  background-color: #cccccc;
+  background-color: #ddd;
   border-radius: 60px; }
   .flex-item .text {
     padding-top: 75px;
@@ -881,7 +872,7 @@ img {
       height: 100%; }
   .flex-item .scale {
     position: absolute;
-    background-color: #b3b3b3;
+    /*background-color: #ccc;*/
     height: 50px;
     width: 14px;
     margin-left: 62px;
@@ -961,19 +952,21 @@ img {
 
 .row-padding {
   /*padding-top:1em;*/
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 3em;
-  padding-right: 3em; }
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 2rem; }
 
 .justify-center {
   position: relative;
   justify-content: center;
-  /*align-items: center;*/ }
+  align-items: center; }
 
 .align-center {
   flex-direction: column;
   align-content: center; }
+
+.align-items-center {
+  align-items: center; }
 
 .collection {
   background-color: #b3b3b3; }
@@ -1053,6 +1046,9 @@ img {
 
 .nopad {
   padding: 0; }
+  .nopad img {
+    width: 100%;
+    height: 100%; }
 
 .align-button {
   margin: 0;
@@ -1168,9 +1164,76 @@ iframe {
 .pad-spacing {
   padding-bottom: 0.5em; }
 
-.whitebox {
+.skills_whitebox {
   background-color: white;
-  z-index: -1;
-  padding: 3em; }
-  .whitebox .text {
-    text-align: left; }
+  margin-left: 8.33%;
+  margin-right: 8.33%;
+  margin-bottom: 1em; }
+
+.parallelogram {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(-20deg);
+  background-color: #203860; }
+  .parallelogram.right {
+    -webkit-transform: skew(-20deg);
+    -moz-transform: skew(-20deg); }
+    .parallelogram.right .text {
+      -webkit-transform: skew(20deg);
+      -moz-transform: skew(20deg); }
+  .parallelogram.left {
+    -webkit-transform: skew(20deg);
+    -moz-transform: skew(20deg); }
+    .parallelogram.left .text {
+      -webkit-transform: skew(-20deg);
+      -moz-transform: skew(-20deg); }
+  .parallelogram .text {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: white; }
+
+.hr {
+  border-bottom: solid;
+  border-width: 3px;
+  border-color: #668dcc;
+  margin-top: 1.5em; }
+
+.align-bottom {
+  align-items: flex-end; }
+
+.profile {
+  margin-left: -10%;
+  width: 100%;
+  height: 100%;
+  background: url("profile_pic.jpg"); }
+
+.profile-text {
+  margin-left: 2em; }
+  .profile-text .header-text {
+    padding-bottom: 0.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    font-size: 3em; }
+  .profile-text .text {
+    color: white;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    text-align: left;
+    font-size: .8em; }
+
+.gradient {
+  height: 50vh;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4ea3e5+0,1e5799+100 */
+  background: #4ea3e5;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #4ea3e5 0%, #1e5799 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #4ea3e5 0%, #1e5799 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #4ea3e5 0%, #1e5799 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ea3e5', endColorstr='#1e5799',GradientType=0 );
+  /* IE6-9 */ }

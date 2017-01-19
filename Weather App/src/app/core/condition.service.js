@@ -26,7 +26,7 @@
         return {
             wunderCondition: wunderCondition,
             forecastCondition: forecastCondition,
-            yahooCondition: yahooCondition,
+            /*yahooCondition: yahooCondition,*/
             wwonlineCondition: wwonlineCondition,
             videoCondition: videoCondition
         };
@@ -53,7 +53,7 @@
             if (condition === "partly-cloudy-day" || condition === "partly-cloudy-night") {
                 return partlyCloudy();
             }
-            if (condition === "cloudy") {
+            if (condition === "cloudy"||condition === "fog") {
                 return overcast();
             }
             if (condition === "rain") {
@@ -67,32 +67,32 @@
             }
         }
 
-        function yahooCondition(condition) {
-            if (condition === "Partly Cloudy") {
-                return partlyCloudy();
-            }
-            if (condition === "Mostly Cloudy") {
-                return overcast();
-            }
-            if (condition === "Rain" || condition === "Showers" || condition === "Scattered Showers") {
-                return rain();
-            }
-            if (condition === "Clear" || condition === "Mostly Sunny" || condition === "Sunny") {
-                return clear();
-            }
-            if (condition === "Thunder Storm" || condition === "Scattered Thunderstorms" || condition === "Thunderstorms") {
-                return tStorm();
-            }
-        }
+        // function yahooCondition(condition) {
+        //     if (condition === "Partly Cloudy") {
+        //         return partlyCloudy();
+        //     }
+        //     if (condition === "Mostly Cloudy" || condition === "Cloudy") {
+        //         return overcast();
+        //     }
+        //     if (condition === "Rain" || condition === "Showers" || condition === "Scattered Showers") {
+        //         return rain();
+        //     }
+        //     if (condition === "Clear" || condition === "Mostly Sunny" || condition === "Sunny") {
+        //         return clear();
+        //     }
+        //     if (condition === "Thunder Storm" || condition === "Scattered Thunderstorms" || condition === "Thunderstorms") {
+        //         return tStorm();
+        //     }
+        // }
 
         function wwonlineCondition(condition) {
-            if (condition === "Cloudy "|| condition === "Partly Cloudy ") {
+            if (condition === "Cloudy "|| condition === "Partly Cloudy "|| condition === "Partly cloudy"||condition === "Cloudy") {
                 return partlyCloudy();
             }
-            if (condition === "Overcast ") {
+            if (condition === "Overcast "|| condition === "Overcast") {
                 return overcast();
             }
-            if (condition === "Moderate or heavy rain shower" || condition === "Light rain shower" || condition === "Light rain" || condition === "Shower" || condition === "Moderate rain" || condition === "Light drizzle" || condition === "Patchy rain nearby" || condition === "Heavy rain") {
+            if (condition === "Patchy light rain" || condition === "Patchy rain possible" ||condition === "Moderate or heavy rain shower" || condition === "Light rain shower" || condition === "Light rain" || condition === "Shower" || condition === "Moderate rain" || condition === "Light drizzle" || condition === "Patchy rain nearby" || condition === "Heavy rain") {
                 return rain();
             }
             if (condition === "Sunny") {

@@ -71,16 +71,15 @@
 
             var wunderground = jsondata.wunderground.weather[i];
             var forecastio = jsondata.forecastio.weather[i];
-            var yahoo = jsondata.yahoo.weather[i];
+            // var yahoo = jsondata.yahoo.weather[i];
             var wwonline = jsondata.wwonline.weather[i];
 
-            var all_conditions = [wunderground.condition, forecastio.condition, yahoo.condition, wwonline.condition];
+            var all_conditions = [wunderground.condition, forecastio.condition, /*yahoo.condition,*/ wwonline.condition];
 
             var date = wunderground.date;
             var time = "00:00";
-            var temperature = parseInt((parseInt(wunderground.temperature) + parseInt(forecastio.temperature) + parseInt(yahoo.temperature) + parseInt(wwonline.temperature))/4);
+            var temperature = parseInt((parseInt(wunderground.temperature) + parseInt(forecastio.temperature) /*+ parseInt(yahoo.temperature)*/ + parseInt(wwonline.temperature))/3);
             var humidity = parseInt((parseInt(wunderground.humidity) + parseInt(forecastio.humidity) + parseInt(wwonline.humidity))/3);
-console.log(humidity);
             var windspeed = parseInt((parseInt(wunderground.windspeed) + parseInt(forecastio.windspeed) + parseInt(wwonline.windspeed))/3);
             var condition = averageCondition(all_conditions);
 
