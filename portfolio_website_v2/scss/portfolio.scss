@@ -12,7 +12,13 @@
   font-family: roboto;
   src: url(roboto.regular.ttf) format('truetype');
 }
-
+.container{
+  margin: 0 auto;
+}
+#body{
+  background-color: #eee;
+  z-index: -9999
+}
 $hue-offset: 35;
 $desaturation : 100;
 $darkness :30;
@@ -57,7 +63,7 @@ html, body {
     font-weight: normal;
     color:white;
 
-    margin-top: 45vh;
+    margin-top: 25vh;
 }
 
 
@@ -84,11 +90,7 @@ html, body {
 .header-text{
   font-family: roboto;
   font-size: 0.8em;
-  font-weight:normal;
-  text-decoration: underline;
-  color:black;
-  text-align: left;
-  text-shadow: 2px 2px darken($color: $color1, $amount: 10);
+  font-weight:bold;
 }
 
 .padding-left{
@@ -159,7 +161,7 @@ html, body {
 #welcome-page{
   position:relative;
   width: 100%;
-  height: 80vh;
+  height: 60vh;
 }
 
 #canvas-container{
@@ -188,12 +190,8 @@ html, body {
 }
 
 #portfolio{
-  background-color: darken($color: $color1, $amount: 10);
   position:relative;
-  padding-top: 3em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-bottom: 3em;
+  padding:1.5em;
 }
 
 img{
@@ -233,33 +231,25 @@ img{
 
 
 #about-me{
-  background-color: darken($color: $color1, $amount: 10);
   position:relative;
-  z-index:-10;
-  padding-top: 3em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-bottom: 3em;
+  padding:1.5em;
 }
 
 #skills{
-  background-color: $color1;
   position:relative;
-  padding-top: 3em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-bottom: 3em;
+  padding:1.5em;
 }
 
 
 .flex-item{
   padding:12px;
   /*margin-left: 12px;*/
-  margin-right: 12px;
+  margin-right: 7px;
+  margin-left: 7px;
   margin-bottom: 24px;
   width: 60px;
   height: 60px;
-  background-color: darken($color: $color1, $amount: 20);
+  background-color:#ddd;
   border-radius: 60px;
 
   .text{
@@ -288,7 +278,7 @@ img{
     padding:4px;
     margin-left:-4px;
     margin-top:-4px;
-    background-color: lighten($color: $color1, $amount: $scale-lightness);
+    background-color: white;
     border-radius: 60px;
 
     img{
@@ -305,7 +295,7 @@ img{
     padding: 9px;
     margin-left:-4px;
     margin-top:-4px;
-    background-color: lighten($color: $color1, $amount: $scale-lightness);
+    background-color: white;
     border-radius: 60px;
 
     img{
@@ -321,7 +311,7 @@ img{
     padding: 12px;
     margin-left:-4px;
     margin-top:-4px;
-    background-color: lighten($color: $color1, $amount: $scale-lightness);
+    background-color: white;
     border-radius: 60px;
 
     img{
@@ -332,7 +322,7 @@ img{
 
   .scale{
     position:absolute;
-    background-color: darken($color: $color1, $amount: 30);
+    /*background-color: #ccc;*/
     height:50px;
     width:14px;
     margin-left:62px;
@@ -348,6 +338,7 @@ img{
   margin-top: -12px;
   margin-left: -12px;
   stroke-dashoffset: 534;
+  
   
 }
 
@@ -450,21 +441,24 @@ img{
 
 .row-padding{
   /*padding-top:1em;*/
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 3em;
-  padding-right: 3em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 2rem;
 }
 
 .justify-center{
   position: relative;
   justify-content: center;
-  /*align-items: center;*/
+  align-items: center;
 }
 
 .align-center{
   flex-direction: column;
   align-content:center;
+}
+
+.align-items-center{
+  align-items: center;
 }
 
 
@@ -579,6 +573,11 @@ $circle-size: 150px;
 
 .nopad{
   padding:0; 
+
+  img{
+    width:100%;
+    height:100%;
+  }
 }
 
 .align-button{
@@ -718,7 +717,98 @@ iframe{
   width:100%;
 }
 
-.whitebox{
+
+.pad-spacing{
+  padding-bottom: 0.5em;
+}
+
+
+.skills_whitebox{
   background-color:white;
+  margin-left:8.33%;
+  margin-right:8.33%;
+  margin-bottom:1em;
+}
+
+.parallelogram {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+	-webkit-transform: skew(-20deg);
+	   -moz-transform: skew(-20deg);
+	background-color: hsl(217, 50%, 25%);
+
+  &.right{
+    -webkit-transform: skew(-20deg);
+	   -moz-transform: skew(-20deg);
+
+     .text{
+       -webkit-transform: skew(20deg);
+	   -moz-transform: skew(20deg);
+     }
+  }
+  &.left{
+    -webkit-transform: skew(20deg);
+	   -moz-transform: skew(20deg);
+     .text{
+       -webkit-transform: skew(-20deg);
+	    -moz-transform: skew(-20deg);
+     }
+  }
+
+  .text{
+    font-weight: bold;
+    font-size: 1.5em;
+    color: white;
+  }
+}
+
+.hr{
+  border-bottom: solid;
+  border-width: 3px;
+  border-color: hsl(217, 50%, 60%);
+  margin-top: 1.5em;
   
+}
+
+.align-bottom{
+  align-items: flex-end; 
+}
+
+.profile{
+  margin-left: -10%;
+  width:100%;
+  height: 100%;
+  background: url('profile_pic.jpg');
+}
+
+.profile-text{
+  margin-left: 2em;
+  .header-text{
+    padding-bottom: 0.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    font-size: 3em;
+  }
+  .text{
+    color: white;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    text-align: left;
+    font-size: .8em;
+  }
+}
+
+
+
+.gradient{
+  height: 50vh;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4ea3e5+0,1e5799+100 */
+background: rgb(78,163,229); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(78,163,229,1) 0%, rgba(30,87,153,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(78,163,229,1) 0%,rgba(30,87,153,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(78,163,229,1) 0%,rgba(30,87,153,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ea3e5', endColorstr='#1e5799',GradientType=0 ); /* IE6-9 */
+
 }

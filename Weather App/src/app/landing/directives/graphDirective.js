@@ -25,7 +25,7 @@
 
         vm.wunderWebsite = ['https://www.wunderground.com/', 'content/images/wunder.png'];
         vm.forecastWebsite = ['http://forecast.io/', 'content/images/favicon.ico'];
-        vm.yahooWebsite = ['https://www.yahoo.com/news/weather/', 'content/images/yahoo.ico'];
+        // vm.yahooWebsite = ['https://www.yahoo.com/news/weather/', 'content/images/yahoo.ico'];
         vm.wwonlineWebsite = ['http://us.worldweatheronline.com/', 'content/images/wwonline.png'];
 
         var load = 0;
@@ -39,9 +39,9 @@
             vm.forecastColor = colorCSS.applyColor(vm.weather.forecastio.weather);
         });
 
-        $scope.$watch('vm.weather.yahoo', function(before, after) {
-            vm.yahooColor = colorCSS.applyColor(vm.weather.yahoo.weather);
-        });
+        // $scope.$watch('vm.weather.yahoo', function(before, after) {
+        //     vm.yahooColor = colorCSS.applyColor(vm.weather.yahoo.weather);
+        // });
 
         $scope.$watch('vm.weather.wwonline', function(before, after) {
             vm.wwonlineColor = colorCSS.applyColor(vm.weather.wwonline.weather);
@@ -49,7 +49,7 @@
 
         $scope.$watchCollection('vm.weather', function(before, after) {
             load+=1;
-            if(load == 5){
+            if(load == 4){
               console.log(vm.weather);
               vm.averageWeather = averageWeatherService.averageWeather(vm.weather);
               vm.averageColor = colorCSS.applyColor(vm.averageWeather.weather);

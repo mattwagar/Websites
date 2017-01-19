@@ -31,7 +31,7 @@ export class Skill {
     vm.scale_box = document.createElement('div');
     if (name === "Type Script" || name === "Bootstrap" || name === "D3.js" || name === "Photoshop" || name === "Illustrator" || name === "After Effects" || name === "Maya" || name === "Mudbox") {
       vm.scale_box.className += 'scale-box-square';
-    } else if (name === "Phaser.js" || name === "D3.js" || name === "SCSS" || name === "Java" || name === "Python") {
+    } else if (name === "Unity" || name === "Phaser.js" || name === "D3.js" || name === "SCSS" || name === "Java" || name === "Python") {
       vm.scale_box.className += 'scale-box-mid';
     }
     else {

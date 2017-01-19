@@ -22,6 +22,9 @@ var frontend = new skill_badge.Collection('./skills/', 'flex-grid1', [  {"name":
 var softeng = new skill_badge.Collection('./skills/', 'flex-grid2',    [{"name": 'Java',        "class":'circle-75', "image":'java-14.svg'}, 
                                                                 {"name": 'Python',      "class":'circle-50', "image":'python-5.svg'}, 
                                                                 {"name": 'C++',          "class":'circle-25', "image":'c-seeklogo.com.svg'}, 
+                                                                {"name": 'Node JS',          "class":'circle-25', "image":'nodejs-icon.svg'}, 
+                                                                {"name": 'C#',          "class":'circle-25', "image":'csharp.svg'}, 
+                                                                {"name": 'Unity',          "class":'circle-25', "image":'unity.svg'}, 
                                                                 {"name": 'Android Studio',  "class":'circle-25', "image":'Android_studio.svg'}], 'softeng');
 var design = new skill_badge.Collection('./skills/', 'flex-grid3',       [{"name": 'Photoshop',       "class":'circle-50', "image":'photoshop-cc.svg'},
                                                                 {"name": 'Illustrator',     "class":'circle-50', "image":'adobe-illustrator-cc.svg'},
