@@ -144,6 +144,10 @@ html, body {
   flex-direction: column;
 }
 
+.vertical-center, .padding-bottom{
+  padding-bottom: 1rem;
+}
+
 .welcome-button{
   position: relative;
   border-style: solid;
@@ -452,9 +456,10 @@ img{
 
 .row-padding{
   /*padding-top:1em;*/
-  padding-top: 2em;
+  /*padding-top: 2em;
   padding-bottom: 2em;
-  padding-left: 2rem;
+  padding-left: 2rem;*/
+  padding: 1rem;
 }
 
 .justify-center{
@@ -464,8 +469,8 @@ img{
 }
 
 .align-center{
-  flex-direction: column;
-  align-content:center;
+  /*flex-direction: column;*/
+  align-items:center;
 }
 
 .align-items-center{
