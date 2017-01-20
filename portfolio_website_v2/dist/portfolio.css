@@ -807,7 +807,16 @@ img {
   background-color: white; }
 
 .open {
-  max-height: 600px !important; }
+  max-height: 900px !important; }
+  @media screen and (min-width: 48em) {
+    .open {
+      max-height: 900px !important; } }
+  @media screen and (min-width: 62em) {
+    .open {
+      max-height: 600px !important; } }
+  @media screen and (min-width: 75em) {
+    .open {
+      max-height: 700px !important; } }
 
 #content {
   padding-top: 0.5em;
@@ -1093,7 +1102,6 @@ img {
   border: none;
   background-color: #f6f6f6;
   height: 2em;
-  width: 6em;
   align-items: center;
   justify-content: center;
   transition: 0.5s;
@@ -1163,7 +1171,8 @@ img {
   transition: background-color 600ms; }
 
 .nomar {
-  margin: 0; }
+  margin-left: 0;
+  margin-right: 0; }
 
 .nopad-left {
   padding-left: 0; }
@@ -1214,28 +1223,41 @@ iframe {
   align-items: flex-end; }
 
 .profile {
-  margin-left: -10%;
-  width: 9rem;
-  /*height: 10rem;*/
-  background: url("profile_pic.jpg"); }
+  padding-right: 6em;
+  padding-left: 6em;
+  margin-bottom: -2em; }
+  .profile .dropshadow {
+    box-shadow: 0px 0px 3px #555; }
+  @media screen and (min-width: 48em) {
+    .profile {
+      padding-right: 10em;
+      padding-left: 10em; } }
+  @media screen and (min-width: 62em) {
+    .profile {
+      padding-right: 0;
+      padding-left: 0;
+      margin-bottom: 1em; }
+      .profile img {
+        width: 15em;
+        height: 15em; } }
 
-.profile-text {
-  margin-left: 2em; }
-  .profile-text .header-text {
-    padding-bottom: 0.5rem;
-    font-weight: bold;
-    color: white;
-    text-align: left;
-    font-size: 3em; }
-  .profile-text .text {
-    color: white;
-    line-height: 150%;
-    letter-spacing: 0.5px;
-    text-align: left;
-    font-size: .8em; }
+.profile-text .header-text {
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+  font-size: 3em; }
+
+.profile-text .text {
+  color: white;
+  line-height: 150%;
+  letter-spacing: 0.5px;
+  text-align: left;
+  font-size: .8em; }
 
 .gradient {
-  height: 20em;
+  /*width: 100%;*/
+  padding: 2em;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4ea3e5+0,1e5799+100 */
   background: #4ea3e5;
   /* Old browsers */
@@ -1247,3 +1269,8 @@ iframe {
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ea3e5', endColorstr='#1e5799',GradientType=0 );
   /* IE6-9 */ }
+  @media screen and (min-width: 62em) {
+    .gradient {
+      margin-left: -10%;
+      height: 20em;
+      padding: 0em; } }

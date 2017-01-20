@@ -232,7 +232,21 @@ img{
 } 
 
 .open{
-  max-height: 600px !important;
+
+  max-height: 900px !important;
+
+  @media screen and (min-width: 48em){
+    max-height: 900px !important;
+  }
+
+  @media screen and (min-width: 62em){
+    max-height: 600px !important;
+  }
+
+  @media screen and (min-width: 75em){
+    max-height: 700px !important;
+  }
+
 }
 
 #content{
@@ -635,7 +649,6 @@ $github-color: /*rgba(211, 253, 175, 0.5)*/ #f6f6f6;
   border:none;
   background-color: $github-color;
   height:2em;
-  width:6em;
   align-items:center;
   justify-content:center;
   transition: 0.5s;
@@ -722,7 +735,8 @@ $github-color: /*rgba(211, 253, 175, 0.5)*/ #f6f6f6;
 }
 
 .nomar{
-  margin:0;
+  margin-left:0;
+  margin-right:0;
 }
 
 .nopad-left{
@@ -792,14 +806,30 @@ iframe{
 }
 
 .profile{
-  margin-left: -10%;
-  width:9rem;
-  /*height: 10rem;*/
-  background: url('profile_pic.jpg');
+  .dropshadow{
+    box-shadow: 0px 0px 3px #555;
+  }
+  padding-right: 6em;
+  padding-left: 6em;
+  margin-bottom: -2em;
+
+  @media screen and (min-width: 48em){
+    padding-right: 10em;
+    padding-left: 10em;
+  }
+
+  @media screen and (min-width: 62em){
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 1em;
+    img{
+    width:15em;
+    height: 15em;
+    }
+  }
 }
 
 .profile-text{
-  margin-left: 2em;
   .header-text{
     padding-bottom: 0.5rem;
     font-weight: bold;
@@ -819,7 +849,14 @@ iframe{
 
 
 .gradient{
-  height: 20em;
+  /*width: 100%;*/
+  padding: 2em;
+  
+  @media screen and (min-width: 62em){
+    margin-left: -10%;
+    height: 20em;
+    padding: 0em;
+  }
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4ea3e5+0,1e5799+100 */
 background: rgb(78,163,229); /* Old browsers */
 background: -moz-linear-gradient(top,  rgba(78,163,229,1) 0%, rgba(30,87,153,1) 100%); /* FF3.6-15 */

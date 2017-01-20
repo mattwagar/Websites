@@ -66,7 +66,7 @@ export class Media {
 
         for(var j = 0; j < vm.elements.length; j++){
             vm.colmd = document.createElement('div');
-            vm.colmd.classList.add('col-md');
+            vm.colmd.classList.add('col-xs');
 
             var html = document.createElement('div')
             html.classList.add('media-item');

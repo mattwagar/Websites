@@ -2,14 +2,14 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    title Hello World!
+    title Matt Wagar: Front End Developer
     link(rel='stylesheet', type='text/css', href='portfolio.css')
     link(rel='stylesheet', type='text/css', href='font-awesome/css/font-awesome.css')
   body
     #welcome-page
       canvas#canvas
       #canvas-container
-      .row.row-fill-canvas
+      .row.row-fill-canvas.nomar
         .col-xs-12
           .row.vertical-center
             .col.chicle Matt Wagar
@@ -133,14 +133,15 @@ html
               .hr
           //- .title-text About Me:
           .row.align-bottom.nomar
-            .col-md-9.gradient
-              .row.row-fill.align-items-center.dropshadow
-                .col-md-9.profile-text
+            .col-xs-12.col-md-4.profile.nopad
+              img(src='profile_pic.jpg').dropshadow
+            .col-xs-12.col-md-9.gradient.dropshadow
+              .row.row-fill.align-items-center
+                .col-md-offset-2.col-md-9.profile-text
                   .header-text Matt Wagar
                   .text A creative mind with a technical skillset. From Front-end development, to Data Visualizaiton, to Game Design, Matt Wagar is interested in any job with a creative edge. He is passionate, hard working, and a very quick learner. Currently a Junior at Drexel University, Matt is pursuing a BS in Computer Science. 
                 
-            .col-md-4.profile.nopad
-              img(src='profile_pic.jpg')
+            
 
     //- #portfolio1
     //-   .title-text Portfolio:

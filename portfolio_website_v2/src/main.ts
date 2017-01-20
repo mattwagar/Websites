@@ -62,6 +62,7 @@ export class PortfolioItem {
     desc: string;
     stack: skill_badge.Collection; 
     port_image: string;
+    url: string;
     
     item_num: number;
 
@@ -76,7 +77,7 @@ export class PortfolioItem {
     target_wrapper: Wrapper;
     portfolio: Portfolio;
   
-  constructor(portfolio: Portfolio, item_num: number,  title: string, title_image: string, desc: string, stack: skill_badge.Collection, media:media.Media, type: string) {
+  constructor(portfolio: Portfolio, item_num: number,  title: string, title_image: string, desc: string, stack: skill_badge.Collection, media:media.Media, type: string, url: string) {
     const vm = this;
 
     vm.portfolio = portfolio;
@@ -86,6 +87,7 @@ export class PortfolioItem {
     vm.desc = desc;
     vm.stack = stack;
     vm.media = media;
+    vm.url = url;
     vm.col_size = "col-md-3";
     
 
@@ -96,20 +98,20 @@ export class PortfolioItem {
     card_shadow.classList.add('card-dropshadow', 'row');
 
     var nopad = document.createElement('div');
-    nopad.classList.add('col-md-12','nopad');
+    nopad.classList.add('col-xs-12','nopad');
 
     vm.img = document.createElement('img');
     vm.img.src = vm.title_image;
 
     var col12 = document.createElement('div');
-    col12.classList.add('col-md-12');
+    col12.classList.add('col-xs-12');
 
     vm.text = document.createElement('div');
     vm.text.classList.add('text', 'padding-top');
     vm.text.appendChild(document.createTextNode(title));
 
     var col12_2 = document.createElement('div');
-    col12_2.classList.add('col-md-12');
+    col12_2.classList.add('col-xs-12');
 
     vm.sub_text = document.createElement('div');
     vm.sub_text.classList.add('text_light');
@@ -145,7 +147,7 @@ export class PortfolioItem {
         
         different_wrapper = vm.portfolio.close(vm.item_num);
         
-        vm.open = vm.target_wrapper.transitionWrapper(different_wrapper, vm.open, vm.title, vm.desc, vm.stack, vm.media)
+        vm.open = vm.target_wrapper.transitionWrapper(different_wrapper, vm.open, vm.title, vm.desc, vm.stack, vm.media, vm.url)
         
         //   vm.setData();  
       }
@@ -196,7 +198,7 @@ export class Portfolio {
 
     //add all items
     for (var i = 0; i < vm.json_objs.length; i++) {
-      vm.items.push(new PortfolioItem(vm, i, json_objs[i].title, json_objs[i].title_image, json_objs[i].desc, json_objs[i].stack, json_objs[i].media, json_objs[i].type));
+      vm.items.push(new PortfolioItem(vm, i, json_objs[i].title, json_objs[i].title_image, json_objs[i].desc, json_objs[i].stack, json_objs[i].media, json_objs[i].type, json_objs[i].url));
     }
 
     vm.appendAll();
@@ -277,6 +279,7 @@ export class Wrapper {
     collection: skill_badge.Collection;
     port_image: string; 
     media: media.Media;
+    url: string;
     
 
     html:HTMLDivElement;
@@ -311,25 +314,25 @@ export class Wrapper {
         row.classList.add('row', 'nomar');
 
         vm.title_element = document.createElement('div');
-        vm.title_element.classList.add('col-md-12', 'desc-text', 'pad-spacing');
+        vm.title_element.classList.add('col-xs-12', 'desc-text', 'pad-spacing');
         vm.title_element_text = document.createTextNode('');
         vm.title_element.appendChild(vm.title_element_text);
 
         var col6 = document.createElement('div');
-        col6.classList.add('col-md-6', 'row');
+        col6.classList.add('col-xs-12', 'col-md-6', 'col-lg-7', 'row', 'nomar', 'nopad');
 
         var row_fill = document.createElement('div');
         row_fill.classList.add('row','justify-center', 'nomar');
 
         var col12 = document.createElement('div');
-        col12.classList.add('col-md-12');
+        col12.classList.add('col-xs-12');
 
         vm.col6 = document.createElement('div');
         vm.col6.id = 'media-'+row_num;
-        vm.col6.classList.add('col-md-6');
+        vm.col6.classList.add('col-xs-12', 'col-md-6', 'col-lg-5');
 
         var col3_2 = document.createElement('div');
-        col3_2.classList.add('col-md-3', 'nopad-left');
+        col3_2.classList.add('col-xs-12', 'col-md-3', 'nopad-left');
 
         vm.description = document.createElement('div');
         vm.description.classList.add('header-text', 'pad-spacing');
@@ -341,7 +344,7 @@ export class Wrapper {
         desc.appendChild(vm.description_text);
 
         vm.stack = document.createElement('div');
-        vm.stack.classList.add('col-md-8');
+        vm.stack.classList.add('col-xs-12', 'col-md-12', 'col-lg-7');
         // vm.stack.appendChild(document.createTextNode('Stack'));
 
         var stack_title = document.createElement('div');
@@ -350,32 +353,35 @@ export class Wrapper {
 
         vm.flex_grid = document.createElement('div');
         vm.flex_grid.id = 'pflex-grid-'+row_num;
-        vm.flex_grid.classList.add('row','portfolio-flex', 'col-md-12');
+        vm.flex_grid.classList.add('row','portfolio-flex', 'col-xs-12');
 
         vm.demo = document.createElement('div');
-        vm.demo.classList.add('col-md-4');
+        vm.demo.classList.add('col-xs-12', 'col-md-12', 'col-lg-5');
         // vm.demo.appendChild(document.createTextNode('Live Demo'));
 
         var demo_title = document.createElement('div');
         demo_title.classList.add('header-text', 'pad-spacing')
         demo_title.appendChild(document.createTextNode('Live Demo'));
 
+        
+
         vm.link = document.createElement('div');
-        vm.link.classList.add('github-button','row');
+        vm.link.classList.add('github-button','row', 'nomar');
 
         vm.link_text = document.createElement('div');
         vm.link_text.classList.add('text');
         vm.link_text.appendChild(document.createTextNode('Live Link'));        
 
         vm.col5 = document.createElement('div');
-        vm.col5.classList.add('col-md-5');
+        vm.col5.classList.add('col-xs-12', 'col-md-5');
 
         /* GONNA HAVE TO ADD MEDIA DYNAMICALLY */
 
         vm.html.appendChild(row);
         row.appendChild(vm.title_element);
-        row.appendChild(col6);
         row.appendChild(vm.col6);
+        row.appendChild(col6);
+        
         
         col6.appendChild(col12);
         col12.appendChild(vm.description);
@@ -388,6 +394,10 @@ export class Wrapper {
         vm.demo.appendChild(vm.link);
         vm.link.appendChild(vm.link_text);
         
+        vm.link.onclick = function(){
+            console.log(vm.url);
+            location.href = vm.url;
+        }
 
         //#wrapper-0.wrapper.open
         // .row#content
@@ -449,7 +459,7 @@ export class Wrapper {
         const vm = this;
         vm.html.classList.remove('open');
     }
-    changeWrapper(open: boolean, title, desc, stack, media){
+    changeWrapper(open: boolean, title, desc, stack, media, url){
         const vm = this;
         //close wrapper:
 
@@ -468,6 +478,7 @@ export class Wrapper {
                 vm.desc = desc;
                 vm.collection = stack;
                 vm.media = media;
+                vm.url = url;
                 vm.setData();
                 vm.html.classList.add('open');
                 return true;
@@ -479,6 +490,7 @@ export class Wrapper {
             vm.desc = desc;
             vm.collection = stack;
             vm.media = media;
+            vm.url = url;
             vm.setData();
             vm.html.classList.add('open');
             return true;
@@ -489,6 +501,7 @@ export class Wrapper {
             vm.desc = desc;
             vm.collection = stack;
             vm.media = media;
+            vm.url = url;
             // vm.closeData();
             vm.html.classList.remove('open');
             return true;
@@ -496,22 +509,22 @@ export class Wrapper {
 
     }
 
-    transitionWrapper(different_wrapper:boolean, open: boolean, title, desc, stack, media){
+    transitionWrapper(different_wrapper:boolean, open: boolean, title, desc, stack, media, url){
         const vm = this;
 
         var return_value;
 
         if(different_wrapper){
             setTimeout(function(){
-                return_value = vm.changeWrapper(open, title, desc, stack, media);
+                return_value = vm.changeWrapper(open, title, desc, stack, media, url);
                 console.log('timeout: '+ return_value); 
             }, timeout);
         } else if(open === undefined){
             open = true;
-            return_value = vm.changeWrapper(open, title, desc, stack, media);
+            return_value = vm.changeWrapper(open, title, desc, stack, media, url);
         }
          else {
-            return_value = vm.changeWrapper(open, title, desc, stack, media);
+            return_value = vm.changeWrapper(open, title, desc, stack, media, url);
         }
         console.log('return_value: '+return_value);
         return return_value;
@@ -525,6 +538,7 @@ export interface IPortfolioItem {
   stack: skill_badge.Collection;
   media: media.Media; 
   type: string;
+  url: string;
 }
 
 // {"name": 'Python',      "class":'circle-50', "image":'python-5.svg'}
@@ -548,12 +562,13 @@ m.push(new media.Media('', ["./portfolio/qbert_play.jpg","./portfolio/qbert_play
 
 m.push(new media.Media('', ["./portfolio/cgi_final_1.png","./portfolio/cgi_final_3.png","./portfolio/cgi_final_2.png"], ["./portfolio/cgi_final_1.png","./portfolio/cgi_final_3.png","./portfolio/cgi_final_2.png"]));
 
+m.push(new media.Media('', ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg'], ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg']))
 
 var portfolio = new Portfolio('portfolio', [
-    {title: 'Breathless', title_image: './portfolio/breathless.jpg', desc:"The Space Pirate, Aria, is on a mission to loot a mineral cargo ship. However, upon landing on the cargo ship, Aria's helmet cracks causing her to slowly lose oxygen. It's now a race against time to collect all the gems before her oxygen runs out!", stack:breathless_stack, media: m[0], type: 'HTML5 Game'},
-    {title: 'Mean Forecast', title_image: './portfolio/mean_forecast_1.jpg', desc:'A small web app that calculates the average of 3 weather API\'s: Wunderground, Forecast.io, and World Weather Online. The webapp itself has many subtleties that are affected by weather data. For example, the video  resembles the current weather. Also each graph is color coated by a gradient based on the weather data.', stack:weather_stack, media: m[0], type: 'Website'},
-    {title: 'Q*Bert', title_image: "./portfolio/qbert_play.jpg", desc:'This is my Bouncing Ball Assignment for Animation 1 at Drexel University. When picking a game that mixes my love of retro video games and bouncing balls, Q*Bert was a no-brainer. Everything is individually modelled, textured, and animated by me. Made in Maya, and rendered in V-Ray.', stack:qbert_stack, media: m[1], type: 'Animation'},
-    {title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc:'This is my final for CGI 2 at Drexel University. The assignment was to recreate any type of room, so I chose a little boy\'s room. We were tasked with creating at least one complex object, so I decided to go with a train set.', stack:qbert_stack, media: m[2], type: '3D Render'}]);
+    {title: 'Breathless', title_image: './portfolio/breathless.jpg', desc:"The Space Pirate, Aria, is on a mission to loot a mineral cargo ship. However, upon landing on the cargo ship, Aria's helmet cracks causing her to slowly lose oxygen. It's now a race against time to collect all the gems before her oxygen runs out!", stack:breathless_stack, media: m[0], type: 'HTML5 Game', url : ''},
+    {title: 'Mean Forecast', title_image: './portfolio/mean_forecast_1.jpg', desc:'A small web app that calculates the average of 3 weather API\'s: Wunderground, Forecast.io, and World Weather Online. The webapp itself has many subtleties that are affected by weather data. For example, the video  resembles the current weather. Also each graph is color coated by a gradient based on the weather data.', stack:weather_stack, media: m[3], type: 'Website', url : '/meanforecast'},
+    {title: 'Q*Bert', title_image: "./portfolio/qbert_play.jpg", desc:'This is my Bouncing Ball Assignment for Animation 1 at Drexel University. When picking a game that mixes my love of retro video games and bouncing balls, Q*Bert was a no-brainer. Everything is individually modelled, textured, and animated by me. Made in Maya, and rendered in V-Ray.', stack:qbert_stack, media: m[1], type: 'Animation', url : 'https://vimeo.com/198149795'},
+    {title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc:'This is my final for CGI 2 at Drexel University. The assignment was to recreate any type of room, so I chose a little boy\'s room. We were tasked with creating at least one complex object, so I decided to go with a train set.', stack:qbert_stack, media: m[2], type: '3D Render', url:''}]);
 
 
 var welcome_b = document.getElementById('welcome-button');
