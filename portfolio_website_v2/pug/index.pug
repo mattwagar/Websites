@@ -2,6 +2,7 @@ doctype html
 html
   head
     meta(charset='UTF-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1")
     title Matt Wagar: Front End Developer
     link(rel='stylesheet', type='text/css', href='portfolio.css')
     link(rel='stylesheet', type='text/css', href='font-awesome/css/font-awesome.css')
@@ -13,7 +14,7 @@ html
         .col-xs-12
           .row.vertical-center
             .col.chicle Matt Wagar
-            .col.text Front End Developer
+            .col.canvas-text Designer and Developer
             .col.justify-center
               .welcome-button.row#welcome-button
                 .col.canvas-text Welcome
@@ -132,14 +133,17 @@ html
             .col-xs-2.col-sm-6.col-md-7.col-lg-8
               .hr
           //- .title-text About Me:
-          .row.align-bottom.nomar
-            .col-xs-12.col-md-4.profile.nopad
+          .row.nomar.justify-center
+            .col-xs-12.col-sm-4.col-lg-3.profile
               img(src='profile_pic.jpg').dropshadow
-            .col-xs-12.col-md-9.gradient.dropshadow
-              .row.row-fill.align-items-center
-                .col-md-offset-2.col-md-9.profile-text
+            .col-xs-12.col-sm-8.col-lg-9.gradient.dropshadow
+              .row.row-fill.align-items-center.nomar
+                .col-xs-offset-1.col-xs-10.profile-text
                   .header-text Matt Wagar
-                  .text A creative mind with a technical skillset. From Front-end development, to Data Visualizaiton, to Game Design, Matt Wagar is interested in any job with a creative edge. He is passionate, hard working, and a very quick learner. Currently a Junior at Drexel University, Matt is pursuing a BS in Computer Science. 
+                  .text A creative mind with a technical skillset. From web development to data visualization to game design, Matt Wagar is interested in any job with a creative edge. He is passionate, hard-working, and a quick learner. Currently a junior at Drexel University, Matt is pursuing a BS in Computer Science.
+                  a(href='http://www.mwagar.com/resume.pdf')
+                    .welcome-button.row.nomar
+                      .col.text Resume PDF
                 
             
 
@@ -248,3 +252,10 @@ html
       
     
     script(src='bundle.js')
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-90764410-1', 'auto');
+      ga('send', 'pageview');
