@@ -2,6 +2,7 @@ doctype html
 html
   head
     meta(charset='UTF-8')
+    meta(name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi")
     title Matt Wagar: Front End Developer
     link(rel='stylesheet', type='text/css', href='portfolio.css')
     link(rel='stylesheet', type='text/css', href='font-awesome/css/font-awesome.css')
@@ -20,24 +21,24 @@ html
 
         
     #body
-      .container-fluid
-        #portfolio
+      
+        #portfolio.section
           .row
             .col-xs-2.col-sm-1.col-md-1.col-lg-1
               .hr
             .col-xs-8.col-sm-5.col-md-4.col-lg-3.parallelogram.right
-              .text P O R T F O L I O
+              .text PORTFOLIO
             .col-xs-2.col-sm-6.col-md-7.col-lg-8
               .hr
           //- .title-text Portfolio:
         
         
-        #skills
+        #skills.section
               .row
                 .col-xs-3.col-sm-7.col-md-8.col-lg-9
                   .hr
                 .col-xs-6.col-sm-4.col-md-3.col-lg-2.parallelogram.left
-                  .text S K I L L S
+                  .text SKILLS
                 .col-xs-3.col-sm-1.col-md-1.col-lg-1
                   .hr
               //- .title-text Skills:
@@ -123,12 +124,12 @@ html
                 .col-xs-12.col-md-9.row.justify-center.nomar
                   .row.justify-center#flex-grid3
         
-        #about-me
+        #about-me.section
           .row
             .col-xs-2.col-sm-1.col-md-1.col-lg-1
               .hr
             .col-xs-8.col-sm-5.col-md-4.col-lg-3.parallelogram.right
-              .text A B O U T&nbsp;&nbsp;&nbsp;M E
+              .text ABOUT ME
             .col-xs-2.col-sm-6.col-md-7.col-lg-8
               .hr
           //- .title-text About Me:
