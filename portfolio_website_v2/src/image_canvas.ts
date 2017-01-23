@@ -28,6 +28,8 @@ export class Img {
   imgHeight: number;
   screenHeight: number;
 
+  loaded: boolean;
+
 
   constructor(width: number, height: number) {
     const vm = this;
@@ -37,19 +39,29 @@ export class Img {
     vm.h = vm.canvas.height = height;
     vm.image = new Image();
     vm.image.src = 'city.jpg';
+    vm.loaded = false;
 
     vm.image.onload = function () {
+      vm.loaded = true;
+      vm.size(vm.w, vm.h);
+      vm.draw();
+    }
+  }
 
-      /*gets scaleX based on screen and image width */
+  public size(w, h) {
+      const vm = this;
+
+      vm.w = vm.canvas.width = w;
+      vm.h = vm.canvas.height = h;
+
+    /*gets scaleX based on screen and image width */
       vm.imgWidth = vm.image.naturalWidth;
-      vm.screenWidth = vm.canvas.width;
-      vm.scaleX = 1;
+      vm.screenWidth = w;
       vm.scaleX = vm.screenWidth / vm.imgWidth;
 
       /*gets scaleY based on screen and image width */
       vm.imgHeight = vm.image.naturalHeight;
-      vm.screenHeight = vm.canvas.height;
-      vm.scaleY = 1;
+      vm.screenHeight = h;
       vm.scaleY = vm.screenHeight / vm.imgHeight;
 
 
@@ -69,10 +81,7 @@ export class Img {
       vm.x_offset_dest = vm.x_offset = vm.anchorX;
       vm.y_offset_dest = vm.y_offset = vm.anchorY;
 
-
-
-      vm.draw();
-    }
+      console.log(Math.round(vm.screenWidth) +' '+ Math.round(vm.screenHeight));
   }
 
   public draw() {
@@ -100,8 +109,10 @@ export class App {
     vm.canvas = <HTMLCanvasElement>document.getElementById('canvas');
     vm.ctx = vm.canvas.getContext('2d');
 
+    
+
     vm.sizeCanvas();
-    vm.initEvents();
+    // vm.initEvents();
     window.requestAnimationFrame((t) => { vm.draw(t); });
 
     vm.img = new Img(vm.w, vm.h);
@@ -122,8 +133,6 @@ export class App {
       vm.mouseIn = false;
       vm.drawImgOut(0, e);
     }
-
-
   }
 
   public sizeCanvas() {
@@ -132,6 +141,11 @@ export class App {
     vm.canvas.style.height = '100%';
     this.w = this.canvas.width = vm.canvas.offsetWidth;
     this.h = this.canvas.height = vm.canvas.offsetHeight;
+
+    if(vm.img){
+      vm.img.size(vm.w, vm.h);
+      vm.img.draw();
+    }
 
   }
   public draw(t: any) {
@@ -152,9 +166,9 @@ export class App {
     /*ratio = (imgWidth / screenWidth)  */
 
     var moveRatioX = (e.clientX / vm.img.screenWidth); //range from [0, 1]: 0 being left, 1 being right
-    var moveOffsetX = -vm.img.anchorX + (moveRatioX * vm.img.anchorX * 2);
+    var moveOffsetX = -vm.img.anchorX + (moveRatioX * vm.img.anchorX);
 
-    var moveRatioY = (e.clientY / vm.img.screenHeight) * 2; //range from [0, 1]: 0 being left, 1 being right
+    var moveRatioY = (e.clientY / vm.img.screenHeight); //range from [0, 1]: 0 being left, 1 being right
     var moveOffsetY = -vm.img.anchorY + (moveRatioY * vm.img.anchorY);
 
 
@@ -202,10 +216,10 @@ export class App {
 
   }
 
-  initEvents() {
-    window.onresize = (e) => {
-      this.sizeCanvas();
-    };
-  }
+  // initEvents() {
+  //   window.onresize = (e) => {
+  //     this.sizeCanvas();
+  //   };
+  // }
 
 }

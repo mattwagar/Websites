@@ -130,13 +130,18 @@ export class Media {
         parent.appendChild(vm.row);
     }
 
+    size(){
+        const vm = this;
+        vm.overlay.style.width = (vm.media_selected.clientWidth+12)+'px';
+        vm.overlay.style.height = (vm.media_selected.clientHeight+8)+'px';
+    }
+
     loadMedia(thumb_num:number){
         const vm = this;
                 // vm.media_selected.removeChild(vm.media_selected.firstChild);
         vm.overlay.classList.add('close-media');
 
-        vm.overlay.style.width = (vm.media_selected.clientWidth+12)+'px';
-        vm.overlay.style.height = (vm.media_selected.clientHeight+8)+'px';
+        vm.size();
 
         for(var i = 0; i < vm.media_items.length; i++){
             vm.media_items[i].html.style.width = vm.colmd.clientWidth+'px';

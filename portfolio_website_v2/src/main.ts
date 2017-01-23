@@ -364,7 +364,7 @@ export class Wrapper {
 
         var demo_title = document.createElement('div');
         demo_title.classList.add('header-text', 'pad-spacing')
-        demo_title.appendChild(document.createTextNode('Live Demo'));
+        demo_title.appendChild(document.createTextNode('Relevant Links'));
 
         
 
@@ -597,7 +597,11 @@ welcome_b.onclick = function(){
 
 
 
+window.onresize = (e) => {
+      app.sizeCanvas();
+      portfolio.appendAll();
 
+    };
 
 
 // var media = new Media('media-0', ["./portfolio/breathless.jpg","./portfolio/breathless.jpg","./portfolio/cat.jpg"], ["./portfolio/breathless.jpg","./portfolio/cat.jpg", "./portfolio/cat.jpg"]);
