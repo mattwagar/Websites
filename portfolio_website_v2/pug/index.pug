@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    meta(name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi")
+    meta(name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height")
     title Matt Wagar: Front End Developer
     link(rel='stylesheet', type='text/css', href='portfolio.css')
     link(rel='stylesheet', type='text/css', href='font-awesome/css/font-awesome.css')
@@ -10,7 +10,7 @@ html
     #welcome-page
       canvas#canvas
       #canvas-container
-      .row.row-fill-canvas.nomar
+      .row.row-fill-canvas.nomar#canvas-text-overlay
         .col-xs-12
           .row.vertical-center
             .col.chicle Matt Wagar
@@ -23,7 +23,7 @@ html
     #body
       
         #portfolio.section
-          .row
+          .row.nomar
             .col-xs-2.col-sm-1.col-md-1.col-lg-1
               .hr
             .col-xs-8.col-sm-5.col-md-4.col-lg-3.parallelogram.right
@@ -34,7 +34,7 @@ html
         
         
         #skills.section
-              .row
+              .row.nomar
                 .col-xs-3.col-sm-7.col-md-8.col-lg-9
                   .hr
                 .col-xs-6.col-sm-4.col-md-3.col-lg-2.parallelogram.left
@@ -125,7 +125,7 @@ html
                   .row.justify-center#flex-grid3
         
         #about-me.section
-          .row
+          .row.nomar
             .col-xs-2.col-sm-1.col-md-1.col-lg-1
               .hr
             .col-xs-8.col-sm-5.col-md-4.col-lg-3.parallelogram.right
@@ -138,7 +138,7 @@ html
               img(src='profile_pic.jpg').dropshadow
             .col-xs-12.col-sm-8.col-lg-9.gradient.dropshadow
               .row.row-fill.align-items-center.nomar
-                .col-xs-offset-1.col-xs-10.profile-text
+                .col-xs-12.profile-text
                   .header-text Matt Wagar
                   .text A creative mind with a technical skillset. From web development to data visualization to game design, Matt Wagar is interested in any job with a creative edge. He is passionate, hard-working, and a quick learner. Currently a junior at Drexel University, Matt is pursuing a BS in Computer Science.
                   a(href='http://www.mwagar.com/resume.pdf')

@@ -36,9 +36,9 @@ softeng.load();
 design.load();
 
 
-
+var app;
 document.addEventListener( 'DOMContentLoaded', function( event ) {
-    var app = new image_canvas.App();
+    app = new image_canvas.App();
 });
 
 
@@ -79,6 +79,7 @@ export class PortfolioItem {
     media:media.Media;
     target_wrapper: Wrapper;
     portfolio: Portfolio;
+    row: number;
   
   constructor(portfolio: Portfolio, item_num: number,  title: string, title_image: string, desc: string, stack: skill_badge.Collection, media:media.Media, type: string, url: string) {
     const vm = this;
@@ -146,11 +147,18 @@ export class PortfolioItem {
     vm.col.onclick = function(){
         //   console.(vm.items[0]);
         var different_wrapper = false;
-        console.log(vm.media);
         
         different_wrapper = vm.portfolio.close(vm.item_num);
         
         vm.open = vm.target_wrapper.transitionWrapper(different_wrapper, vm.open, vm.title, vm.desc, vm.stack, vm.media, vm.url)
+
+        setTimeout(function(){
+            jump('#wrapper-'+vm.row, {
+            duration: 1000,
+            offset: -vm.col.clientHeight - 35
+        })
+        }, timeout);
+        
         
         //   vm.setData();  
       }
@@ -159,12 +167,11 @@ export class PortfolioItem {
   append(row: number, wrapper: Wrapper) {
     const vm = this;
     var row_element = document.getElementById('row_'+row);
-    
     row_element.appendChild(vm.col);
     vm.target_wrapper = wrapper;
     vm.stack.flex_grid_id = wrapper.flex_grid.id;
     vm.media.id = 'media-'+row;
-    console.log(vm.media);
+    vm.row = row;
   }
   setCol(className: string){
       const vm = this;
@@ -212,7 +219,6 @@ export class Portfolio {
     public appendAll(){ //appends PortfolioItems based on screen size; gets digested
         const vm = this;
         var screenWidth = window.innerWidth;
-        console.log(screenWidth);
 
         //reassigns cols based on breakpoints
         var breakpoints = [{min: 0, max:768, col_size: 'col-xs-6', per_row: 2},{min: 769, max:992, col_size: 'col-xs-4', per_row: 3}, {min: 993, max:1200, col_size: 'col-xs-3', per_row: 4}, {min: 1200, max:9999, col_size: 'col-xs-3', per_row: 4}];
@@ -232,7 +238,7 @@ export class Portfolio {
                 for(var r = 0; r < Math.ceil(vm.items.length / breakpoints[i].per_row); r++){
                     var row = document.createElement('div');
                     row.id = 'row_'+r;
-                    row.classList.add('row');
+                    row.classList.add('row', 'nomar');
 
                     var wrapper = vm.wrappers[r].html;
 
@@ -398,7 +404,6 @@ export class Wrapper {
         vm.link.appendChild(vm.link_text);
         
         vm.link.onclick = function(){
-            console.log(vm.url);
             location.href = vm.url;
         }
 
@@ -468,8 +473,6 @@ export class Wrapper {
 
         
         if(vm.title === title){ /**if no change */
-            console.log('1');
-            console.log(open);
             vm.change = false;
             
             if(open){
@@ -487,7 +490,6 @@ export class Wrapper {
                 return true;
             }
         } else if(vm.html.classList[1] !== 'open'){ /**if all selections are closed initially/change when closed*/
-            console.log('2');
             vm.change = false;
             vm.title = title;
             vm.desc = desc;
@@ -498,7 +500,6 @@ export class Wrapper {
             vm.html.classList.add('open');
             return true;
         } else {
-            console.log('3');
             vm.change = true;
             vm.title = title;
             vm.desc = desc;
@@ -520,7 +521,6 @@ export class Wrapper {
         if(different_wrapper){
             setTimeout(function(){
                 return_value = vm.changeWrapper(open, title, desc, stack, media, url);
-                console.log('timeout: '+ return_value); 
             }, timeout);
         } else if(open === undefined){
             open = true;
@@ -529,7 +529,6 @@ export class Wrapper {
          else {
             return_value = vm.changeWrapper(open, title, desc, stack, media, url);
         }
-        console.log('return_value: '+return_value);
         return return_value;
     }
 }
@@ -598,11 +597,25 @@ welcome_b.onclick = function(){
 
 
 window.onresize = (e) => {
-      app.sizeCanvas();
+      if(app.canvas){
+          app.sizeCanvas();
+      }
+      
       portfolio.appendAll();
 
     };
 
+
+// var docWidth = document.documentElement.offsetWidth;
+
+// [].forEach.call(
+//   document.querySelectorAll('*'),
+//   function(el) {
+//     if (el.offsetWidth > docWidth) {
+//       console.log(el);
+//     }
+//   }
+// );
 
 // var media = new Media('media-0', ["./portfolio/breathless.jpg","./portfolio/breathless.jpg","./portfolio/cat.jpg"], ["./portfolio/breathless.jpg","./portfolio/cat.jpg", "./portfolio/cat.jpg"]);
 

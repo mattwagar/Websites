@@ -660,7 +660,8 @@ $color4: hsl(107, 44%, 47%);
 $color5: hsl(217, 44%, 47%);*/
 html, body {
   height: 100%;
-  /*overflow: hidden;*/
+  width: auto;
+  /*overflow-x: hidden;*/
   margin: 0;
   padding: 0;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -675,6 +676,9 @@ html, body {
   font-weight: normal;
   color: white;
   margin-top: 25vh; }
+  @media screen and (max-width: 48em) {
+    .chicle {
+      font-size: 4em; } }
 
 .title-text {
   font-family: roboto;
@@ -765,7 +769,13 @@ html, body {
 #welcome-page {
   position: relative;
   width: 100%;
-  height: 70vh; }
+  height: 70vh;
+  overflow-x: hidden; }
+  #welcome-page img {
+    z-index: -6;
+    position: absolute;
+    height: 100%;
+    width: auto; }
 
 #canvas-container {
   position: absolute;
@@ -823,7 +833,7 @@ img {
       max-height: 600px !important; } }
   @media screen and (min-width: 75em) {
     .open {
-      max-height: 700px !important; } }
+      max-height: 860px !important; } }
 
 #content {
   padding-top: 0.5em;
@@ -1270,7 +1280,7 @@ iframe {
 
 .gradient {
   /*width: 100%;*/
-  padding: 2em;
+  padding: 0.7em;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4ea3e5+0,1e5799+100 */
   background: #4ea3e5;
   /* Old browsers */
@@ -1285,7 +1295,7 @@ iframe {
   @media screen and (min-width: 62em) {
     .gradient {
       height: 20em;
-      padding: 0em; } }
+      padding: 1em; } }
 
 a {
   text-decoration: none;
