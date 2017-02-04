@@ -155,6 +155,9 @@ class App {
         vm.score = new Score(vm.ctx, vm.w, vm.h);
         vm.order = [];
 
+        vm.calculateContrastOrder();
+        console.log(vm.order);
+
         // vm.circle.drawCircle();
         // vm.ctx.drawImage(vm.circle.canvas, 0, 0);
 
@@ -166,20 +169,25 @@ class App {
                     //3. reset colors 
                     //4. transition colors in (small to big)\
 
-                    // converts hue to [0,360]
-                    var x = Math.ceil(vm.backCircle.hsl[0] * 360);
-                    var y = Math.ceil(vm.circles[i].hsl[0] * 360);
-                    // calculates clicked color and background color's difference in hue. returns a number [0, 180]
-                    if (Math.abs(x - y) < Math.abs((360 + y) - x) && Math.abs(x - y) < Math.abs(y - (360 + x))) {
-                        vm.score.add(Math.abs(x - y))
-                    } else if (Math.abs((360 + y) - x) < Math.abs(y - (360 + x))) {
-                        vm.score.add(Math.abs((360 + y) - x));
-                    } else {
-                        vm.score.add(Math.abs(y - (360 + x)));
-                    }
+                    // // converts hue to [0,360]
+                    // var x = Math.ceil(vm.backCircle.hsl[0] * 360);
+                    // var y = Math.ceil(vm.circles[i].hsl[0] * 360);
+                    // // calculates clicked color and background color's difference in hue. returns a number [0, 180]
+                    // if (Math.abs(x - y) < Math.abs((360 + y) - x) && Math.abs(x - y) < Math.abs(y - (360 + x))) {
+                    //     vm.score.add(Math.abs(x - y))
+                    // } else if (Math.abs((360 + y) - x) < Math.abs(y - (360 + x))) {
+                    //     vm.score.add(Math.abs((360 + y) - x));
+                    // } else {
+                    //     vm.score.add(Math.abs(y - (360 + x)));
+                    // }
 
-                    vm.calculateContrastOrder();
-                    console.log(vm.order);
+                    for(var j = 0; j < vm.order.length; j++){
+                      if(i === vm.order[j].id){
+                        vm.score.add((j+1) * 100);
+                      }  
+                    }
+                    
+
 
 
 
@@ -232,29 +240,29 @@ class App {
         }
     }
 
-    calculateContrastOrder(){
-      const vm = this;
-      //loop through circles
-      ///calcscores
-      ///put in object with score and id greatest to least
-      vm.order = [];
-      for(var i = 0; i < vm.circles.length; i++){
-        var x = vm.calculateOneScore(vm.circles[i]);
-        var l = vm.order.length;
-        if(l === 0){
-          vm.order.push({"id": i, "score": x});
-        } else if (l > 0){
-          for(var j = 0; j < l; j++){
-            if(vm.order[j].score > x){
-              vm.order.splice(j, 0, ({"id": i, "score": x}))
-              break;
-            } else if (vm.order[j].score <= x && j === (l-1)){ //if last iteration of vm.order
-              vm.order.push({"id": i, "score": x});
-              break;
+    calculateContrastOrder() {
+        const vm = this;
+        //loop through circles
+        ///calcscores
+        ///put in object with score and id greatest to least
+        vm.order = [];
+        for (var i = 0; i < vm.circles.length; i++) {
+            var x = vm.calculateOneScore(vm.circles[i]);
+            var l = vm.order.length;
+            if (l === 0) {
+                vm.order.push({ "id": i, "score": x });
+            } else if (l > 0) {
+                for (var j = 0; j < l; j++) {
+                    if (vm.order[j].score > x) {
+                        vm.order.splice(j, 0, ({ "id": i, "score": x }))
+                        break;
+                    } else if (vm.order[j].score <= x && j === (l - 1)) { //if last iteration of vm.order
+                        vm.order.push({ "id": i, "score": x });
+                        break;
+                    }
+                }
             }
-          }
         }
-      }
 
     }
 
@@ -277,6 +285,9 @@ class App {
             vm.circles[i].hsl = vm.rnghsl(0.5);
             vm.circles[i].color = hslToRgb(vm.circles[i].hsl[0], vm.circles[i].hsl[1], vm.circles[i].hsl[2])
         }
+
+        vm.calculateContrastOrder();
+        console.log(vm.order);
     }
 
     drawCircles() {
