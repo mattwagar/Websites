@@ -126,6 +126,7 @@ class App {
     color_change: boolean;
     score: Score;
     order: any[];
+    mode: string;
 
     constructor() {
         const vm = this;
@@ -164,22 +165,7 @@ class App {
         vm.canvas.addEventListener('click', function(event) {
             for (var i = 0; i < vm.circles.length; i++) {
                 if (vm.changing === false && (event.clientX > vm.circles[i].xmin && event.clientX < vm.circles[i].xmax) && (event.clientY > vm.circles[i].ymin && event.clientY < vm.circles[i].ymax)) {
-                    //1. widen circle (duplicate it) to screen size, and increase lightness lerp?
-                    //2. set backgroundC to new color
-                    //3. reset colors 
-                    //4. transition colors in (small to big)\
-
-                    // // converts hue to [0,360]
-                    // var x = Math.ceil(vm.backCircle.hsl[0] * 360);
-                    // var y = Math.ceil(vm.circles[i].hsl[0] * 360);
-                    // // calculates clicked color and background color's difference in hue. returns a number [0, 180]
-                    // if (Math.abs(x - y) < Math.abs((360 + y) - x) && Math.abs(x - y) < Math.abs(y - (360 + x))) {
-                    //     vm.score.add(Math.abs(x - y))
-                    // } else if (Math.abs((360 + y) - x) < Math.abs(y - (360 + x))) {
-                    //     vm.score.add(Math.abs((360 + y) - x));
-                    // } else {
-                    //     vm.score.add(Math.abs(y - (360 + x)));
-                    // }
+                    
 
                     for(var j = 0; j < vm.order.length; j++){
                       if(i === vm.order[j].id){
@@ -187,19 +173,9 @@ class App {
                       }  
                     }
                     
-
-
-
-
                     vm.backCircle.drawCircle();
                     vm.drawCircles();
 
-
-                    // if x-y is smaller use it// else if y-x is smaller use it
-
-                    // vm.score.add();
-
-                    /* 0-360 - 0-360 */
 
                     vm.backCircle.x = vm.circles[i].x;
                     vm.backCircle.y = vm.circles[i].y;
@@ -210,7 +186,6 @@ class App {
                     vm.backCircle.color = vm.circles[i].color;
                     vm.changing = true;
                     vm.color_change = true;
-                    // vm.backCircle = vm.circles[i];
 
                 }
             }
