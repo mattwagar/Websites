@@ -29,6 +29,33 @@ function hslToRgb(h, s, l) {
     return "rgb(" + Math.round(r * 255) + "," + Math.round(g * 255) + "," + Math.round(b * 255) + ")";
 }
 
+
+class Title {
+    ctx: CanvasRenderingContext2D;
+    text: string;
+    w: number;
+    h: number;
+
+    constructor(ctx: CanvasRenderingContext2D, w:number, h:number){
+        const vm = this;
+        vm.ctx = ctx;
+        vm.w = w;
+        vm.h = h;
+        vm.text = "Contrast"
+    }
+
+    draw(){
+        const vm = this;
+        vm.ctx.fillStyle = 'black';
+        vm.ctx.font = 'bold 150px Courier';
+        vm.ctx.textAlign = "center";
+        vm.ctx.fillText(vm.text, vm.w / 2, vm.h / 5);
+    }
+
+    
+
+
+}
 class Score {
     score: number;
     ctx: CanvasRenderingContext2D;
@@ -44,7 +71,7 @@ class Score {
     draw() {
         const vm = this;
         vm.ctx.fillStyle = 'black';
-        vm.ctx.font = '200px Verdana';
+        vm.ctx.font = 'bold 200px Courier';
         vm.ctx.textAlign = "center";
         vm.ctx.fillText(vm.score.toString(), vm.w / 2, vm.h / 5);
     }
@@ -124,6 +151,7 @@ class App {
     backCircle: Circle;
     changing: boolean;
     color_change: boolean;
+    title: Title;
     score: Score;
     order: any[];
     mode: string;
@@ -153,8 +181,10 @@ class App {
         vm.changing = false;
         vm.color_change = false;
 
+        vm.title = new Title(vm.ctx, vm.w, vm.h)
         vm.score = new Score(vm.ctx, vm.w, vm.h);
         vm.order = [];
+        vm.mode = "titlescreen";
 
         vm.calculateContrastOrder();
         console.log(vm.order);
@@ -162,34 +192,46 @@ class App {
         // vm.circle.drawCircle();
         // vm.ctx.drawImage(vm.circle.canvas, 0, 0);
 
-        vm.canvas.addEventListener('click', function(event) {
+        vm.canvas.addEventListener('click', function (event) {
             for (var i = 0; i < vm.circles.length; i++) {
                 if (vm.changing === false && (event.clientX > vm.circles[i].xmin && event.clientX < vm.circles[i].xmax) && (event.clientY > vm.circles[i].ymin && event.clientY < vm.circles[i].ymax)) {
-                    
 
-                    for(var j = 0; j < vm.order.length; j++){
-                      if(i === vm.order[j].id){
-                        vm.score.add((j+1) * 100);
-                      }  
+                    
+                    if (vm.mode === "maingame") {
+                        for (var j = 0; j < vm.order.length; j++) {
+                            if (i === vm.order[j].id) {
+                                vm.score.add((j + 1) * 100);
+                            }
+                        }
+                        
                     }
+                    if (vm.mode === "titlescreen") {
+                        
+                        switch (i) {
+                            case 0:
+                            setTimeout(function() {
+                                vm.mode = "maingame";
+                            }, 200);
+                                break;
+                            case 1:
+                                console.log("1");
+                                break;
+                            case 2:
+                                console.log("2");
+                                break;
+                            case 3:
+                                console.log("3");
+                                break;
+                            default: 
+                                console.log("other");
+                        }
+                    }
+
+                    vm.setBackgroundCircle(i);
                     
-                    vm.backCircle.drawCircle();
-                    vm.drawCircles();
-
-
-                    vm.backCircle.x = vm.circles[i].x;
-                    vm.backCircle.y = vm.circles[i].y;
-                    vm.backCircle.w = vm.circles[i].w;
-                    vm.backCircle.h = vm.circles[i].h;
-                    vm.backCircle.r = vm.circles[i].r;
-                    vm.backCircle.hsl = vm.circles[i].hsl;
-                    vm.backCircle.color = vm.circles[i].color;
-                    vm.changing = true;
-                    vm.color_change = true;
-
                 }
             }
-        })
+        });
 
     }
     initEvents() {
@@ -200,6 +242,22 @@ class App {
         vm.w = vm.ctx.canvas.width = window.innerWidth;
         vm.h = vm.ctx.canvas.height = window.innerHeight;
     }
+    setBackgroundCircle(i) {
+        const vm = this;
+        vm.backCircle.drawCircle();
+        vm.drawCircles();
+        vm.backCircle.x = vm.circles[i].x;
+        vm.backCircle.y = vm.circles[i].y;
+        vm.backCircle.w = vm.circles[i].w;
+        vm.backCircle.h = vm.circles[i].h;
+        vm.backCircle.r = vm.circles[i].r;
+        vm.backCircle.hsl = vm.circles[i].hsl;
+        vm.backCircle.color = vm.circles[i].color;
+        vm.changing = true;
+        vm.color_change = true;
+
+    }
+
     calculateOneScore(circle) {
         // converts hue to [0,360]
         const vm = this;
@@ -262,7 +320,6 @@ class App {
         }
 
         vm.calculateContrastOrder();
-        console.log(vm.order);
     }
 
     drawCircles() {
@@ -280,9 +337,9 @@ class App {
         }
     }
 
-    mainGame(){
-      const vm = this;
-      if (vm.changing && vm.backCircle.r > vm.h) {/*resets values for a split second to end*/
+    change() {
+        const vm = this;
+        if (vm.changing && vm.backCircle.r > vm.h) {/*resets values for a split second to end*/
             vm.changing = false;
         }
         else if (vm.changing && vm.backCircle.r > vm.h / 2) { /*In the process of changing after it passes circles*/
@@ -300,15 +357,25 @@ class App {
             vm.drawCircles();
         }
 
-        vm.score.draw();
+        
+
+        
     }
 
     draw(t) {
         const vm = this;
         window.requestAnimationFrame((t) => { this.draw(t); });
-        // vm.mainGame();
+        vm.change();
 
+        if(vm.mode === "titlescreen"){
+            vm.title.draw();
+        } else if (vm.mode === "maingame"){
+            vm.score.draw();
+        }
         
+        
+
+
 
     }
 }
