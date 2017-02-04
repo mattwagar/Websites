@@ -305,11 +305,9 @@ class App {
         }
     }
 
-    draw(t) {
-        const vm = this;
-        window.requestAnimationFrame((t) => { this.draw(t); });
-
-        if (vm.changing && vm.backCircle.r > vm.h) {/*resets values for a split second to end*/
+    mainGame(){
+      const vm = this;
+      if (vm.changing && vm.backCircle.r > vm.h) {/*resets values for a split second to end*/
             vm.changing = false;
         }
         else if (vm.changing && vm.backCircle.r > vm.h / 2) { /*In the process of changing after it passes circles*/
@@ -328,6 +326,14 @@ class App {
         }
 
         vm.score.draw();
+    }
+
+    draw(t) {
+        const vm = this;
+        window.requestAnimationFrame((t) => { this.draw(t); });
+        // vm.mainGame();
+
+        
 
     }
 }
