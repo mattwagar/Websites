@@ -17,6 +17,7 @@
             // "yahoo": loadingInit.loadJSON(),
             "wwonline": loadingInit.loadJSON()
         };
+        
 
         wunderAsyncService.wunderJSON()
             .then(function(response) {

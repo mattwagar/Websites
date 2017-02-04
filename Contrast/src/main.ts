@@ -61,20 +61,65 @@ class Score {
     ctx: CanvasRenderingContext2D;
     w: number;
     h: number;
+    t: number;
+    scoreX: number;
+    scoreY: number;
+    timerX: number;
+    timerY: number;
+    seconds: number;
+    offsetTime: number;
     constructor(ctx: CanvasRenderingContext2D, w: number, h: number) {
         const vm = this;
         vm.ctx = ctx;
         vm.score = 0;
+        vm.seconds = 0;
         vm.w = w;
         vm.h = h;
+        vm.scoreX = w / 2;
+        vm.scoreY = h / 5;
+        vm.timerX = w * (4/5);
+        vm.timerY = h / 14;
+        vm.t = 0;
+        vm.offsetTime = 60;
     }
-    draw() {
+    drawScore() {
         const vm = this;
         vm.ctx.fillStyle = 'black';
         vm.ctx.font = 'bold 200px Courier';
         vm.ctx.textAlign = "center";
-        vm.ctx.fillText(vm.score.toString(), vm.w / 2, vm.h / 5);
+        vm.ctx.fillText(vm.score.toString(), vm.scoreX, vm.scoreY);
     }
+
+    drawTimer(t){
+        const vm = this;
+
+        var timer = vm.convertTime(t);
+
+        vm.ctx.fillStyle = 'black';
+        vm.ctx.font = 'bold 75px Courier';
+        vm.ctx.textAlign = "center";
+        vm.ctx.fillText(timer, vm.timerX, vm.timerY);
+    }
+
+    convertTime(t){
+        const vm = this;
+        vm.seconds = Math.ceil(60 - (t - vm.t)/1000); 
+        
+        var timer;
+        var min = Math.floor(vm.seconds / 60);
+        vm.seconds -= min * 60;
+
+        
+
+        if(vm.seconds > 9){
+            timer = min+":"+ vm.seconds;
+        } else if (vm.seconds >= 0 ){
+            timer = min+":0"+vm.seconds;
+        }
+        return timer;
+    }
+
+
     add(x: number) {
         const vm = this;
         vm.score += x;
@@ -97,7 +142,9 @@ class Circle {
     ymin: number;
     ymax: number;
 
-    constructor(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number, hsl: number[]) {
+    innerText: string;
+
+    constructor(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number, hsl: number[], innerText?: string) {
         const vm = this;
         vm.w = w;
         vm.h = h;
@@ -117,6 +164,11 @@ class Circle {
         vm.ymin = vm.y - vm.r;
         vm.ymax = vm.y + vm.r;
 
+        if(innerText){
+            vm.innerText = innerText;
+        } else {
+            vm.innerText = "";
+        }
     }
 
     sizeCanvas() {
@@ -136,6 +188,14 @@ class Circle {
         vm.ctx.closePath();
     }
 
+    drawText(){
+        const vm = this;
+        vm.ctx.fillStyle = 'black';
+        vm.ctx.font = 'bold 100px Courier';
+        vm.ctx.textAlign = "center";
+        vm.ctx.fillText(vm.innerText, vm.x, vm.y+25);
+    }
+
 
 }
 
@@ -146,6 +206,7 @@ class App {
     ctx: CanvasRenderingContext2D;
     w: number;
     h: number;
+    t: number;
     circles: Circle[];
     backgroundC: string;
     backCircle: Circle;
@@ -169,10 +230,12 @@ class App {
 
         var temp = vm.rnghsl(0.8);
 
+        vm.t = 0;
+
         vm.backgroundC = hslToRgb(temp[0], temp[1], temp[2]);
         vm.circles = [];
 
-        vm.circles[0] = new Circle(vm.ctx, 3 * vm.w / 12, 5 * vm.h / 11, vm.w, vm.h, vm.w / 5, vm.rnghsl(0.5));
+        vm.circles[0] = new Circle(vm.ctx, 3 * vm.w / 12, 5 * vm.h / 11, vm.w, vm.h, vm.w / 5, vm.rnghsl(0.5), "Play");
         vm.circles[1] = new Circle(vm.ctx, 9 * vm.w / 12, 5 * vm.h / 11, vm.w, vm.h, vm.w / 5, vm.rnghsl(0.5));
         vm.circles[2] = new Circle(vm.ctx, 3 * vm.w / 12, 8 * vm.h / 11, vm.w, vm.h, vm.w / 5, vm.rnghsl(0.5));
         vm.circles[3] = new Circle(vm.ctx, 9 * vm.w / 12, 8 * vm.h / 11, vm.w, vm.h, vm.w / 5, vm.rnghsl(0.5));
@@ -193,6 +256,7 @@ class App {
         // vm.ctx.drawImage(vm.circle.canvas, 0, 0);
 
         vm.canvas.addEventListener('click', function (event) {
+            console.log(vm.changing);
             for (var i = 0; i < vm.circles.length; i++) {
                 if (vm.changing === false && (event.clientX > vm.circles[i].xmin && event.clientX < vm.circles[i].xmax) && (event.clientY > vm.circles[i].ymin && event.clientY < vm.circles[i].ymax)) {
 
@@ -211,6 +275,7 @@ class App {
                             case 0:
                             setTimeout(function() {
                                 vm.mode = "maingame";
+                                vm.score.t = vm.t;
                             }, 200);
                                 break;
                             case 1:
@@ -244,6 +309,7 @@ class App {
     }
     setBackgroundCircle(i) {
         const vm = this;
+        vm.backgroundC = vm.backCircle.color;
         vm.backCircle.drawCircle();
         vm.drawCircles();
         vm.backCircle.x = vm.circles[i].x;
@@ -330,16 +396,21 @@ class App {
                 vm.color_change = false;
             }
             if (vm.circles[i].r < (vm.w / 5)) {
-                var t = (vm.circles[i].r / (vm.w / 5)) * 0.45; /*ratio of radius to size [0-1]*/
-                vm.circles[i].r = Math.ceil(vm.circles[i].r * (1.45 - t));
+                var t = (vm.circles[i].r / (vm.w / 5)) * 0.40; /*ratio of radius to size [0-1]*/
+                vm.circles[i].r = Math.ceil(vm.circles[i].r * (1.40 - t));
             }
+            
             vm.circles[i].drawCircle();
+            if(vm.circles[i].innerText !== "" && vm.mode==="titlescreen"){
+                vm.circles[i].drawText();
+            }
         }
     }
 
     change() {
         const vm = this;
         if (vm.changing && vm.backCircle.r > vm.h) {/*resets values for a split second to end*/
+            vm.backCircle.drawCircle();
             vm.changing = false;
         }
         else if (vm.changing && vm.backCircle.r > vm.h / 2) { /*In the process of changing after it passes circles*/
@@ -365,12 +436,22 @@ class App {
     draw(t) {
         const vm = this;
         window.requestAnimationFrame((t) => { this.draw(t); });
+        vm.t = t;
+        if(vm.changing === true){
+            vm.ctx.fillStyle = vm.backgroundC;
+            vm.ctx.fillRect(0,0,vm.w, vm.score.scoreY+50);
+        }
+
         vm.change();
+
+        
 
         if(vm.mode === "titlescreen"){
             vm.title.draw();
         } else if (vm.mode === "maingame"){
-            vm.score.draw();
+            vm.score.drawScore();
+            vm.score.drawTimer(t);
+            
         }
         
         

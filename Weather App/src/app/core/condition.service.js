@@ -22,6 +22,9 @@
         var tStorm = function() {
             return "Thunderstorm";
         };
+        var snow = function(){
+            return "Snow";
+        }
 
         return {
             wunderCondition: wunderCondition,
@@ -65,6 +68,9 @@
             if (condition === "thunder-storm") {
                 return tStorm();
             }
+            if (condition === "snow"){
+                return snow();
+            }
         }
 
         // function yahooCondition(condition) {
@@ -98,7 +104,7 @@
             if (condition === "Sunny") {
                 return clear();
             }
-            if (condition === "Patchy light rain in area with thunder" || condition === "Moderate or heavy rain in area with thunder" || condition === "Thundery outbreaks in nearby") {
+            if (condition === "Patchy light rain in area with thunder" || condition === "Moderate or heavy rain in area with thunder" || condition === "Thundery outbreaks in nearby" || condition === "Moderate or heavy rain with thunder") {
                 return tStorm();
             }
         }

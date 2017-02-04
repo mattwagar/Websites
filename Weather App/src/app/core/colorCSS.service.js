@@ -209,6 +209,8 @@
                 return '#616cff';
             case "Thunderstorm":
                 return '#be7ffc';
+            case "Snow":
+                return '#91ffff';
             default:
                 return '#cae3b7';
         }
