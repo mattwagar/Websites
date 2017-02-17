@@ -110,3 +110,58 @@ table.center {
   margin-left: auto;
   margin-right: auto;
 }
+
+.temparea{
+  fill: rgba(255,165,0, 0.6);
+  font-weight:bold;
+  font-size:20px;
+}
+
+.humidarea{
+  fill: rgba(0,191,255, 0.4);
+  font-weight:bold;
+  font-size:20px;
+}
+
+.windarea{
+  fill: rgba(144, 238, 144, 0.6);
+  font-weight:bold;
+  font-size:20px;
+}
+
+.templine {
+  fill: none;
+  stroke: orange;
+  stroke-width: 5px;
+}
+
+.humidline{
+  fill: none;
+  stroke: rgb(0,191,255);
+  stroke-width: 5px;
+}
+
+.windline{
+  fill: none;
+  stroke: rgb(144, 238, 144);
+  stroke-width: 5px;
+}
+
+.axis line{
+  stroke: rgba(255,255,255,0.8);
+}
+
+.axis path{
+  stroke: rgba(255,255,255,0.8);
+}
+
+.axis text{
+  fill: rgba(255,255,255,0.7);
+  font-size: 15px;
+}
+
+#d3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

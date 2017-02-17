@@ -16,6 +16,7 @@
                 video: '='
             }
         };
+    }
 
         /* jshint ignore:start */
         VideoController.$inject = ['$scope', 'conditionService'];
@@ -29,5 +30,4 @@
             }, 5000);
 
         }
-    }
-})();
+    })();

@@ -1,6 +1,9 @@
 <mw-video video="vm.averageVideo" ></mw-video>
 
 
+<d3graph weather="vm.averageWeather"></d3graph>
+
+
 <mw-weather-graph service="vm.averageWeather.weather" wname="Average" colors="vm.averageColor" website='' icon=''></mw-weather-graph>
 <mw-weather-graph service="vm.weather.wunderground.weather" wname="Wunderground" colors="vm.wunderColor" website='{{vm.wunderWebsite[0]}}' icon='vm.wunderWebsite[1]'></mw-weather-graph>
 <mw-weather-graph service="vm.weather.forecastio.weather" wname="Forecast.io" colors="vm.forecastColor" website='{{vm.forecastWebsite[0]}}' icon='vm.forecastWebsite[1]'></mw-weather-graph>
