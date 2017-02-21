@@ -7,7 +7,7 @@
 
     function d3graph() {
         return {
-            templateUrl: 'app/landing/directives/d3graphDirective.html',
+            template: '<div id="d3"><div>',
             restrict: 'E',
             controller: d3GraphController,
             controllerAs: 'vm',
@@ -26,10 +26,8 @@
 
         console.log(d3f);
 
-        var wdata;
+        var wdata = [];
 
-
-        console.log(wdata);
         // set the dimensions and margins of the graph
         var margin = { top: 20, right: 20, bottom: 30, left: 50 },
             width = 960 - margin.left - margin.right,
