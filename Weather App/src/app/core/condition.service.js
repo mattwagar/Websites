@@ -104,7 +104,7 @@
             if (condition === "Sunny") {
                 return clear();
             }
-            if (condition === "Patchy light rain in area with thunder" || condition === "Moderate or heavy rain in area with thunder" || condition === "Thundery outbreaks in nearby" || condition === "Moderate or heavy rain with thunder") {
+            if (condition === "Thundery outbreaks possible" || condition === "Patchy light rain in area with thunder" || condition === "Moderate or heavy rain in area with thunder" || condition === "Thundery outbreaks in nearby" || condition === "Moderate or heavy rain with thunder") {
                 return tStorm();
             }
             if (condition === "Moderate or heavy snow showers"){
