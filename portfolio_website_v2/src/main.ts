@@ -303,6 +303,7 @@ export class Wrapper {
     link: HTMLDivElement;
     link_text: HTMLDivElement;
     col6: HTMLDivElement;
+    col6Holder: HTMLDivElement;
 
     change: boolean;
 
@@ -327,8 +328,8 @@ export class Wrapper {
         vm.title_element_text = document.createTextNode('');
         vm.title_element.appendChild(vm.title_element_text);
 
-        var col6 = document.createElement('div');
-        col6.classList.add('col-xs-12', 'col-md-6', 'col-lg-7', 'row', 'nomar', 'nopad');
+        vm.col6Holder = document.createElement('div');
+        vm.col6Holder.classList.add('col-xs-12', 'col-md-6', 'col-lg-7', 'row', 'nomar', 'nopad');
 
         var row_fill = document.createElement('div');
         row_fill.classList.add('row', 'justify-center', 'nomar');
@@ -389,16 +390,17 @@ export class Wrapper {
         vm.html.appendChild(row);
         row.appendChild(vm.title_element);
         row.appendChild(vm.col6);
-        row.appendChild(col6);
+        row.appendChild(vm.col6Holder);
 
 
-        col6.appendChild(col12);
+        vm.col6Holder.appendChild(col12);
         col12.appendChild(vm.description);
         col12.appendChild(desc);
-        col6.appendChild(vm.stack)
+        vm.col6Holder.appendChild(vm.stack)
         vm.stack.appendChild(stack_title);
         vm.stack.appendChild(vm.flex_grid);
-        col6.appendChild(vm.demo)
+        
+        vm.col6Holder.appendChild(vm.demo)
         vm.demo.appendChild(demo_title);
         vm.demo.appendChild(vm.link);
         vm.link.appendChild(vm.link_text);
@@ -442,6 +444,16 @@ export class Wrapper {
         vm.setDesc();
         vm.setStack();
         vm.setMedia();
+
+        if(vm.url === ""){
+            console.log('I THINK THIS HAPPENED?');
+            console.log(vm.col6.lastChild);
+            vm.col6Holder.removeChild(vm.demo);
+        } else if(vm.col6Holder.lastChild !== vm.demo){
+            console.log('WOAH THIS WORKS?');
+            console.log(vm.col6.lastChild);
+            vm.col6Holder.appendChild(vm.demo);            
+        }
         // vm.setStack(stack);
     }
 
@@ -581,15 +593,15 @@ m.push(new media.Media('', ["./portfolio/cgi_final_1.png", "./portfolio/cgi_fina
 
 m.push(new media.Media('', ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg'], ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg']))
 
-m.push(new media.Media('', ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg'], ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg']))
+m.push(new media.Media('', ['./portfolio/roast_6.png', './portfolio/roast_2.png', './portfolio/roast_3.png', './portfolio/roast_4.png'], ['./portfolio/roast_6.png', './portfolio/roast_2.png','./portfolio/roast_3.png', './portfolio/roast_4.png']))
 
 var portfolio = new Portfolio('portfolio', [
     { title: 'Rem', title_image: './portfolio/rememberence_logo.jpg', desc: "Rem is a video game about a young girl trapped in a comatose dreamscape. You play as a young girl who must overcome her fears to remember her past. In this fun, over-the-shoulder stealth game you must avoid screen headed enemies, and to find mementos of your past. For this project I worked in many areas including Web Development, Level Design, Modeling, and Documentation.", stack: rem_stack, media: m[0], type: 'Unity Game', url: 'http://offbrandhell.games/#/home' },
-    { title: 'Roast', title_image: '', desc: "", stack: roast_stack, media: m[5], type: 'Web App', url: '' },
+    { title: 'Roast', title_image: './portfolio/roast_7.jpg', desc: "Roast is a webapp that surveys comfort in an indoor space. It asks questions that gauge temperature, noise, smell, and humidity, and maps it to where you are on your building's floorplan. Through this crowd sourced data collected, building managers, architects and the people taking the survey can understand how people feel in a space. I worked on this project for 6 months while I was at the architecture firm, Kieran Timberlake.", stack: roast_stack, media: m[5], type: 'Web App', url: '' },
     { title: 'Breathless', title_image: './portfolio/breathless.jpg', desc: "The Space Pirate, Aria, is on a mission to loot a mineral cargo ship. However, upon landing on the cargo ship, Aria's helmet cracks causing her to slowly lose oxygen. It's now a race against time to collect all the gems before her oxygen runs out!", stack: breathless_stack, media: m[1], type: 'HTML5 Game', url: '/breathless' },
     { title: 'Mean Forecast', title_image: './portfolio/mean_forecast_1.jpg', desc: 'A small web app that calculates the average of 3 weather API\'s: Wunderground, Forecast.io, and World Weather Online. This data is then served onto a D3.js Line Chart for temperature, humidty, and windspeed. Also the webapp itself has many subtleties that are affected by weather data. For example, the video  resembles the current weather. Also each graph is color coated by a gradient based on the weather data.', stack: weather_stack, media: m[4], type: 'Website', url: '/meanforecast' },
     { title: 'Q*Bert', title_image: "./portfolio/qbert_play.jpg", desc: 'This is my Bouncing Ball Assignment for Animation 1 at Drexel University. When picking a game that mixes my love of retro video games and bouncing balls, Q*Bert was a no-brainer. Everything is individually modelled, textured, and animated by me. Made in Maya, and rendered in V-Ray.', stack: qbert_stack, media: m[2], type: 'Animation', url: 'https://vimeo.com/198149795' },
-    { title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc: 'This is my final for CGI 2 at Drexel University. The assignment was to recreate any type of room, so I chose a little boy\'s room. We were tasked with creating at least one complex object, so I decided to go with a train set.', stack: qbert_stack, media: m[3], type: '3D Render', url: './portfolio/cgi_final_1.png' }]);
+    { title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc: 'This is my final for CGI 2 at Drexel University. The assignment was to recreate any type of room, so I chose a little boy\'s room. We were tasked with creating at least one complex object, so I decided to go with a train set.', stack: qbert_stack, media: m[3], type: '3D Render', url: '' }]);
 
 
 var welcome_b = document.getElementById('welcome-button');
