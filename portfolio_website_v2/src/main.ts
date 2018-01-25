@@ -11,19 +11,20 @@ const timeout: number = 1000;
 
 var frontend = new skill_badge.Collection('./skills/', 'flex-grid1', [{ "name": 'HTML5', "class": 'circle-100', "image": 'html5.svg' },
 { "name": 'Java Script', "class": 'circle-100', "image": 'javascript-2.svg' },
-{ "name": 'Bootstrap', "class": 'circle-100', "image": 'bootstrap-4.svg' },
+{ "name": 'Ember JS', "class": 'circle-100', "image": 'ember.svg' },
 { "name": 'Angular JS', "class": 'circle-75', "image": 'angular-icon.svg' },
 { "name": 'Type Script', "class": 'circle-75', "image": 'typescript.svg' },
-{ "name": 'Gulp', "class": 'circle-75', "image": 'gulp.svg' },
+{ "name": 'D3.js', "class": 'circle-75', "image": 'd3-2.svg' },
 { "name": 'CSS3', "class": 'circle-50', "image": 'css-3.svg' },
 { "name": 'jQuery', "class": 'circle-50', "image": 'jquery-1.svg' },
 { "name": 'SCSS', "class": 'circle-50', "image": 'sass-1.svg' },
-{ "name": 'D3.js', "class": 'circle-25', "image": 'd3-2.svg' }], 'frontend');
+{ "name": 'React JS', "class": 'circle-25', "image": 'react.svg' }], 'frontend');
 var softeng = new skill_badge.Collection('./skills/', 'flex-grid2', [{ "name": 'Java', "class": 'circle-75', "image": 'java-14.svg' },
 { "name": 'Unity', "class": 'circle-75', "image": 'unity.svg' },
 { "name": 'C++', "class": 'circle-75', "image": 'c-seeklogo.com.svg' },
 { "name": 'C#', "class": 'circle-50', "image": 'csharp.svg' },
 { "name": 'Python', "class": 'circle-50', "image": 'python-5.svg' },
+{ "name": 'Open GL', "class": 'circle-25', "image": 'opengl2.svg' },
 { "name": 'Node JS', "class": 'circle-25', "image": 'nodejs-icon.svg' },
 { "name": 'Android Studio', "class": 'circle-25', "image": 'Android_studio.svg' }], 'softeng');
 var design = new skill_badge.Collection('./skills/', 'flex-grid3', [{ "name": 'Photoshop', "class": 'circle-50', "image": 'photoshop-cc.svg' },
@@ -573,8 +574,16 @@ var weather_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Angu
 { "name": 'D3.js', "class": 'circle-50', "image": 'd3-2.svg' }
 ]);
 
-var roast_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Angular JS', "class": 'circle-100', "image": 'angular-icon.svg' },
+var roast_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Ember JS', "class": 'circle-100', "image": 'ember.svg' },
 { "name": 'D3.js', "class": 'circle-75', "image": 'd3-2.svg' }
+]);
+
+var contrast_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Java', "class": 'circle-100', "image": 'java-14.svg' }
+]);
+
+var port_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Type Script', "class": 'circle-100', "image": 'typescript.svg' }, 
+{ "name": 'HTML5', "class": 'circle-100', "image": 'html5.svg' },
+{ "name": 'SCSS', "class": 'circle-100', "image": 'sass-1.svg' }
 ]);
 
 // var breathless_media = new media.Media('media-0', ["./portfolio/breathless.jpg","./portfolio/breathless.jpg","./portfolio/cat.jpg"], ["./portfolio/breathless.jpg","./portfolio/cat.jpg"], '<iframe src="https://player.vimeo.com/video/198149795" width="471" height="335" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
@@ -591,16 +600,22 @@ m.push(new media.Media('', ["./portfolio/qbert_play.jpg", "./portfolio/qbert_pla
 
 m.push(new media.Media('', ["./portfolio/cgi_final_1.png", "./portfolio/cgi_final_3.png", "./portfolio/cgi_final_2.png"], ["./portfolio/cgi_final_1.png", "./portfolio/cgi_final_3.png", "./portfolio/cgi_final_2.png"]));
 
-m.push(new media.Media('', ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg'], ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg']))
+m.push(new media.Media('', ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg'], ['./portfolio/mean_forecast_1.jpg', './portfolio/mean_forecast_2.jpg']));
 
-m.push(new media.Media('', ['./portfolio/roast_6.png', './portfolio/roast_2.png', './portfolio/roast_3.png', './portfolio/roast_4.png'], ['./portfolio/roast_6.png', './portfolio/roast_2.png','./portfolio/roast_3.png', './portfolio/roast_4.png']))
+m.push(new media.Media('', ['./portfolio/roast_6.png', './portfolio/roast_2.png', './portfolio/roast_3.png', './portfolio/roast_4.png'], ['./portfolio/roast_6.png', './portfolio/roast_2.png','./portfolio/roast_3.png', './portfolio/roast_4.png']));
+
+m.push(new media.Media('', ['./portfolio/contrast_3.png', './portfolio/contrast_5.png', './portfolio/contrast_4.png',  './portfolio/contrast_7.png'], ['./portfolio/contrast_3.png', './portfolio/contrast_5.png', './portfolio/contrast_4.png', './portfolio/contrast_7.png']));
+
+m.push(new media.Media('', ['./portfolio/port_1.png', './portfolio/port_2.png', './portfolio/port_3.png',  './portfolio/port_4.png'], ['./portfolio/port_1.png', './portfolio/port_2.png', './portfolio/port_3.png', './portfolio/port_4.png']));
 
 var portfolio = new Portfolio('portfolio', [
-    { title: 'Rem', title_image: './portfolio/rememberence_logo.jpg', desc: "Rem is a video game about a young girl trapped in a comatose dreamscape. You play as a young girl who must overcome her fears to remember her past. In this fun, over-the-shoulder stealth game you must avoid screen headed enemies, and to find mementos of your past. For this project I worked in many areas including Web Development, Level Design, Modeling, and Documentation.", stack: rem_stack, media: m[0], type: 'Unity Game', url: 'http://offbrandhell.games/#/home' },
-    { title: 'Roast', title_image: './portfolio/roast_7.jpg', desc: "Roast is a webapp that surveys comfort in an indoor space. It asks questions that gauge temperature, noise, smell, and humidity, and maps it to where you are on your building's floorplan. Through this crowd sourced data collected, building managers, architects and the people taking the survey can understand how people feel in a space. I worked on this project for 6 months while I was at the architecture firm, Kieran Timberlake.", stack: roast_stack, media: m[5], type: 'Web App', url: '' },
+    { title: 'Rem', title_image: './portfolio/rememberence_logo.jpg', desc: "Rem is a video game about a young girl trapped in a comatose dreamscape. You play as a young girl who must overcome her fears to remember her past. In this fun, over-the-shoulder stealth game you must avoid screen headed enemies, and find mementos of your past. For this project I worked in many areas including Web Development, Level Design, Modeling, and Documentation.", stack: rem_stack, media: m[0], type: 'Unity Game', url: 'http://offbrandhell.games/#/home' },
+    { title: 'Roast', title_image: './portfolio/roast_7.jpg', desc: "Roast is a webapp that surveys comfort in an indoor space. It asks questions that gauge temperature, noise, smell, and humidity, and maps it to where you are on your building's floorplan. Through this crowd sourced data collected, building managers, architects and the people taking the survey can understand how people feel in a space. I worked on this project for 6 months while I was working at the architecture firm, Kieran Timberlake.", stack: roast_stack, media: m[5], type: 'Web App', url: '' },
+    { title: 'Contrast', title_image: './portfolio/contrast_6.png', desc: "Contrast in color theory is when two colors are starkly different from each other. In this game your objective is to select the most contrasting circle with the background color. This is created in Java Swing with a game engine hand coded by me using the Buffered Image class. This game engine includes a Frame Buffer, Input Manager, and Animation Loop.", stack: contrast_stack, media: m[6], type: 'Java Game', url: 'https://drive.google.com/open?id=1Gy0Oshu941-MPfhutWlO63F92IVux9fM' },
+    { title: 'Portfolio', title_image: './portfolio/port_1.png', desc: "From concept to design to development I put a lot of love into this. As a personal challenge I created this website entirely in Typescript with no jQuery. All in all I can conclude that jQuery is overrated! Java Script is powerful enough on its own.", stack: port_stack, media: m[7], type: 'Website', url: 'https://github.com/mattwagar/Websites/tree/master/portfolio_website_v2' },
     { title: 'Breathless', title_image: './portfolio/breathless.jpg', desc: "The Space Pirate, Aria, is on a mission to loot a mineral cargo ship. However, upon landing on the cargo ship, Aria's helmet cracks causing her to slowly lose oxygen. It's now a race against time to collect all the gems before her oxygen runs out!", stack: breathless_stack, media: m[1], type: 'HTML5 Game', url: '/breathless' },
     { title: 'Mean Forecast', title_image: './portfolio/mean_forecast_1.jpg', desc: 'A small web app that calculates the average of 3 weather API\'s: Wunderground, Forecast.io, and World Weather Online. This data is then served onto a D3.js Line Chart for temperature, humidty, and windspeed. Also the webapp itself has many subtleties that are affected by weather data. For example, the video  resembles the current weather. Also each graph is color coated by a gradient based on the weather data.', stack: weather_stack, media: m[4], type: 'Website', url: '/meanforecast' },
-    { title: 'Q*Bert', title_image: "./portfolio/qbert_play.jpg", desc: 'This is my Bouncing Ball Assignment for Animation 1 at Drexel University. When picking a game that mixes my love of retro video games and bouncing balls, Q*Bert was a no-brainer. Everything is individually modelled, textured, and animated by me. Made in Maya, and rendered in V-Ray.', stack: qbert_stack, media: m[2], type: 'Animation', url: 'https://vimeo.com/198149795' },
+    { title: 'Q*Bert', title_image: "./portfolio/qbert_play.jpg", desc: 'This is my Bouncing Ball Assignment for Animation 1 at Drexel University. When picking a game that mixes my love of retro video games and bouncing balls, Q*Bert was a no-brainer. Everything is originally modelled, textured, and animated. Made in Maya, and rendered in V-Ray.', stack: qbert_stack, media: m[2], type: 'Animation', url: 'https://vimeo.com/198149795' },
     { title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc: 'This is my final for CGI 2 at Drexel University. The assignment was to recreate any type of room, so I chose a little boy\'s room. We were tasked with creating at least one complex object, so I decided to go with a train set.', stack: qbert_stack, media: m[3], type: '3D Render', url: '' }]);
 
 
