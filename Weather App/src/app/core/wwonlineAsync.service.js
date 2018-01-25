@@ -13,7 +13,7 @@
         var weatherJSON = null;
 
         var wwonlineJSON = function() {
-            return $http.get('http://api.worldweatheronline.com/premium/v1/weather.ashx?key=1c5f6c0458e94407bc5195952171701&q=19104&format=xml&num_of_days=7', {
+            return $http.get('http://api.worldweatheronline.com/premium/v1/weather.ashx?key=878d1e3652de469da8a204709182501&q=19104&format=xml&num_of_days=7', {
                 transformResponse: function(data) {
                     // convert the data to JSON and provide
                     // it to the success function below
