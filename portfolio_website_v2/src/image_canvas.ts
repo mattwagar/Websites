@@ -39,7 +39,7 @@ export class Img {
     vm.w = vm.canvas.width = width;
     vm.h = vm.canvas.height = height;
     vm.image = new Image();
-    vm.image.src = 'city.jpg';
+    vm.image.src = 'perlin_background.png';
     vm.loaded = false;
 
     vm.image.onload = function () {
@@ -73,8 +73,8 @@ export class Img {
       vm.scale = vm.scaleY;
     }
 
-    vm.imgWidth *= vm.scale * 1.05;
-    vm.imgHeight *= vm.scale * 1.05;
+    vm.imgWidth *= vm.scale * 1.1;
+    vm.imgHeight *= vm.scale * 1.01;
 
     vm.anchorX = (vm.imgWidth - vm.screenWidth);
     vm.anchorY = (vm.imgHeight - vm.screenHeight);
@@ -114,7 +114,7 @@ export class App {
 
     if (isMobile) {
       var image = document.createElement('img');
-      image.src = 'city.jpg';
+      image.src = 'perlin_background.png';
       document.getElementById('canvas').style.display = 'none';
       document.getElementById('canvas-container').style.display = 'none';
       image.onload = function(){

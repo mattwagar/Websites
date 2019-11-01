@@ -8,7 +8,7 @@ export class Skill {
   image: HTMLImageElement;
   text: HTMLDivElement;
   flex_grid_id: string;
-  constructor(name: string, classpercent: string, image: string, flex_grid_id: string) {
+  constructor(name: string, classpercent: string, image: string, flex_grid_id: string, blacktext: boolean) {
     const vm = this;
 
     vm.flex_grid_id = flex_grid_id;
@@ -42,7 +42,11 @@ export class Skill {
     vm.image.src = image;
 
     vm.text = document.createElement('div');
-    vm.text.className += 'text';
+    if (blacktext) {
+      vm.text.className += 'text black-text';
+    } else {
+      vm.text.className += 'text';
+    }
     vm.text.appendChild(document.createTextNode(name));
 
     // .flex-item
@@ -57,7 +61,7 @@ export class Skill {
     vm.scale_box.appendChild(vm.image);
     vm.flex_item.appendChild(vm.text);
   }
-  resetId(id: string){
+  resetId(id: string) {
     const vm = this;
     vm.flex_grid_id = id;
   }
@@ -82,9 +86,9 @@ export class Collection {
   skills: Skill[];
   flex_grid_id: string;
 
-  constructor(path: string, flex_grid_id: string, images: ISkillInfo[], id?: string) {
+  constructor(path: string, flex_grid_id: string, images: ISkillInfo[],blacktext: boolean, id?: string) {
     const vm = this;
-    
+
     vm.images = images;
     vm.path = path;
     vm.flex_grid_id = flex_grid_id;
@@ -92,9 +96,9 @@ export class Collection {
     vm.skills = [];
 
     for (var i = 0; i < images.length; i++) {
-      vm.skills.push(new Skill(images[i].name, images[i].class, vm.path + images[i].image, vm.flex_grid_id));
+      vm.skills.push(new Skill(images[i].name, images[i].class, vm.path + images[i].image, vm.flex_grid_id, blacktext));
     }
-    if(id){
+    if (id) {
       vm.id = id;
       var element = <HTMLDivElement>document.getElementById(vm.id);
       element.onmouseup = function (e) {
@@ -103,7 +107,7 @@ export class Collection {
     }
   }
 
-  public resetIds(id: string){
+  public resetIds(id: string) {
     const vm = this;
     vm.flex_grid_id = id;
     for (var i = 0; i < vm.skills.length; i++) {

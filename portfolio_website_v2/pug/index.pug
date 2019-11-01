@@ -13,66 +13,50 @@ html
       .row.row-fill-canvas.nomar#canvas-text-overlay
         .col-xs-12
           .row.vertical-center
-            .col.chicle Matt Wagar
-            .col.canvas-text Designer and Developer
-            .col.justify-center
-              .welcome-button.row#welcome-button
-                .col.canvas-text Welcome
+            .col.FirstInLine.center Matthew Wagar
+              .subtitle Technical Artist - Game Developer
+
 
         
     #body
-      
-        #portfolio.section
+        #demoreel.section
           .row.nomar
-            .col-xs-2.col-sm-1.col-md-1.col-lg-1
+            .col-xs-3.col-sm-2.col-md-2.col-lg-1
               .hr
-            .col-xs-8.col-sm-5.col-md-4.col-lg-3.parallelogram.right
-              .text PORTFOLIO
-            .col-xs-2.col-sm-6.col-md-7.col-lg-8
+            .col-xs-6.col-sm-4.col-md-3.col-lg-3.parallelogram.right
+              .text DEMO REEL
+            .col-xs-3.col-sm-6.col-md-7.col-lg-8
               .hr
+          .demo-reel-xs
+            <iframe src="https://player.vimeo.com/video/367630140" width="320" height="180" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+          .demo-reel-lg
+            <iframe src="https://player.vimeo.com/video/367630140" width="960" height="540" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+            
+        #portfolio.section
+          
+          .row.nomar
+                .col-xs-3.col-sm-7.col-md-8.col-lg-9
+                  .hr
+                .col-xs-6.col-sm-4.col-md-3.col-lg-2.parallelogram.left
+                  .text PORTFOLIO
+                .col-xs-3.col-sm-1.col-md-1.col-lg-1
+                  .hr
           //- .title-text Portfolio:
         
         
         #skills.section
               .row.nomar
-                .col-xs-3.col-sm-7.col-md-8.col-lg-9
+                .col-xs-3.col-sm-2.col-md-2.col-lg-1
                   .hr
-                .col-xs-6.col-sm-4.col-md-3.col-lg-2.parallelogram.left
+                .col-xs-6.col-sm-4.col-md-3.col-lg-3.parallelogram.right
                   .text SKILLS
-                .col-xs-3.col-sm-1.col-md-1.col-lg-1
+                .col-xs-3.col-sm-6.col-md-7.col-lg-8
                   .hr
               //- .title-text Skills:
               //- .desc-text My skills reflect my deep interest in web development, computer graphics, and data visualization.
               .row.row-padding.skills_whitebox.dropshadow
                 .col-xs-12.col-md-3#frontend
-                  .row.vertical-center.padding-bottom
-                    .circle
-                      svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', viewbox='0 0 295.2 295.2')
-                        g
-                          g
-                            g
-                              path(d='M276.2,26.2H19c-10.5,0-19,8.5-19,19v171.4c0,10.5,8.5,19,19,19h85.7v23.8H71.4v9.5h33.3h85.7h33.3v-9.5\
-                              h-33.3v-23.8h85.7c10.5,0,19-8.5,19-19V45.2C295.2,34.7,286.7,26.2,276.2,26.2z M181,259.5h-66.7v-23.8H181V259.5z M285.7,216.7\
-                              c0,5.3-4.3,9.5-9.5,9.5h-85.7h-85.7H19c-5.3,0-9.5-4.3-9.5-9.5V45.2c0-5.3,4.3-9.5,9.5-9.5h257.1c5.3,0,9.5,4.3,9.5,9.5V216.7z')
-                              path(d='M19,216.7h257.1V45.2H19V216.7z M28.6,54.8h238.1v152.4H28.6V54.8z')
-                              circle(cx='42.9', cy='69', r='4.8')
-                              circle(cx='57.1', cy='69', r='4.8')
-                              circle(cx='71.4', cy='69', r='4.8')
-                              path(d='M38.1,140.5h66.7V83.3H38.1V140.5z M47.6,92.9h47.6V131H47.6V92.9z')
-                              path(d='M114.3,140.5H181V83.3h-66.7V140.5z M123.8,92.9h47.6V131h-47.6V92.9z')
-                              path(d='M190.5,140.5h66.7V83.3h-66.7L190.5,140.5L190.5,140.5z M200,92.9h47.6V131H200V92.9z')
-                              rect(x='38.1', y='150', width='142.9', height='9.5')
-                              rect(x='38.1', y='169', width='142.9', height='9.5')
-                              rect(x='38.1', y='188.1', width='142.9', height='9.5')
-                              rect(x='195.2', y='150', width='61.9', height='9.5')
-                              rect(x='195.2', y='169', width='61.9', height='9.5')
-                              rect(x='195.2', y='188.1', width='61.9', height='9.5')
-
-                    .desc-text Front End Development
-                .col-xs-12.col-md-9.row.justify-center.nomar
-                  .row.justify-center#flex-grid1
-              .row.row-padding.skills_whitebox.dropshadow
-                .col-xs-12.col-md-3#softeng
                   .row.vertical-center.padding-bottom
                     .circle
                       svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', viewbox='0 0 522.5 522.5')
@@ -87,7 +71,20 @@ html
                             path(d='M519.6,254.7l-133-133c-1.9-1.9-4.1-2.9-6.6-2.9c-2.5,0-4.7,1-6.6,2.9l-14.3,14.3c-1.9,1.9-2.9,4.1-2.9,6.6\
                             s0.9,4.7,2.9,6.6l112.2,112.2L359.2,373.4c-1.9,1.9-2.9,4.1-2.9,6.6c0,2.5,0.9,4.7,2.9,6.6l14.3,14.3c1.9,1.9,4.1,2.9,6.6,2.9\
                             c2.5,0,4.7-1,6.6-2.9l133-133c1.9-1.9,2.9-4.1,2.9-6.6C522.5,258.8,521.5,256.6,519.6,254.7z')
-                    .desc-text Software Engineering
+
+                    .desc-text Programming
+                .col-xs-12.col-md-9.row.justify-center.nomar
+                  .row.justify-center#flex-grid1
+              .row.row-padding.skills_whitebox.dropshadow
+                .col-xs-12.col-md-3#softeng
+                  .row.vertical-center.padding-bottom
+                    .circle
+                      svg(version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewbox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve') 
+                        g
+                          path(d='M768.3,480.1c-27.4,0-49.7-22.2-49.7-49.7c0-27.4,22.2-49.7,49.7-49.7S818,403,818,430.4C818,457.9,795.8,480.1,768.3,480.1z M649.1,599.4c-27.4,0-49.7-22.2-49.7-49.7s22.2-49.7,49.7-49.7c27.5,0,49.7,22.2,49.7,49.7S676.5,599.4,649.1,599.4z M400.6,519.9H341v59.6c0,21.9-17.8,39.8-39.8,39.8c-22,0-39.8-17.8-39.8-39.8v-59.6h-59.6c-22,0-39.8-17.8-39.8-39.8c0-22,17.8-39.8,39.8-39.8h59.6v-59.6c0-21.9,17.8-39.8,39.8-39.8c21.9,0,39.8,17.8,39.8,39.8v59.6h59.6c22,0,39.8,17.8,39.8,39.8C440.4,502.1,422.6,519.9,400.6,519.9z')
+                          path(d='M962.5,443c-20.3-100.3-105.6-298.1-211-300.7l-2.9,0c-51.8,0-92.5,34.5-131.8,67.8c-37.9,32.1-73.6,62.3-116.7,62.3c-43.1,0-78.8-30.3-116.7-62.3c-39.4-33.3-80.1-67.8-131.8-67.8l-2.9,0C143.1,144.9,57.8,342.7,37.5,443C20.9,525.4,3.1,641.8,12.7,728c8.3,74,65.1,129.8,132.1,129.8c15,0,30.2-2.7,45.2-8.2c27.6-10,53.2-27.7,80.4-46.4c56.2-38.8,120-82.8,229.6-82.8c109.6,0,173.3,44,229.6,82.8c27.2,18.7,52.8,36.4,80.4,46.4c15,5.4,30.2,8.2,45.2,8.2c67,0,123.8-55.8,132.1-129.8C996.9,641.9,979.1,525.5,962.5,443z M942.7,719.9c-5.8,51.5-42.6,90.3-87.2,90.3c-9.8,0-19.9-1.8-30-5.4c-22.2-7.9-44.6-23.2-70.5-40.8c-58.8-40-132-89.8-256.2-89.8c-124.2,0-197.4,49.8-256.2,89.9c-25.9,17.6-48.3,32.9-70.5,40.8c-10.1,3.6-20.2,5.4-30,5.4c-44.6,0-80.1-38.8-86-90.3c-9.1-80,8.2-190.6,24.3-269.3c21.5-104.8,99.6-261.6,167-263.3l1.8,0c35.4,0,68.4,27.5,103.3,56.7c40.5,33.9,86.5,72.2,146.3,72.2c59.8,0,105.8-38.4,146.3-72.2c34.9-29.1,67.9-56.7,103.3-56.7l1.8,0C817.6,189,897,345.8,918.4,450.6C941.5,563.6,949.9,656.7,942.7,719.9z')
+
+                    .desc-text Game Dev Tools
                 .col-xs-12.col-md-9.row.justify-center.nomar
                   .row.justify-center#flex-grid2
               .row.row-padding.skills_whitebox.dropshadow
@@ -120,31 +117,47 @@ html
                             c0,13.7,11.2,24.9,24.9,24.9s24.9-11.2,24.9-24.9v-94.7l99.9-0.4V463.7z M424.2,83.7L410.5,124l-33.1-11.3l13.7-40.2\
                             c1.5-4.4,4.6-8,8.8-10.1c4.2-2.1,8.9-2.4,13.4-0.9C422.4,64.6,427.3,74.6,424.2,83.7z')
 
-                    .desc-text Graphic Design
+                    .desc-text Art Tools
                 .col-xs-12.col-md-9.row.justify-center.nomar
                   .row.justify-center#flex-grid3
         
         #about-me.section
+          
+
           .row.nomar
-            .col-xs-2.col-sm-1.col-md-1.col-lg-1
-              .hr
-            .col-xs-8.col-sm-5.col-md-4.col-lg-3.parallelogram.right
+            .col-xs-3.col-sm-7.col-md-8.col-lg-8
+                  .hr
+            .col-xs-6.col-sm-4.col-md-3.col-lg-3.parallelogram.left
               .text ABOUT ME
-            .col-xs-2.col-sm-6.col-md-7.col-lg-8
+            .col-xs-3.col-sm-1.col-md-1.col-lg-1
               .hr
           //- .title-text About Me:
           .row.nomar.justify-center
             .col-xs-12.col-sm-4.col-lg-3.profile
-              img(src='profile_pic.jpg').dropshadow
+              img(src='profilepic.png').dropshadow
             .col-xs-12.col-sm-8.col-lg-9.gradient.dropshadow
               .row.row-fill.align-items-center.nomar
                 .col-xs-12.profile-text
                   .header-text Matt Wagar
-                  .text A creative mind with a technical skillset. From web development to data visualization to game design, Matt Wagar is interested in any job with a creative edge. He is passionate, hard-working, and a quick learner. Currently a junior at Drexel University, Matt is pursuing a BS in Computer Science.
-                  a(href='http://www.mwagar.com/resume.pdf')
+                  .text A Game Developer with experience in Technical Art, Mixed Reality Production (AR / VR), and UI Development, Matt Wagar has just graduated from Drexel University in June 2019. He graduated with a B.S. in Computer Science, a concentration in Game Design, a minor in Animation and Visual Effects, and a minor in Virtual Reality and Immersive Media. Matt Wagar is familiar with many aspects of the game development pipeline and is most excited by any chance to bridge code and art. 
+                  a(href='http://www.mwagar.com/Resume2019.pdf')
                     .welcome-button.row.nomar
                       .col.text Resume PDF
-                
+                .col-xs-12.row.nomar
+                    a.row.nomar(href='mailto:mattywagar@gmail.com')
+                      img(src='mail_icon.png').icon
+                      .text.align-center.little-pad-left Contact Me
+                    a.row.nomar(href='https://twitter.com/MatthewWagar')
+                      img(src='twittericon.png').icon
+                      .text.align-center.little-pad-left Twitter
+                    a.row.nomar(href='https://www.linkedin.com/in/matthew-wagar-31998110a/')
+                      img(src='linkedinicon.png').icon
+                      .text.align-center.little-pad-left LinkedIn
+        .foot.row.nomar
+          .text.t-right.nopad Copyright © 2019 by Matt Wagar
+          .t-left.nopad
+            <a href="https://twitter.com/MatthewWagar?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @MatthewWagar</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            //- <a href="https://twitter.com/MatthewWagar?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-show-count="false">Follow @MatthewWagar</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             
 
     //- #portfolio1
