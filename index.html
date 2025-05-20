@@ -1,52 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coming Soon</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1d3557, #457b9d);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-    }
-
-    a.button {
-      padding: 0.75rem 1.5rem;
-      background-color: #e63946;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    a.button:hover {
-      background-color: #d62828;
-    }
-  </style>
-</head>
-<body>
-  <h1>Something Awesome is Coming</h1>
-  <p>We're working hard to launch our new website. Stay tuned!</p>
-  <a href="#notify" class="button">Notify Me</a>
-</body>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+    <title>Matt Wagar: Game Developer</title>
+    <link rel="stylesheet" type="text/css" href="portfolio.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+  </head>
+  <body>
+    <div id="welcome-page">
+      <canvas id="canvas"></canvas>
+      <div id="canvas-container"></div>
+      <div class="row row-fill-canvas nomar" id="canvas-text-overlay">
+        <div class="col-xs-12">
+          <div class="row vertical-center">
+            <div class="col FirstInLine center">Matthew Wagar
+              <div class="subtitle">Technical Artist - Game Developer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="body">
+      <div class="section" id="demoreel">
+        <div class="row nomar">
+          <div class="col-xs-3 col-sm-2 col-md-2 col-lg-1">
+            <div class="hr"></div>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 parallelogram right">
+            <div class="text">DEMO REEL</div>
+          </div>
+          <div class="col-xs-3 col-sm-6 col-md-7 col-lg-8">
+            <div class="hr"></div>
+          </div>
+        </div>
+        <div class="demo-reel-xs"><iframe src="https://player.vimeo.com/video/367630140" width="320" height="180" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+        <div class="demo-reel-lg"><iframe src="https://player.vimeo.com/video/367630140" width="960" height="540" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+      </div>
+      <div class="section" id="portfolio">
+        <div class="row nomar">
+          <div class="col-xs-3 col-sm-7 col-md-8 col-lg-9">
+            <div class="hr"></div>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 parallelogram left">
+            <div class="text">PORTFOLIO</div>
+          </div>
+          <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1">
+            <div class="hr"></div>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="skills">
+        <div class="row nomar">
+          <div class="col-xs-3 col-sm-2 col-md-2 col-lg-1">
+            <div class="hr"></div>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 parallelogram right">
+            <div class="text">SKILLS</div>
+          </div>
+          <div class="col-xs-3 col-sm-6 col-md-7 col-lg-8">
+            <div class="hr"></div>
+          </div>
+        </div>
+        <div class="row row-padding skills_whitebox dropshadow">
+          <div class="col-xs-12 col-md-3" id="frontend">
+            <div class="row vertical-center padding-bottom">
+              <div class="circle">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 522.5 522.5">
+                  <g>
+                    <g>
+                      <path d="M325.8,70.5l-17.7-4.9c-2.3-0.8-4.5-0.5-6.7,0.7c-2.2,1.2-3.7,3.1-4.4,5.6L190.4,440.5                            c-0.8,2.5-0.5,4.8,0.7,7c1.2,2.2,3.1,3.7,5.6,4.4l17.7,4.9c2.3,0.8,4.5,0.5,6.7-0.7c2.2-1.2,3.7-3.1,4.4-5.6L332,81.9                            c0.8-2.5,0.5-4.8-0.7-7C330.1,72.7,328.2,71.3,325.8,70.5z"></path>
+                      <path d="M166.2,142.5c0-2.5-1-4.7-2.9-6.6L149,121.6c-1.9-1.9-4.1-2.9-6.6-2.9s-4.7,1-6.6,2.9l-133,133                            c-1.9,1.9-2.9,4.1-2.9,6.6s1,4.7,2.9,6.6l133,133c1.9,1.9,4.1,2.9,6.6,2.9s4.7-1,6.6-2.9l14.3-14.3c1.9-1.9,2.9-4.1,2.9-6.6                            c0-2.5-1-4.7-2.9-6.6L51.1,261.2L163.3,149C165.2,147.1,166.2,144.9,166.2,142.5z"></path>
+                      <path d="M519.6,254.7l-133-133c-1.9-1.9-4.1-2.9-6.6-2.9c-2.5,0-4.7,1-6.6,2.9l-14.3,14.3c-1.9,1.9-2.9,4.1-2.9,6.6                            s0.9,4.7,2.9,6.6l112.2,112.2L359.2,373.4c-1.9,1.9-2.9,4.1-2.9,6.6c0,2.5,0.9,4.7,2.9,6.6l14.3,14.3c1.9,1.9,4.1,2.9,6.6,2.9                            c2.5,0,4.7-1,6.6-2.9l133-133c1.9-1.9,2.9-4.1,2.9-6.6C522.5,258.8,521.5,256.6,519.6,254.7z"></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div class="desc-text">Programming</div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-9 row justify-center nomar">
+            <div class="row justify-center" id="flex-grid1"></div>
+          </div>
+        </div>
+        <div class="row row-padding skills_whitebox dropshadow">
+          <div class="col-xs-12 col-md-3" id="softeng">
+            <div class="row vertical-center padding-bottom">
+              <div class="circle">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve"> 
+                  <g>
+                    <path d="M768.3,480.1c-27.4,0-49.7-22.2-49.7-49.7c0-27.4,22.2-49.7,49.7-49.7S818,403,818,430.4C818,457.9,795.8,480.1,768.3,480.1z M649.1,599.4c-27.4,0-49.7-22.2-49.7-49.7s22.2-49.7,49.7-49.7c27.5,0,49.7,22.2,49.7,49.7S676.5,599.4,649.1,599.4z M400.6,519.9H341v59.6c0,21.9-17.8,39.8-39.8,39.8c-22,0-39.8-17.8-39.8-39.8v-59.6h-59.6c-22,0-39.8-17.8-39.8-39.8c0-22,17.8-39.8,39.8-39.8h59.6v-59.6c0-21.9,17.8-39.8,39.8-39.8c21.9,0,39.8,17.8,39.8,39.8v59.6h59.6c22,0,39.8,17.8,39.8,39.8C440.4,502.1,422.6,519.9,400.6,519.9z"></path>
+                    <path d="M962.5,443c-20.3-100.3-105.6-298.1-211-300.7l-2.9,0c-51.8,0-92.5,34.5-131.8,67.8c-37.9,32.1-73.6,62.3-116.7,62.3c-43.1,0-78.8-30.3-116.7-62.3c-39.4-33.3-80.1-67.8-131.8-67.8l-2.9,0C143.1,144.9,57.8,342.7,37.5,443C20.9,525.4,3.1,641.8,12.7,728c8.3,74,65.1,129.8,132.1,129.8c15,0,30.2-2.7,45.2-8.2c27.6-10,53.2-27.7,80.4-46.4c56.2-38.8,120-82.8,229.6-82.8c109.6,0,173.3,44,229.6,82.8c27.2,18.7,52.8,36.4,80.4,46.4c15,5.4,30.2,8.2,45.2,8.2c67,0,123.8-55.8,132.1-129.8C996.9,641.9,979.1,525.5,962.5,443z M942.7,719.9c-5.8,51.5-42.6,90.3-87.2,90.3c-9.8,0-19.9-1.8-30-5.4c-22.2-7.9-44.6-23.2-70.5-40.8c-58.8-40-132-89.8-256.2-89.8c-124.2,0-197.4,49.8-256.2,89.9c-25.9,17.6-48.3,32.9-70.5,40.8c-10.1,3.6-20.2,5.4-30,5.4c-44.6,0-80.1-38.8-86-90.3c-9.1-80,8.2-190.6,24.3-269.3c21.5-104.8,99.6-261.6,167-263.3l1.8,0c35.4,0,68.4,27.5,103.3,56.7c40.5,33.9,86.5,72.2,146.3,72.2c59.8,0,105.8-38.4,146.3-72.2c34.9-29.1,67.9-56.7,103.3-56.7l1.8,0C817.6,189,897,345.8,918.4,450.6C941.5,563.6,949.9,656.7,942.7,719.9z"></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="desc-text">Game Development</div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-9 row justify-center nomar">
+            <div class="row justify-center" id="flex-grid2"></div>
+          </div>
+        </div>
+        <div class="row row-padding skills_whitebox dropshadow">
+          <div class="col-xs-12 col-md-3" id="design">
+            <div class="row vertical-center padding-bottom">
+              <div class="circle">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 512 512">
+                  <g>
+                    <g>
+                      <path d="M291.5,329.3c-14.4,0-26,11.7-26,26c0,14.4,11.7,26,26,26c14.4,0,26-11.7,26-26                            C317.6,341,305.9,329.3,291.5,329.3z M291.5,364.7c-5.2,0-9.4-4.2-9.4-9.4c0-5.2,4.2-9.4,9.4-9.4s9.4,4.2,9.4,9.4                            S296.7,364.7,291.5,364.7z"></path>
+                    </g>
+                  </g>
+                  <g>
+                    <g>
+                      <path d="M426.2,49.4l3.5-10.4c1.5-4.4-0.9-9.1-5.2-10.6c-4.4-1.5-9.1,0.9-10.6,5.2L410.4,44                            c-6.1-0.5-12.2,0.6-17.9,3.4c-8.2,4-14.3,11-17.2,19.7l-32.7,96.2h-10.1l-1.7-120.9c-0.2-11.2-9.4-20.4-20.7-20.4                            c-11.2,0-20.5,9.1-20.7,20.4l-1.7,120.9h-19.1V66c0-1.7-0.5-3.3-1.4-4.6L228.6,3.7c-1.5-2.3-4.1-3.7-6.9-3.7s-5.4,1.4-6.9,3.7                            l-38.7,57.7c-0.9,1.4-1.4,3-1.4,4.6v97.3h-20.3c-4.6,0-8.3,3.7-8.3,8.3c0,4.6,3.7,8.3,8.3,8.3h1.7v28.1h-32.2                            c-29.5,0-53.6,24-53.6,53.6v122.1c0,29.5,24,53.6,53.6,53.6H156v26.3c0,26.6,21.7,48.3,48.3,48.3h175.6                            c26.6,0,48.3-21.7,48.3-48.3V180h1.7c4.6,0,8.3-3.7,8.3-8.3c0-4.6-3.7-8.3-8.3-8.3h-15.1L440,89.1C445.1,74,439,57.7,426.2,49.4z                            M156,389.6h-29.2c-4.9,0-8.8-4-8.8-8.8V264.7c0-4.9,4-8.8,8.8-8.8H156V389.6z M156,239.2h-29.2c-14.1,0-25.5,11.4-25.5,25.5                            v116.1c0,14.1,11.4,25.5,25.5,25.5H156v14.4h-32.2c-20.4,0-36.9-16.6-36.9-36.9V261.7c0-20.4,16.6-36.9,36.9-36.9H156V239.2z                            M372,128.5l33.1,11.3l-8,23.6h-37L372,128.5z M306.1,42.7c0-2.2,1.8-4,4-4c2.2,0,4,1.8,4,4l1.7,120.6h-11.4L306.1,42.7z                            M293.5,180c0.5,0.1,1,0.3,1.5,0.3v94.8c0,4.5-3.7,8.2-8.2,8.2c-4.5,0-8.2-3.7-8.2-8.2v-26.8c0-13.7-11.2-24.9-24.9-24.9                            s-24.9,11.2-24.9,24.9v52c0,4.5-3.7,8.2-8.2,8.2s-8.2-3.7-8.2-8.2V180H293.5z M252,163.3h-22V82c7.4-0.6,14.8-2,22-4.1V163.3z                            M221.7,23.3l8.3,12.4c-2.7,0.8-5.4,1.2-8.3,1.2c-2.8,0-5.6-0.4-8.3-1.2L221.7,23.3z M203.9,49.9c5.6,2.4,11.6,3.7,17.8,3.7                            c6.2,0,12.2-1.3,17.8-3.7l8,12c-16.8,5.1-34.9,5.1-51.7,0L203.9,49.9z M191.3,77.9c7.2,2.1,14.6,3.5,22,4.1v81.3h-22V77.9z                            M411.5,463.7L411.5,463.7c0,17.4-14.2,31.6-31.6,31.6H204.3c-17.4,0-31.6-14.2-31.6-31.6V180h22.8v120.3                            c0,13.7,11.2,24.9,24.9,24.9c13.7,0,24.9-11.2,24.9-24.9v-52c0-4.5,3.7-8.2,8.2-8.2c4.5,0,8.2,3.7,8.2,8.2v26.8                            c0,13.7,11.2,24.9,24.9,24.9s24.9-11.2,24.9-24.9v-94.7l99.9-0.4V463.7z M424.2,83.7L410.5,124l-33.1-11.3l13.7-40.2                            c1.5-4.4,4.6-8,8.8-10.1c4.2-2.1,8.9-2.4,13.4-0.9C422.4,64.6,427.3,74.6,424.2,83.7z"></path>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div class="desc-text">Other Skills</div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-9 row justify-center nomar">
+            <div class="row justify-center" id="flex-grid3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="section" id="about-me">
+        <div class="row nomar">
+          <div class="col-xs-3 col-sm-7 col-md-8 col-lg-8">
+            <div class="hr"></div>
+          </div>
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3 parallelogram left">
+            <div class="text">ABOUT ME</div>
+          </div>
+          <div class="col-xs-3 col-sm-1 col-md-1 col-lg-1">
+            <div class="hr"></div>
+          </div>
+        </div>
+        <div class="row nomar justify-center">
+          <div class="col-xs-12 col-sm-4 col-lg-3 profile"><img class="dropshadow" src="profilepic.png"></div>
+          <div class="col-xs-12 col-sm-8 col-lg-9 gradient dropshadow">
+            <div class="row row-fill align-items-center nomar">
+              <div class="col-xs-12 profile-text">
+                <div class="header-text">Matt Wagar</div>
+                <div class="text">Hey folks, I’m a Technical Artist and UI Developer that thrives at the intersection of art and code. I build reliable tools that make artists’ lives easier and pipelines smoother. With over four years at Respawn Entertainment, I’ve helped ship Star Wars Jedi: Survivor and work on it's sequel title. Whether wrangling Python in Maya, cooking up Houdini magic, or getting Unreal to behave, I bring a mix of technical precision and creative thinking. I enjoy collaborating across disciplines and simplifying complex workflows to support the team’s creative goals.</div><a href="http://www.mwagar.com/Resume_2025.pdf">
+                  <div class="welcome-button row nomar">
+                    <div class="col text">Resume PDF</div>
+                  </div></a>
+              </div>
+              <div class="col-xs-12 row nomar"><a class="row nomar" href="mailto:mattywagar@gmail.com"><img class="icon" src="mail_icon.png">
+                  <div class="text align-center little-pad-left">Contact Me</div></a><a class="row nomar" href="https://twitter.com/MatthewWagar"><img class="icon" src="twittericon.png">
+                  <div class="text align-center little-pad-left">Twitter</div></a><a class="row nomar" href="https://www.linkedin.com/in/matthew-wagar-31998110a/"><img class="icon" src="linkedinicon.png">
+                  <div class="text align-center little-pad-left">LinkedIn</div></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot row nomar">
+        <div class="text t-right nopad">Copyright © 2020 by Matt Wagar</div>
+        <div class="t-left nopad"><a href="https://twitter.com/MatthewWagar?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @MatthewWagar</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+      </div>
+    </div>
+    <div class="modal" id="imageModal"><img class="modal-content" id="modalImage"></div>
+    <script src="bundle.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-90764410-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
 </html>

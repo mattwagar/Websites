@@ -23,8 +23,10 @@ export class Media {
     selected: number;
     vimeo:string;
 
+
     row:HTMLDivElement;
     overlay:HTMLDivElement;
+    svg_overlay:HTMLImageElement;
     colmd:HTMLDivElement;
     
     media_selected:HTMLDivElement;
@@ -50,16 +52,48 @@ export class Media {
                 image.src = files[i];
                 image.classList.add('dropshadow');
                 vm.elements.push(image);
+
+                
             }
         }
 
         vm.media_selected = document.createElement('div');
         vm.media_selected.id = 'media-selected';
-
+        
         vm.overlay = document.createElement('div');
+        vm.overlay.id = "image-overlay";
         vm.overlay.classList.add('overlay-media');
-
         vm.media_selected.appendChild(vm.overlay);
+
+        vm.svg_overlay = document.createElement("img");
+        vm.svg_overlay.src = "./portfolio/expand.svg";
+        vm.svg_overlay.style.position = "absolute";
+        vm.svg_overlay.style.bottom = "10px";
+        vm.svg_overlay.style.right = "10px";
+        vm.svg_overlay.style.width = "24px";
+        vm.svg_overlay.style.height = "24px";
+        vm.svg_overlay.style.cursor = "pointer";
+        vm.svg_overlay.style.padding = "2px";
+        vm.svg_overlay.style.fill = "white";
+
+        vm.overlay.appendChild(vm.svg_overlay);
+
+        vm.overlay.addEventListener("click", function (event) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("modalImage");
+            var modalDesc = document.getElementById("modalDescription");
+            var modalDesc = document.getElementById("modalTitle");
+            console.log(vm.elements[vm.selected].src)
+            modal.style.display = "block";
+            modalImg.src = vm.elements[vm.selected].src;
+            modalDesc.textContent = "Here’s a more detailed description of the image.";
+            modalTitle.textContent = "The Best Title";
+          });
+
+        // vm.overlay = document.createElement('div');
+        // vm.overlay.classList.add('overlay-media');
+        // console.log(vm.overlay)
+        // vm.media_selected.appendChild(vm.overlay);
 
         vm.row = document.createElement('div');
         vm.row.classList.add('row','justify-center','media-container');
@@ -78,7 +112,10 @@ export class Media {
             vm.thumbnails[j].src = thumbnails[j];
 
             vm.colmd.appendChild(vm.media_items[j].html);
-            vm.colmd.appendChild(vm.thumbnails[j]);
+
+            if(vm.elements.length !== 1){
+                vm.colmd.appendChild(vm.thumbnails[j]);
+            }
             vm.row.appendChild(vm.colmd);
             
         }
@@ -141,7 +178,6 @@ export class Media {
                 // vm.media_selected.removeChild(vm.media_selected.firstChild);
         vm.overlay.classList.add('close-media');
 
-        vm.size();
 
         for(var i = 0; i < vm.media_items.length; i++){
             vm.media_items[i].html.style.width = vm.colmd.clientWidth+'px';
@@ -149,12 +185,13 @@ export class Media {
         }
 
         if(vm.vimeo && thumb_num === 0){
-                vm.elements.shift();
-                var frag = vm.createFragment(vm.vimeo, vm.media_selected.clientWidth, vm.media_selected.clientHeight);
-                vm.elements.unshift(frag);
-
-                vm.overlay.style.visibility = 'hidden';
-                // vm.elements[i].classList.add('dropshadow');
+            vm.elements.shift();
+            var frag = vm.createFragment(vm.vimeo, vm.media_selected.clientWidth, vm.media_selected.clientHeight);
+            vm.elements.unshift(frag);
+            
+            vm.overlay.style.visibility = 'hidden';
+            
+            // vm.elements[i].classList.add('dropshadow');
         } else {
             vm.overlay.style.visibility = 'visible';
         }
@@ -177,8 +214,32 @@ export class Media {
             }
 
             vm.media_selected.appendChild(vm.elements[vm.selected]);
+            vm.size();
             vm.overlay.classList.remove('close-media');
             vm.media_items[vm.selected].html.classList.add('selected');
+
+            if(vm.vimeo && thumb_num === 0){
+                vm.svg_overlay.style.visibility = 'hidden';
+            } else {
+                vm.svg_overlay.style.visibility = 'visible';
+            }
+
         }, 600);   
     }
+
+    // handleClick(event)
+    // {
+    //     const vm = this
+    //     console.log(vm.elements)
+    //     var modal = document.getElementById("imageModal");
+    //     var modalImg = document.getElementById("modalImage");
+    //     var modalDesc = document.getElementById("modalDescription");
+    //     var modalDesc = document.getElementById("modalTitle");
+    //     console.log(vm.elements[vm.selected].src)
+    //     modal.style.display = "block";
+    //     modalImg.src = vm.elements[vm.selected].src;
+    //     modalDesc.textContent = "Here’s a more detailed description of the image.";
+    //     modalTitle.textContent = "The Best Title";
+    // }
+
 }

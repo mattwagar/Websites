@@ -39,7 +39,7 @@ export class Img {
     vm.w = vm.canvas.width = width;
     vm.h = vm.canvas.height = height;
     vm.image = new Image();
-    vm.image.src = 'perlin_background.png';
+    vm.image.src = 'portfolio/perlin_background.png';
     vm.loaded = false;
 
     vm.image.onload = function () {
@@ -114,7 +114,7 @@ export class App {
 
     if (isMobile) {
       var image = document.createElement('img');
-      image.src = 'perlin_background.png';
+      image.src = 'portfolio/perlin_background.png';
       document.getElementById('canvas').style.display = 'none';
       document.getElementById('canvas-container').style.display = 'none';
       image.onload = function(){

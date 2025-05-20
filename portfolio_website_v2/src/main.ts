@@ -6,18 +6,19 @@ import * as skill_badge from "./skill_badge";
 
 import * as media from "./media";
 
+import Viewer from 'viewerjs';
+
 //yoo
 const timeout: number = 1000;
 
 var frontend = new skill_badge.Collection('./skills/', 'flex-grid1', [
-{ "name": 'C#', "class": 'circle-100', "image": 'csharp.svg' },
-{ "name": 'Java Script', "class": 'circle-100', "image": 'javascript-2.svg' },
-{ "name": 'HTML5', "class": 'circle-100', "image": 'html5.svg' },
-{ "name": 'CSS3', "class": 'circle-100', "image": 'css-3.svg' },
-{ "name": 'C++', "class": 'circle-75', "image": 'c-seeklogo.com.svg' },
-{ "name": 'Python', "class": 'circle-75', "image": 'python-5.svg' },
-{ "name": 'Java', "class": 'circle-50', "image": 'java-14.svg' },
-{ "name": 'Node JS', "class": 'circle-25', "image": 'nodejs-icon.svg' },
+    { "name": 'Python', "class": 'circle-100', "image": 'python-5.svg' },
+    { "name": 'C#', "class": 'circle-100', "image": 'csharp.svg' },
+    { "name": 'Java Script', "class": 'circle-100', "image": 'javascript-2.svg' },
+    { "name": 'C++', "class": 'circle-75', "image": 'c-seeklogo.com.svg' },
+    { "name": 'Java', "class": 'circle-50', "image": 'java-14.svg' },
+    { "name": 'Node JS', "class": 'circle-25', "image": 'nodejs-icon.svg' },
+
 // { "name": 'jQuery', "class": 'circle-100', "image": 'jquery-1.svg' },
 // { "name": 'Ember JS', "class": 'circle-100', "image": 'ember.svg' },
 // { "name": 'Angular JS', "class": 'circle-75', "image": 'angular-icon.svg' },
@@ -27,23 +28,21 @@ var frontend = new skill_badge.Collection('./skills/', 'flex-grid1', [
 // { "name": 'React JS', "class": 'circle-25', "image": 'react.svg' }
 ], false, 'frontend');
 var softeng = new skill_badge.Collection('./skills/', 'flex-grid2', [
+    { "name": 'Unreal Engine 5', "class": 'circle-100', "image": 'unreal.svg' },
     { "name": 'Unity', "class": 'circle-100', "image": 'unity.svg' },
-    { "name": 'ARKit', "class": 'circle-75', "image": 'arkit.png' },
-    { "name": 'Vuforia', "class": 'circle-75', "image": 'vuforia-logo.png' },
-    { "name": 'Oculus VR', "class": 'circle-75', "image": 'oculus.png' },
-    { "name": 'Leap Motion', "class": 'circle-75', "image": 'leap.png' },
-    { "name": 'Open GL', "class": 'circle-25', "image": 'opengl2.svg' },
-    // { "name": 'Android Studio', "class": 'circle-25', "image": 'Android_studio.svg' }
+    { "name": 'Maya', "class": 'circle-100', "image": 'maya.png' },
+    { "name": 'Houdini', "class": 'circle-100', "image": 'houdini.png'},
+    { "name": 'Blender', "class": 'circle-50', "image": 'blender.svg'},
+    
 ], false, 'softeng');
 var design = new skill_badge.Collection('./skills/', 'flex-grid3', [
-{ "name": 'Houdini', "class": 'circle-100', "image": 'houdini.png'},
+{ "name": 'HTML5', "class": 'circle-100', "image": 'html5.svg' },
+{ "name": 'CSS', "class": 'circle-100', "image": 'css-3.svg' },
 { "name": 'Illustrator', "class": 'circle-100', "image": 'adobe-illustrator-cc.svg' },
-{ "name": 'Maya', "class": 'circle-75', "image": 'maya.png' },
 { "name": 'After Effects', "class": 'circle-50', "image": 'after-effects-cc.svg' },
 { "name": 'Motion Builder', "class": 'circle-25', "image": 'mobu.png' },
 { "name": 'Vicon Blade', "class": 'circle-25', "image": 'vicon.png' },
 { "name": 'Photoshop', "class": 'circle-25', "image": 'photoshop-cc.svg' },
-
 // { "name": 'Mudbox', "class": 'circle-25', "image": 'mudbox.png' }
 ], false, 'design');
 frontend.load();
@@ -461,12 +460,8 @@ export class Wrapper {
         vm.setMedia();
 
         if(vm.url === ""){
-            console.log('I THINK THIS HAPPENED?');
-            console.log(vm.col6.lastChild);
             vm.col6Holder.removeChild(vm.demo);
         } else if(vm.col6Holder.lastChild !== vm.demo){
-            console.log('WOAH THIS WORKS?');
-            console.log(vm.col6.lastChild);
             vm.col6Holder.appendChild(vm.demo);            
         }
         // vm.setStack(stack);
@@ -584,6 +579,18 @@ var rem_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Unity', 
 true
 );
 
+var jedi_3_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Maya', "class": 'circle-100', "image": 'maya.png' },
+{ "name": 'Unreal', "class": 'circle-75', "image": 'unreal.svg' },
+{ "name": 'Blender', "class": 'circle-25', "image": 'blender.svg'}],
+true
+);
+
+var survivor_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Unreal', "class": 'circle-100', "image": 'unreal.svg' },
+{ "name": 'Houdini', "class": 'circle-75', "image": 'houdini.png'},
+{ "name": 'Maya', "class": 'circle-75', "image": 'maya.png' }],
+true
+);
+
 var mouse_stack = new skill_badge.Collection('./skills/', '', [{ "name": 'Unity', "class": 'circle-100', "image": 'unity.svg' },
 { "name": 'Motion Builder', "class": 'circle-75', "image": 'mobu.png' },
 { "name": 'Maya', "class": 'circle-50', "image": 'maya.png' },
@@ -656,21 +663,26 @@ m.push(new media.Media('', ['./portfolio/cave_3.png','./portfolio/cave_2.png', '
 m.push(new media.Media('', ['./portfolio/tube_3.png', './portfolio/tube_2.png', './portfolio/tube_4.png'], ['./portfolio/tube_2.png','./portfolio/tube_4.png'], '<iframe src="https://player.vimeo.com/video/369955460" width="471" height="335" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'));
 m.push(new media.Media('', ['./portfolio/hyperhop_01.gif', './portfolio/hyperhop_02.gif', './portfolio/hyperhop_03.gif'], ['./portfolio/hyperhop_01.gif', './portfolio/hyperhop_02.gif', './portfolio/hyperhop_03.gif']));
 m.push(new media.Media('', ['./portfolio/bee_1.png', './portfolio/bee_2.png', './portfolio/bee_3.png'], ['./portfolio/bee_2.png', './portfolio/bee_3.png'], '<iframe src="https://player.vimeo.com/video/370220935" width="471" height="335" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'));
+m.push(new media.Media('', ['./portfolio/survivor_3.png', './portfolio/survivor_1.jpg','./portfolio/survivor_2.jpg'], ['./portfolio/survivor_3.png', './portfolio/survivor_1.jpg','./portfolio/survivor_2.jpg']));
+m.push(new media.Media('', ['./portfolio/jedi_1.png'], ['./portfolio/jedi_1.png']));
 // m.push(new media.Media('', ['./portfolio/port_1.png', './portfolio/port_2.png', './portfolio/port_3.png',  './portfolio/port_4.png'], ['./portfolio/port_1.png', './portfolio/port_2.png', './portfolio/port_3.png', './portfolio/port_4.png']));
 
 var portfolio = new Portfolio('portfolio', [
+    { title: 'Star Wars Jedi: Survivor', title_image: './portfolio/star_wars_card.jpg', desc: "During development on Star Wars Jedi: Survivor, I worked closely with both the Environment and Lighting teams to build tools and systems that streamlined content creation and improved in-game performance. For the Environment team, I created procedural modeling tools in Houdini, including a Cable Tool and a Pipe Tool, which allowed artists to quickly generate flexible, physics-enabled assets with full collision support for use throughout the game’s expansive levels. For the Lighting team, I helped design and implement a customizable fog card material shader, giving artists greater control over atmospheric effects while maintaining visual consistency and performance.\n\n In Unreal Engine, I developed DCC tools for level designers and environment artists using both C++ and Unreal Python, enabling more efficient workflows and tighter integration between the editor and external content creation tools. I also contributed to broader optimization efforts by building Blueprint performance debugging tools and improving level performance through HLOD setup, material and poly complexity reduction, and faster level streaming. These efforts were critical in helping the game hit its performance targets, particularly on console platforms like the PlayStation 5.", stack: survivor_stack, media: m[12], type: 'Unreal Engine Game', url: 'https://www.ea.com/games/starwars/jedi-survivor' },
+    { title: 'Star Wars Jedi: 3', title_image: './portfolio/star_wars_3_card.png', desc: "On Star Wars Jedi: 3, I played a key role in architecting and modernizing our Maya Python codebase to improve efficiency and scalability. One of my larger projects was a Cinematics Exporter tool, I added the feature to read and update data from a backend cinematics database, allowing for more efficient asset tracking and management. I then implemented a multithreaded process that reduced export times from 2 hours to just 10 minutes, significantly improving the cinematics pipeline and enabling quicker turnaround times for cinematic content. \n\nAdditionally, I developed a Character Manager tool using MVC (Model-View-Controller) architecture, leveraging PyQt for the UI and OpenMaya and Maya cmds for seamless integration with Maya’s core. The tool utilized a structured dataset to load characters and their attachments, offering more flexibility and modularity for artists and animators working with complex rigs. These tools not only modernized our workflows but also laid the foundation for more efficient and scalable content creation as the project evolved.", stack: jedi_3_stack, media: m[13], type: 'Unreal Engine Game', url: '' },
     { title: 'The Story Graph', title_image: './portfolio/StoryGraph_Card.png', desc: "The Story Graph is a node based visual scripting tool. Similar to Blueprints in Unreal Engine 4, The Story Graph makes scripting easy for designers and developers who want to prototype rapidly. This is a Unity Custom Editor Tool that can be bought on the Unity Asset Store.", stack: storygraph_stack, media: m[3], type: 'Unity Custom Editor Tool', url: 'https://assetstore.unity.com/packages/tools/visual-scripting/story-graph-136713' },
-    { title: 'Island Designer', title_image: './portfolio/island.png', desc: "During my SideFX Internship I created an Island Designer game as an experimental prototype for Houdini generation of content during runtime. I developed this project entirely from the ground up, including all the Houdini procedural assets, user interface, and interactions. This island designer explores interactions such as painting grass, placing curved assets such as bridges and waterfalls, and placing randomly generated objects such as palm trees and houses. Along the way I learned a lot about Houdini procedural modeling, as well as pipeline integration with Unity. Please note that this was experimental only, and should not be seen as any indication for plans SideFX has for runtime generation of content.", stack: cave_stack, media: m[2], type: 'Houdini Game Demo', url: '' },
+    { title: 'Island Designer', title_image: './portfolio/island.png', desc: "During my SideFX Internship I created an Island Designer game as an experimental prototype for Houdini generation of content during runtime. I developed this project entirely from the ground up, including all the Houdini procedural assets, user interface, and interactions. This island designer explores interactions such as painting grass, placing curved assets such as bridges and waterfalls, and placing randomly generated objects such as palm trees and houses. Along the way I learned a lot about Houdini procedural modeling, as well as pipeline integration with Unity. Please note that this was experimental only, and should not be seen as any indication for plans SideFX has for runtime generation of content.", stack: cave_stack, media: m[2], type: 'Houdini Internship Game Demo', url: '' },
     { title: 'Procedural Modeling Tutorial', title_image: './portfolio/lahug.jpeg', desc: "A tutorial presented at the LA Houdini User Group on procedural modeling for games using Houdini. Showcases the basics of VEX, and how I went about creating a procedural bridge during my Houdini Internship.", stack: cave_stack, media: m[1], type: 'Houdini Tutorial', url: 'https://www.youtube.com/watch?v=MsZjUHhCjJ8' },
-    { title: 'Hyperhop: Galactic Lancer', title_image: './portfolio/hyperhop.png', desc: "Hyperhop is my Ludum Dare 46 Game Jam submission. On a team of four, in just 72 hours I modeled, animated, and scripted behavior the of the planets, as well as rigged the main character. I learned a lot about blendshapes and creating facial rigs in Houdini as well as animation states in Unity.", stack: cave_stack, media: m[10], type: 'Unity Game', url: 'https://swanijam.itch.io/hyperhop' },
-    { title: 'Axon Rush', title_image: './portfolio/axonrush.png', desc: "Axon Rush is my Global Game Jam 2020 submission. On a team of six, we wanted to make a game about mental health... literally! Our game Axon Rush is a 3D Platformer where it is your job to repair the the brain by shooting electric impulses to broken axons. I worked on VFX and the player character shooting behavior.", stack: cave_stack, media: m[6], type: 'Unity Game', url: 'https://globalgamejam.org/2020/games/axon-rush-2' },
-    { title: 'Bioshroom', title_image: './portfolio/bioshroom_card.png', desc: "Bioshroom is a first person exploration and gardening game. You are a Biologist exploring a foreign planet infested with mushrooms. It is your goal to explore the planet, gather new mushrooms, and breed them to send back to your home planet. On this project I worked as a technical artist and developer. I developed a procedural mushroom using blendshapes, as well as a mushroom spawner that uses vertex colors on the ground.", stack: rem_stack, media: m[5], type: 'Unity Game', url: '' },
-    { title: 'And the Crowd Goes Wild!', title_image: './portfolio/crowd_card.png', desc: "And the Crowd Goes Wild is a virtual reality interactive experience where you put on a magic show for an audience of ghosts. This experience uses Oculus VR as well as the Leapmotion to truly simulate magic coming out of your fingertips via Leap Motion gestures. I developed this game entirely using The Story Graph, the Unity Custom Editor Tool I created. Made in only 1 month for my Introduction to Virtual Reality class, this experience explores Virtual Reality User Experience design with gesture based controls.", stack: storygraph_stack, media: m[4], type: 'Unity VR Experience', url: '' },
-    { title: 'Hive Jive', title_image: './portfolio/bee_card.png', desc: "Hive Jive is a virtual reality game where you fly around as a bee. The goal of the game is to repollinate the island and clear it of all its trash. I worked in a group as a Technical Artist, where I created the bee fur shader, the grass shader, rigging the bee, and setting up GPU painting on the player controller. This game was shown at Siggraph at Drexel University's booth using a Motorbike Controller.", stack: bee_stack, media: m[11], type: 'Virtual Reality Game', url: '' },
-    { title: 'Procedural Cave', title_image: './portfolio/cave_card.png', desc: "This Procedural Cave has controls number of rooms, stalagmites, number of hallways between rooms, as well as using a proceudral material. The procedural material is exported from Houdini's texture baker, and brought into Unity. Perfect asset for any dungeon crawler.", stack: cave_stack, media: m[8], type: 'Houdini Model', url: '' },
-    { title: 'Tube Dome Experience', title_image: './portfolio/tube_card.png', desc: "For a Dome exhibit I created an abstract tube animation using distance field volumes, and a GPU proceudral mesh compute shader in Unity. To export for the dome, I developed a Fisheye Lens Render Pipeline. For this project I leveraged open source from Keijiro.", stack: storygraph_stack, media: m[9], type: 'Immersive Experience', url: '' },
-    { title: 'Rem', title_image: './portfolio/rememberence_logo.jpg', desc: "Rem is a video game about a young girl trapped in a comatose dreamscape. You play as a young girl who must overcome her fears to remember her past. In this fun, over-the-shoulder stealth game you must avoid screen headed enemies, and find mementos of your past. For this project I worked in many areas including Level Design, Visual Effects, Web Development, Modeling, and Documentation.", stack: rem_stack, media: m[0], type: 'Unity Game', url: 'https://offbrandhellui.herokuapp.com/#/home' },
-    { title: 'Door to Door', title_image: './portfolio/robot_card.png', desc: "As part of my Animation class, I created a short film about a robot who goes through many strange worlds. I modeled, textured, rigged, and animated everything and rendered out in Unity. I also created a toon shader with a highlight and outline as well as did some VFX in Unity. It was a huge learning experience to go through every part of the animation pipeline!", stack: rem_stack, media: m[7], type: 'Robot Animation', url: '' }]);
+    { title: 'Hyperhop: Galactic Lancer', title_image: './portfolio/hyperhop.png', desc: "Hyperhop is my Ludum Dare 46 Game Jam submission. On a team of four, in just 72 hours I modeled, animated, and scripted behavior the of the planets, as well as rigged the main character. I learned a lot about blendshapes and creating facial rigs in Houdini as well as animation states in Unity.", stack: cave_stack, media: m[10], type: 'Unity Game Demo', url: 'https://swanijam.itch.io/hyperhop' },
+    { title: 'Axon Rush', title_image: './portfolio/axonrush.png', desc: "Axon Rush is my Global Game Jam 2020 submission. On a team of six, we wanted to make a game about mental health... literally! Our game Axon Rush is a 3D Platformer where it is your job to repair the the brain by shooting electric impulses to broken axons. I worked on VFX and the player character shooting behavior.", stack: cave_stack, media: m[6], type: 'Unity Game Demo', url: 'https://globalgamejam.org/2020/games/axon-rush-2' },
+    { title: 'Bioshroom', title_image: './portfolio/bioshroom_card.png', desc: "Bioshroom is a first person exploration and gardening game. You are a Biologist exploring a foreign planet infested with mushrooms. It is your goal to explore the planet, gather new mushrooms, and breed them to send back to your home planet. On this project I worked as a technical artist and developer. I developed a procedural mushroom using blendshapes, as well as a mushroom spawner that uses vertex colors on the ground.", stack: rem_stack, media: m[5], type: 'Unity Game Demo', url: '' },
+    /// { title: 'And the Crowd Goes Wild!', title_image: './portfolio/crowd_card.png', desc: "And the Crowd Goes Wild is a virtual reality interactive experience where you put on a magic show for an audience of ghosts. This experience uses Oculus VR as well as the Leapmotion to truly simulate magic coming out of your fingertips via Leap Motion gestures. I developed this game entirely using The Story Graph, the Unity Custom Editor Tool I created. Made in only 1 month for my Introduction to Virtual Reality class, this experience explores Virtual Reality User Experience design with gesture based controls.", stack: storygraph_stack, media: m[4], type: 'Unity VR Experience', url: '' },
+    // { title: 'Hive Jive', title_image: './portfolio/bee_card.png', desc: "Hive Jive is a virtual reality game where you fly around as a bee. The goal of the game is to repollinate the island and clear it of all its trash. I worked in a group as a Technical Artist, where I created the bee fur shader, the grass shader, rigging the bee, and setting up GPU painting on the player controller. This game was shown at Siggraph at Drexel University's booth using a Motorbike Controller.", stack: bee_stack, media: m[11], type: 'Virtual Reality Game', url: '' },
+    // { title: 'Procedural Cave', title_image: './portfolio/cave_card.png', desc: "This Procedural Cave has controls number of rooms, stalagmites, number of hallways between rooms, as well as using a proceudral material. The procedural material is exported from Houdini's texture baker, and brought into Unity. Perfect asset for any dungeon crawler.", stack: cave_stack, media: m[8], type: 'Houdini Model', url: '' },
+    // { title: 'Tube Dome Experience', title_image: './portfolio/tube_card.png', desc: "For a Dome exhibit I created an abstract tube animation using distance field volumes, and a GPU proceudral mesh compute shader in Unity. To export for the dome, I developed a Fisheye Lens Render Pipeline. For this project I leveraged open source from Keijiro.", stack: storygraph_stack, media: m[9], type: 'Immersive Experience', url: '' },
+    // { title: 'Rem', title_image: './portfolio/rememberence_logo.jpg', desc: "Rem is a video game about a young girl trapped in a comatose dreamscape. You play as a young girl who must overcome her fears to remember her past. In this fun, over-the-shoulder stealth game you must avoid screen headed enemies, and find mementos of your past. For this project I worked in many areas including Level Design, Visual Effects, Web Development, Modeling, and Documentation.", stack: rem_stack, media: m[0], type: 'Unity Game', url: 'https://offbrandhellui.herokuapp.com/#/home' },
+    // { title: 'Rem', title_image: './portfolio/rememberence_logo.jpg', desc: "Rem is a video game about a young girl trapped in a comatose dreamscape. You play as a young girl who must overcome her fears to remember her past. In this fun, over-the-shoulder stealth game you must avoid screen headed enemies, and find mementos of your past. For this project I worked in many areas including Level Design, Visual Effects, Web Development, Modeling, and Documentation.", stack: rem_stack, media: m[0], type: 'Unity Game', url: 'https://offbrandhellui.herokuapp.com/#/home' },
+    // { title: 'Door to Door', title_image: './portfolio/robot_card.png', desc: "As part of my Animation class, I created a short film about a robot who goes through many strange worlds. I modeled, textured, rigged, and animated everything and rendered out in Unity. I also created a toon shader with a highlight and outline as well as did some VFX in Unity. It was a huge learning experience to go through every part of the animation pipeline!", stack: rem_stack, media: m[7], type: 'Robot Animation', url: '' }]);
     // { title: 'Roast', title_image: './portfolio/roast_7.jpg', desc: "Roast is a webapp that surveys comfort in an indoor space. It asks questions that gauge temperature, noise, smell, and humidity, and maps it to where you are on your building's floorplan. Through this crowd sourced data collected, building managers, architects and the people taking the survey can understand how people feel in a space. I worked on this project for 6 months while I was working at the architecture firm, Kieran Timberlake.", stack: roast_stack, media: m[5], type: 'Web App', url: '' },
     // { title: 'Portfolio', title_image: './portfolio/port_1.png', desc: "From concept to design to development I put a lot of love into this. As a personal challenge I created this website entirely in Typescript with no jQuery. All in all I can conclude that jQuery is overrated! Java Script is powerful enough on its own.", stack: port_stack, media: m[7], type: 'Website', url: 'https://github.com/mattwagar/Websites/tree/master/portfolio_website_v2' },
     // { title: 'Breathless', title_image: './portfolio/breathless.jpg', desc: "The Space Pirate, Aria, is on a mission to loot a mineral cargo ship. However, upon landing on the cargo ship, Aria's helmet cracks causing her to slowly lose oxygen. It's now a race against time to collect all the gems before her oxygen runs out!", stack: breathless_stack, media: m[2], type: 'HTML5 Game', url: '/breathless' }]);
@@ -678,6 +690,7 @@ var portfolio = new Portfolio('portfolio', [
     // { title: 'Mean Forecast', title_image: './portfolio/mean_forecast_1.jpg', desc: 'A small web app that calculates the average of 3 weather API\'s: Wunderground, Forecast.io, and World Weather Online. This data is then served onto a D3.js Line Chart for temperature, humidty, and windspeed. Also the webapp itself has many subtleties that are affected by weather data. For example, the video  resembles the current weather. Also each graph is color coated by a gradient based on the weather data.', stack: weather_stack, media: m[4], type: 'Website', url: '/meanforecast' },
     // { title: 'Q*Bert', title_image: "./portfolio/qbert_play.jpg", desc: 'This is my Bouncing Ball Assignment for Animation 1 at Drexel University. When picking a game that mixes my love of retro video games and bouncing balls, Q*Bert was a no-brainer. Everything is originally modelled, textured, and animated. Made in Maya, and rendered in V-Ray.', stack: qbert_stack, media: m[2], type: 'Animation', url: 'https://vimeo.com/198149795' },
     // { title: 'Bedroom', title_image: './portfolio/cgi_final_1.png', desc: 'This is my final for CGI 2 at Drexel University. The assignment was to recreate any type of room, so I chose a little boy\'s room. We were tasked with creating at least one complex object, so I decided to go with a train set.', stack: qbert_stack, media: m[3], type: '3D Render', url: '' }]);
+    ]);
 
 
 // var welcome_b = document.getElementById('welcome-button');
@@ -710,6 +723,18 @@ window.onresize = (e) => {
 
     portfolio.appendAll();
 
+};
+
+const modal = document.getElementById("imageModal");
+window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+  
+const closeBtn = document.querySelector(".close");
+closeBtn.onclick = function () {
+    modal.style.display = "none";
 };
 
 
